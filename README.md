@@ -16,3 +16,5 @@ pulled directly from the slides:
 essentially, it is recommended to do logbook entries a few times a week, and to consistently upload them to blackboard.
 For the sake of redundancy, I have uploaded a markdown file to this repo, and will be updating the file on blackboard with my attached git log for proof
 
+
+this will also where a bunch of other docs go
