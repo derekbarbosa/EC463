@@ -11,6 +11,7 @@ Semper Disco -- VETCON Badge
 * Ryan Sullvian     ryanbs@bu.edu 
 * John Kircher      kircherj@bu.edu 
 * Julian Padgett    jpadgett@bu.edu 
+* Carlos Ortiz      cartex10@bu.edu
 
 
 ## Logbook requirements
