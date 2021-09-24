@@ -7,10 +7,10 @@ Team 32
 Semper Disco -- VETCON Badge
 
 ## Team Members
-Derek D. Barbosa  dbarbosa@bu.edu
-Ryan Sullvian     ryanbs@bu.edu
-John Kircher      kircherj@bu.edu
-Julian Padgett    jpadgett@bu.edu
+Derek D. Barbosa  dbarbosa@bu.edu \n
+Ryan Sullvian     ryanbs@bu.edu \n
+John Kircher      kircherj@bu.edu \n
+Julian Padgett    jpadgett@bu.edu \n
 
 
 ## Logbook requirements
