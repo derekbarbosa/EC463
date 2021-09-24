@@ -1,5 +1,19 @@
-# SENIOR DESIGN SESSION 1 LOGBOOK REPO
+# SENIOR DESIGN SESSION 1 REPO
 
+## Team NO.
+Team 32
+
+## Team Project
+Semper Disco -- VETCON Badge
+
+## Team Members
+Derek D. Barbosa  dbarbosa@bu.edu
+Ryan Sullvian     ryanbs@bu.edu
+John Kircher      kircherj@bu.edu
+Julian Padgett    jpadgett@bu.edu
+
+
+## Logbook requirements
 pulled directly from the slides:
 
 * Logbooks are on-line (Blackboard Journal)
