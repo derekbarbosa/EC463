@@ -5,8 +5,21 @@
 ### Required Features
 
 #### An Opeating System
+* Ask what they "mean" by an OS?
+	* a flavor of linux with addons? 
+	* an RTOS?
+	* firmware controlling software? 
+	* Arduino SDK?
+
+* Why do they require an OS, and what do they need from it?
+	* desired functionality from OS
 
 #### Point-to-Point (p2p) Networking
+
+* What networking features do they require?
+	* Preferred wired protocol?
+	* Functionalities desired from P2P networking?
+	* Does it need to interface with other devices on the same LAN/WLAN when connected to a host?
 
 #### On/Off/PC interface switch
 
