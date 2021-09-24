@@ -24,6 +24,10 @@ Entries here will be reserved specifically for the remainder of September.
 	- Assigned the task of formulating questions for the client for further information on desired specifications to team members who would not be present during the inital cient meeting.
 
 ### 9/23/2021
+* Finalized meeting details with our client. Confirmed for 9/24/2021 3pm eastern.
+* Began drafting questions based on project requirements. Instructed group members to do the same.
+* Set up a GH repo for our documentation. Linked to Slack Channel using webhooks to keep version control hygiene.
 
+### 9/24/2021
 
 
