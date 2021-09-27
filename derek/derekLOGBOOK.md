@@ -29,5 +29,13 @@ Entries here will be reserved specifically for the remainder of September.
 * Set up a GH repo for our documentation. Linked to Slack Channel using webhooks to keep version control hygiene.
 
 ### 9/24/2021
+* Met with clients! 
+* attached notes for client meeting
+* Ryan said he would take care of the inital PDRR writeup, will pause work for the weekend.
 
-
+### 9/27/2021
+* Brainstorming approach to IC/embedded system approach as described by client
+* during review of the product specifications, clients emphasized battery life and weight
+	* asked us to be somewhat conservative with the tradeoff
+* started to look at TI-83/84 PCBs, determining best practices to create a low-power system with programmable memory.
+* attaching notes to this upload :) 
