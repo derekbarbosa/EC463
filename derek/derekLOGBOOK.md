@@ -56,3 +56,10 @@ Entries here will be reserved specifically for the remainder of September.
 * Met with Team -- reviewed the zoom call notes and discussed the approaches above. 
 * Assigned John Kircher as the Team Leader for the first rotation. He will be working on the PDRR. I will contribute to the slide deck.
 
+### 10/1/2021
+
+* Researched ISA/Microprocessor compatability with KnightOS and Espilon OS (open source "calculator" operating systems that can be forked and edited for specific functionality.
+
+* Began to look into parts ordering, accounting for 50 dollar budget.
+
+* Created a slides template for the PDRR review
