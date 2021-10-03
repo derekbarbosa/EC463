@@ -40,3 +40,9 @@ Copyright Year 2021 John Kircher
 
 - Rewatched the entire client meeting video and reviewed the notes and documents that Derek and Ryan collected. (notes folder)
 - Reached out team members and scheduled a meeting time to talk about next steps and the PDRR for class on Tuesday, 9/28/2021
+
+### 9/28/2021 Tuesday Week4
+
+- Had a PDRR tag-up meeting in the senior design lab discussing potential processors and how we can implement an OS for our badge. 
+- We also decided that I would be the team-lead for the first session and the speaker for the presentation on Thursdsday. 
+- Finally, set goals to have a presentation and PDRR rough draft completed before Tuesday 10/5/2021.
