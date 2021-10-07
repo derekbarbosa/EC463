@@ -63,3 +63,29 @@ Entries here will be reserved specifically for the remainder of September.
 * Began to look into parts ordering, accounting for 50 dollar budget.
 
 * Created a slides template for the PDRR review
+
+
+### 10/3/2021
+* Preparing for PDRR initial presentation 10/7
+* Not many new updates -- quick tag-up with team about next steps and what "we want to do" with our lead time
+* Reviewed Presentation slides and script, made some edits to specifications
+* Began working on PDRR written report
+
+### 10/5/2021
+* Attempted to find an easier middle ground between high-power (but flexible) SBC (single-board-computer) such a rasberry PI and manually soldering together an MCU and ROM.
+* Encountered complete "embedded" development kits, closer to an SOC (think Arduino Uno's ATMEGA MCU / ESP32) but with an emphasis on ultra-low power consumption without entirely sacrificing QoL IDE tools
+	* Board(s) of question: Texas Instruments "LaunchPad" development kits for the ultra-low power MSP430 MCU family -- https://www.ti.com/design-resources/embedded-development/hardware-kits-boards.html#launchpad
+* Why this approach? 
+	* As mentioned in the bullet above, Power Consumption is something our team needs to account for at all time.
+	* The MSP430 famiy consumes 1.3 µA on average, and can still send enough power to "juice" a LFR display.
+	* "mini" or "micro" MCU devkits allow us to have a consistent environment to prototype our code if we decide to just use an MSP430 and ROM soldered directly onto a board.
+	* Enables flexibility with IDEs and built-in code snippets for code re-use
+	* Can also leverage other family of MCUs, such as the ESP32 family.
+	* Specifically, the FireBeetle https://www.dfrobot.com/product-1590.html -- has a low power consumption of 0.011 mA.
+* Next steps?
+	* Do some research of sample projects using these DevKits -- what are some issues that developers run into when debugging these boards
+	* Look at some other DefCon badges that leveraged Arduino/arduino-like SOCs (especially their open-source git repos)
+	* Review datasheets and peripheral compatability
+	* Relay research back to Client -- inform them of approach
+	* Compare SOC approach vs SBC vs Bare-Metal
+	* Look into reverse-engineering SOC into bare-metal PCB
