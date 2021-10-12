@@ -56,6 +56,9 @@ Entries here will be reserved specifically for the remainder of September.
 * Met with Team -- reviewed the zoom call notes and discussed the approaches above. 
 * Assigned John Kircher as the Team Leader for the first rotation. He will be working on the PDRR. I will contribute to the slide deck.
 
+## October
+Entries here will be reserved specifically for the month of October.
+
 ### 10/1/2021
 
 * Researched ISA/Microprocessor compatability with KnightOS and Espilon OS (open source "calculator" operating systems that can be forked and edited for specific functionality.
@@ -89,3 +92,14 @@ Entries here will be reserved specifically for the remainder of September.
 	* Relay research back to Client -- inform them of approach
 	* Compare SOC approach vs SBC vs Bare-Metal
 	* Look into reverse-engineering SOC into bare-metal PCB
+### 10/8/2021
+* Regrouped with Team -- agreed to vote on specific approach next monday.
+* Discussed at length the pros+cons of each architecture, we described our preferences and laid out our "greivances"
+* Relayed that we might not hit power consumption requirements if we follow up with RPI approach.
+* Decided as a team to "take off" until after Indigenous People's Day
+
+### 10/12/2021
+* Team has decided to go with DevKit approach. I will put orders in for MSP420s (low power) and Arduno Minis (that can leverage the low-power settings)
+* Will also put in an order for a Digital Multimeter, maybe some breadboards too (so they can arrive in time).
+* Started drafting some sketches describing how we would program the SOC memory using the built-in IDEs provided to us.
+* John released the first draft of our PDRR -- Started to revise and edit some of the content for the final review prior to submission
