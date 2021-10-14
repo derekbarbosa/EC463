@@ -103,3 +103,11 @@ Entries here will be reserved specifically for the month of October.
 * Will also put in an order for a Digital Multimeter, maybe some breadboards too (so they can arrive in time).
 * Started drafting some sketches describing how we would program the SOC memory using the built-in IDEs provided to us.
 * John released the first draft of our PDRR -- Started to revise and edit some of the content for the final review prior to submission
+
+### 10/15/2021
+* Started to review datasheets for the MSP420/430 programming specifications
+* installed the Eclipse-based IDE and verified debugging functionality (IDE specific to the TI LaunchPad board)
+* Gathering materials and slide decks to present to our client again this saturday.
+* Putting in orders for additional LEDs and Breadboards -- looking into drafting some starter designs to meet the creative aspect of the assignment.
+* Began to look for example code to pull "inspiration" about starter code.
+
