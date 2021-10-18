@@ -111,3 +111,15 @@ Entries here will be reserved specifically for the month of October.
 * Putting in orders for additional LEDs and Breadboards -- looking into drafting some starter designs to meet the creative aspect of the assignment.
 * Began to look for example code to pull "inspiration" about starter code.
 
+### 10/18/2021
+* Discussed upcoming "plan of attack" with team. Realigned goals and applied pivots to tasks.
+* Established a variety of roles for the project:
+	- Software
+	- Power Consumption 
+	- Hardware/PCB design
+	- Hacking Minigame
+* The four roles align somewhat well with the 5 teammembers, as we have a good mix of skills. I volunteered myself for SW debugging
+* Discussed how to set up our inital dev cycles upon arrival of our hardware (TIMSP430).
+* Filled in the rest of team on how/why we should consider meeting up once or twice a week to do merges and progress meetings (to align with agile fashion)
+* Presented MVP to VETCON Client, edited slides to reflect Shark Tank Presentation.
+
