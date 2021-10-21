@@ -123,3 +123,17 @@ Entries here will be reserved specifically for the month of October.
 * Filled in the rest of team on how/why we should consider meeting up once or twice a week to do merges and progress meetings (to align with agile fashion)
 * Presented MVP to VETCON Client, edited slides to reflect Shark Tank Presentation.
 
+### 10/20/2021
+* Hardware has officially arrived!
+* Touched up the PDRR report
+* revised our slides for Shark Tank
+* Received excellent manufacturing advice from transitioning from SOC --> Custom PCB with MCUs, got the contact info of a manufacturer
+* Received advice to leverage security exploits on ISA/MCU architecture to bring "social attention" to the platform.
+* Devised approach of working from individual application layers down to a platform/bootloader
+
+### 10/21/2021
+* Last logbook entry before due date!
+* Looking into setting up our CI/CD and pipeline hygiene, will set a workshop for Gherkin Model user story writing to "nail down" our functionality and describe "pin-pointed" features
+* Looking into LCD libraries for TIMSP, and how to not only write sample code, but also flash binaries into the rom
+* looking into creating a Basic Input Output System to control the memory management of the applications and inpit (BIOS).
+
