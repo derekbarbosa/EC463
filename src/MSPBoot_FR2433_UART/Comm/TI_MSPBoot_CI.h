@@ -42,8 +42,8 @@
 //
 // Include files
 //
-#include "PHY_DataLink\TI_MSPBoot_CI_PHYDL.h"
-#include "NWK_APP\TI_MSPBoot_CI_NWK_APP.h"
+#include "PHY_DataLink/TI_MSPBoot_CI_PHYDL.h"
+#include "NWK_APP/TI_MSPBoot_CI_NWK_APP.h"
 
 
 #endif //__TI_MSPBoot_CI_H__
