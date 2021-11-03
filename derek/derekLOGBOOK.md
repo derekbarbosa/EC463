@@ -136,4 +136,32 @@ Entries here will be reserved specifically for the month of October.
 * Looking into setting up our CI/CD and pipeline hygiene, will set a workshop for Gherkin Model user story writing to "nail down" our functionality and describe "pin-pointed" features
 * Looking into LCD libraries for TIMSP, and how to not only write sample code, but also flash binaries into the rom
 * looking into creating a Basic Input Output System to control the memory management of the applications and inpit (BIOS).
-
+### 10/26/2021
+* First logbook entry for Logbook #2
+* Set up a CI/CD Pipeline, officially all unstable code will be pushed to our invididual branches. Once functionality is confirmed, code will be merged to testing for debugging on secondary boards and then relesed to stable once we are satisfied and decide to start another function.
+* Essentially team member scratchpads --> testing --> main
+* Our First IDR went well, only feedback from Prof Osama was to bewary when opening up the repo and to ensure that there isn't too much involvement from the client side.
+* Discussed logistics of Trello/Agile and User Story Writing using the gherkin model. Wrote a sample story to discuss how tackling solutions using "the smallest vertical slice" allows for concision and accuracy when describing functionality from a user perspective.
+* Began to play around with some test code from TI and using TI dev tools. Got an LED to blink (our helloworld) and was able to wrtie scrolling text using the segmented display built into the evalutation board.
+* Set up a meeting with the client to touch base and discuss project status. 
+### 10/28/2021
+* User story session 1! Wrote our first Epic. Epic #1, Gilgamesh, has 4 user stories which focus on the inital functioning of the badge, AKA "main menu" functionality.
+	* Story 1: First Boot/Power On Sequence
+	* Story 2: Main Menu and Bootloader
+	* Story 3: Main Menu Navigation
+	* Story 4: Program Execution and Return
+* Trello Board link will be made public eventually!
+* Along the way we also made the following design decisions:
+	* Attempt to source another LCD module which will allow us to draw custom graphics.
+	* If that doesn't pan out, either use the current LCD on the evaluation/development board AND use the badge itself as a "serial" console to PC/make an application that uses the terminal output as it's GUI.
+* We also decided on the following roles
+	* Derek & Ryan -- Software
+	* Julia * John -- Cybersecurity and Display Modules
+	* Carlos -- Design/Architecture
+### 11/2/2021i
+* Start of Sprint 1: My+Ryan's role is to interact with the bootloader for the MSP420.
+* GIT Logs here:
+	* adding bootloader to src -- COMMIT 10EAB35
+	* adding mspboot and apps to repo -- COMMIT 01fb27c
+	* cleaned up stuff. Deleted old objects and cloned samples of bootloader -- COMMIT 3ac7051
+	* attempting to figure out what is going on with gmake compile errors -- COMMIT f322794
