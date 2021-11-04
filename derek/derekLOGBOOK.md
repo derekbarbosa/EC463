@@ -158,10 +158,27 @@ Entries here will be reserved specifically for the month of October.
 	* Derek & Ryan -- Software
 	* Julia * John -- Cybersecurity and Display Modules
 	* Carlos -- Design/Architecture
-### 11/2/2021i
+## November 
+Entries here will be specifically reserved for the month of November.
+
+### 11/2/2021
 * Start of Sprint 1: My+Ryan's role is to interact with the bootloader for the MSP420.
 * GIT Logs here:
 	* adding bootloader to src -- COMMIT 10EAB35
 	* adding mspboot and apps to repo -- COMMIT 01fb27c
 	* cleaned up stuff. Deleted old objects and cloned samples of bootloader -- COMMIT 3ac7051
 	* attempting to figure out what is going on with gmake compile errors -- COMMIT f322794
+## 11/3/2021
+* Rewriting <include> files to get the demo bootloader applications to function on non-windows systems
+	* the demos written by the TI team were targeted for windows, so a lot of the dependency paths are written with "C:\" Win32 style NTFS directories rather than the standard Unix-like method of accessing directories from root "/usr/bin"
+* Gmake continues to fail on compile, potential broken Gmake modules
+* Build failures attributed to "all" target failing. I am suspecting that the built-in makefile may be broken.
+* Came to realization that the demo files were written with an older version of the MSP compiler in mind, newer versions of the compiler break the "all" build rule in the makefile.
+* Downloaded and installed a new version of the compiler, .c files are able to be compiled with succesful output.
+* However, getting the bootloader to load and switch between two applications (at least with the demo files) is a bit of a complicated process:
+	* For some reason, the demo requires us to compile the C code, which results in a .txt file being generated.
+	* This .txt file needs to be copied to a certain directory for both applications (App1 and App2)
+	* Once copied, the .bat (windows batch file) for some reason takes the .txt file and uses a python script to convert it back to C (weird, right?)
+	* The both C files are then compiled down to one object and passed onto the bootloader. A host board is then required to flash the target board with the desired programs.
+	* All in all, overcomplication for something that was supposed to be a bit more straightforward. The tutorial seemed to provide an example of how to provide OTA updates rather than focus on creating a bootloader.
+* Ryan and I are scrapping this approach and will simply write our own self-contained bootloader that will simply be an application that calls different appications in memory.
