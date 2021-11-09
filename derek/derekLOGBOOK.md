@@ -182,3 +182,14 @@ Entries here will be specifically reserved for the month of November.
 	* The both C files are then compiled down to one object and passed onto the bootloader. A host board is then required to flash the target board with the desired programs.
 	* All in all, overcomplication for something that was supposed to be a bit more straightforward. The tutorial seemed to provide an example of how to provide OTA updates rather than focus on creating a bootloader.
 * Ryan and I are scrapping this approach and will simply write our own self-contained bootloader that will simply be an application that calls different appications in memory.
+### 11/4/2021
+* First attempt at creating our own bootloader was highly unsuccesful. We were not able to compile code that was effective in getting anything done.
+* Documented some issues with the TI Documentation. Decided to stop and focus on helping other teammembers complete their tasks.
+* Assisted Carlos in getting KiCad reinstalled after major vulnerability expoit in the binary was leaked.
+* Assisted John and Julian in getting their serial console to "print something"
+* Set up a clean instance of the IDE back to a "hello world" state.
+
+### 11/8/2021
+* Met with Ryan to arrange time on Tuesday to get a headstart before prototypes, want some sort of "app loader" functional by Thursday.
+* Played around with the LCDs and read up on datasheets to better understand them.
+
