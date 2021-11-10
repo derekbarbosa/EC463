@@ -188,8 +188,24 @@ Entries here will be specifically reserved for the month of November.
 * Assisted Carlos in getting KiCad reinstalled after major vulnerability expoit in the binary was leaked.
 * Assisted John and Julian in getting their serial console to "print something"
 * Set up a clean instance of the IDE back to a "hello world" state.
-
 ### 11/8/2021
 * Met with Ryan to arrange time on Tuesday to get a headstart before prototypes, want some sort of "app loader" functional by Thursday.
 * Played around with the LCDs and read up on datasheets to better understand them.
-
+## 11/9/2021
+* Discussed Upcoming Pre-Prototype plans and reviewed the assignments posted on Blackboard.
+* Specifically, we discussed our challenges at hand (see previous logbook entries) and how we should potentially move to a simpler approach.
+	* Discussed how we were not able to access the bootloader and rewrite "what was there" to reimplement our own - cause of concern for a few reasons
+		1. We have NO idea now how much ROM is actually available to us since the BSL (base bootloader)
+		2. Not sure how writing a simple App loader un top of the BSL will interact with memory
+	* Texas Instrument's Documentation on the bootloader isn't great, actually flashing bootloader code is a very convoluted process that isn't friendly with other environments
+	* Putting a large game alongside other applications will prove to be difficult. 
+* Assisted Julian with getting serial output to print a Char Array.
+	* Was difficult because we had to specifically manipulate a 16 bit register responible for the output stream
+* Investigating the PlatformIO suite (https://platformio.org/) which would allow for easier debugging and monitoring of serial output for embedded system.
+	* According to the documentation, the TI-MSP family is supported, specifically all of the EXP (launchpad) boards are suitable "targets" for the Plugin.
+	* Because the plugin runs purely in Python, it is compatible on all environments -- suitable for use across the team and on VMs if needed.
+	* Specifically, the PlatformIO plugin provides a flexible IDE in a modern environment (VSCode vs Proprietary Eclipse IDE)
+	* The build process automatically tags SW dependencies and applies them automatically during the build stage, removing plenty of the compiler issues we were running into.
+	* This could also help with the issue we're currently having: monitoring serial output consistently across dev machines (different environments handle USB comms differently) and allow us to create consistent output on our applications.
+	* Warrants further investigation
+*
