@@ -208,4 +208,15 @@ Entries here will be specifically reserved for the month of November.
 	* The build process automatically tags SW dependencies and applies them automatically during the build stage, removing plenty of the compiler issues we were running into.
 	* This could also help with the issue we're currently having: monitoring serial output consistently across dev machines (different environments handle USB comms differently) and allow us to create consistent output on our applications.
 	* Warrants further investigation
-*
+## 11/11/2021
+* Discovered serial output can be manipulated on the board by clearing, setting and flipping a 16 bit (2-byte) register.
+	* Challenge presented: how to continually clear and set the output register with preprocessor directives.
+	* Setting a outer while condition while iterating through the character bytestream did not prompt any success
+* Carlos, responsible for PCB design asked what he could do in the meantime to "fill the void" while we pushed down the path of attempting to get communication functional on the board
+	* I proposed he do our game development side of things, so far we have a Dino Run prototype going :)
+* We decided to meet again the following day to get some more progress going
+## 11/12/2021
+* PlatformIO was super succesful! Writing serial output proved perfectly fine, and we are now able to import third party libraries with ease!
+	* We can now print to console output and use board functionality
+* One issue: Mapping of IO pins from the cross-compiler "environment" to the native pins on the board is a bit murky, so todays session was figuring out "what mapped to what"
+* Otherwise, we are in the clear so far.
