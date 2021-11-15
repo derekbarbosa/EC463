@@ -1,40 +1,43 @@
 #include <Arduino.h>
+#include <stdlib.h>
 #include <string.h>
+#include <Button.h>
+
 #define NAMESET 1
 
-bool secret;
 int nameToggle = 0;
-int buttonPin = PUSH1;
-int buttonPin2 = PUSH2;
-int val = 0;
-int val2 = 0;
+
+Button push1(PUSH1);
+Button push2(PUSH2);
 
 // Function Prototypes
 void mainMenu();
 
 void setName();
 
-int displayName();
+void displayName();
 
 int playGame();
 
 void setup()
 {
   // put your setup code here, to run once:
+
+  push1.begin();
+  push2.begin();
+
   Serial.begin(9600);
-  pinMode(PUSH1, INPUT_PULLUP);
-  //pinMode(PUSH2,INPUT_PULLUP);
-  //delay(500);
-  
+ 
 }
 
 int playGame()
 {
+  //print game URL and accept HASHED input
 }
 
 void mainMenu()
 {
-  // Serial.write(12);
+
 statement:
   Serial.print("************************\n");
   Serial.print("*|        MENU        |*\n");
@@ -94,26 +97,25 @@ statement:
     }
   }
 }
-int displayName()
+
+void displayName()
 {
-  int val2 = 0;
-  val = digitalRead(PUSH1);
-  val2 = digitalRead(PUSH2);
+  delay(250);
   while (true)
   {
-    if (val == HIGH || val2 == HIGH)
+    if (push1.pressed())
     {
-    }
-    else{
       Serial.print("Button Pushed\n");
-      Serial.print(val);
-      Serial.print(val2);
       Serial.print("\n");
       Serial.flush();
       break;
     }
+    else
+    {
+    }
   }
-  return 0;
+
+  return;
 }
 
 void setName()
@@ -168,5 +170,4 @@ void loop()
   }
 
   mainMenu();
-  
 }

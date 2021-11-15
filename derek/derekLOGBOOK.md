@@ -220,3 +220,6 @@ Entries here will be specifically reserved for the month of November.
 	* We can now print to console output and use board functionality
 * One issue: Mapping of IO pins from the cross-compiler "environment" to the native pins on the board is a bit murky, so todays session was figuring out "what mapped to what"
 * Otherwise, we are in the clear so far.
+## 11/13/2021
+* Met with the team over the weekend to do some more work in preparation for the prototype
+## 11/15/2021
