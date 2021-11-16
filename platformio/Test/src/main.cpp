@@ -1,24 +1,52 @@
 #include <Arduino.h>
 #include <string.h>
+#include <Button.h>
 #define NAMESET 1
+
+const char *yum[] = {
+"⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠛⢉⢉⠉⠉⠻⣿⣿⣿⣿⣿⣿",
+"⣿⣿⣿⣿⣿⣿⣿⠟⠠⡰⣕⣗⣷⣧⣀⣅⠘⣿⣿⣿⣿⣿",
+"⣿⣿⣿⣿⣿⣿⠃⣠⣳⣟⣿⣿⣷⣿⡿⣜⠄⣿⣿⣿⣿⣿",
+"⣿⣿⣿⣿⡿⠁⠄⣳⢷⣿⣿⣿⣿⡿⣝⠖⠄⣿⣿⣿⣿⣿",
+"⣿⣿⣿⣿⠃⠄⢢⡹⣿⢷⣯⢿⢷⡫⣗⠍⢰⣿⣿⣿⣿⣿",
+"⣿⣿⣿⡏⢀⢄⠤⣁⠋⠿⣗⣟⡯⡏⢎⠁⢸⣿⣿⣿⣿⣿",
+"⣿⣿⣿⠄⢔⢕⣯⣿⣿⡲⡤⡄⡤⠄⡀⢠⣿⣿⣿⣿⣿⣿",
+"⣿⣿⠇⠠⡳⣯⣿⣿⣾⢵⣫⢎⢎⠆⢀⣿⣿⣿⣿⣿⣿⣿",
+"⣿⣿⠄⢨⣫⣿⣿⡿⣿⣻⢎⡗⡕⡅⢸⣿⣿⣿⣿⣿⣿⣿",
+"⣿⣿⠄⢜⢾⣾⣿⣿⣟⣗⢯⡪⡳⡀⢸⣿⣿⣿⣿⣿⣿⣿",
+"⣿⣿⠄⢸⢽⣿⣷⣿⣻⡮⡧⡳⡱⡁⢸⣿⣿⣿⣿⣿⣿⣿",
+"⣿⣿⡄⢨⣻⣽⣿⣟⣿⣞⣗⡽⡸⡐⢸⣿⣿⣿⣿⣿⣿⣿",
+"⣿⣿⡇⢀⢗⣿⣿⣿⣿⡿⣞⡵⡣⣊⢸⣿⣿⣿⣿⣿⣿⣿",
+"⣿⣿⣿⡀⡣⣗⣿⣿⣿⣿⣯⡯⡺⣼⠎⣿⣿⣿⣿⣿⣿⣿",
+"⣿⣿⣿⣧⠐⡵⣻⣟⣯⣿⣷⣟⣝⢞⡿⢹⣿⣿⣿⣿⣿⣿",
+"⣿⣿⣿⣿⡆⢘⡺⣽⢿⣻⣿⣗⡷⣹⢩⢃⢿⣿⣿⣿⣿⣿",
+"⣿⣿⣿⣿⣷⠄⠪⣯⣟⣿⢯⣿⣻⣜⢎⢆⠜⣿⣿⣿⣿⣿",
+"⣿⣿⣿⣿⣿⡆⠄⢣⣻⣽⣿⣿⣟⣾⡮⡺⡸⠸⣿⣿⣿⣿",
+"⣿⣿⡿⠛⠉⠁⠄⢕⡳⣽⡾⣿⢽⣯⡿⣮⢚⣅⠹⣿⣿⣿",
+"⡿⠋⠄⠄⠄⠄⢀⠒⠝⣞⢿⡿⣿⣽⢿⡽⣧⣳⡅⠌⠻⣿",
+"⠁⠄⠄⠄⠄⠄⠐⡐⠱⡱⣻⡻⣝⣮⣟⣿⣻⣟⣻⡺⣊"
+  };
+
+  
+Button push1(PUSH1);
+Button push2(PUSH2);
 
 int startFlag = 0;
 int secretFlag = 0;
 int firstMenu = 0;
 int nameToggle = 0;
-int buttonPin = PUSH1;
-int buttonPin2 = PUSH2;
-int val = 0;
-int val2 = 0;
+
+
 String name = "";
 String yes = "yes";
+
 
 // Function Prototypes
 void mainMenu();
 
 void setName();
 
-int displayName();
+void displayName();
 
 int playGame();
 
@@ -30,8 +58,10 @@ void setup()
 {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  pinMode(PUSH1, INPUT_PULLUP);
-  pinMode(PUSH2, INPUT_PULLUP);
+  //pinMode(PUSH1, INPUT_PULLUP);
+  //pinMode(PUSH2, INPUT_PULLUP);
+  push1.begin();
+  push2.begin();
   //pinMode(PUSH2,INPUT_PULLUP);
   //delay(500);
   
@@ -97,12 +127,15 @@ statement:
       delay(1000);
       Serial.print("You Chose to Display your Device Name!\n"); // DeviceID Input
       delay(1000);
+      Serial.print("Displaying Device Name on Badge\n");
+      delay(1000);
       //displayName();
       goto statement;
     case '3':
       delay(1000);
       Serial.print("You Chose to Play the Game!\n"); // Game Link
-      // PRINT URL HERE
+      delay(1000);
+      Serial.print("URL: ___________\n");
       delay(1000);
       goto statement;
     case '4':
@@ -119,8 +152,8 @@ statement:
     case '9':
       delay(1000);
       secret();
-      //goto statement;
-      return;
+      goto statement;
+      
     case '0':
       delay(1000);
       resetBadge();
@@ -143,32 +176,26 @@ void resetBadge(){
   delay(1000);
   Serial.print("ARE YOU SURE YOU WANT TO RESET?\n");
   Serial.print("ALL SECRET PROGRESS WILL BE LOST\n\n");
-  Serial.print("Please Enter: 'yes' for reset\n");
-  Serial.print("Otherwise, press any key\n");
+  Serial.print("Please Press Button 1 for reset\n");
+  Serial.print("Otherwise, Press Button 2\n");
 
-  while (Serial.available() == 0)
-  {
-    // THIS BLOCK STAYS EMPTY!
-  }
-  Serial.flush();
-  String inputData = Serial.readString();
-  Serial.print("You entered \n");
-  Serial.print(inputData);
-  Serial.print(yes);
-  Serial.print("\n");
-  if(inputData == yes){
-    Serial.print("RESETTING.....\n");
-    delay(3000);
-    startFlag = 0;
-    secretFlag = 0;
-    firstMenu = 0;
-    nameToggle = 0;
-    name = "";
-    Serial.print("BADGE RESET\n");
-    return;
-  }
-  else{
-    return;
+  delay(200);
+  while(true){
+    if(push1.pressed()){
+      Serial.print("RESETTING.....\n");
+      delay(3000);
+      startFlag = 0;
+      secretFlag = 0;
+      firstMenu = 0;
+      nameToggle = 0;
+      name = "";
+      Serial.print("BADGE RESET\n");
+      break;
+    }
+    else if(push2.pressed()){
+      Serial.print("Badge Reset Aborted...\n");
+      break;
+    }
   }
 }
 
@@ -178,32 +205,9 @@ void secret(){
   return;
 }
 
-int displayName()
+void displayName()
 {
-  
-  val = digitalRead(PUSH1);
-  val2 = digitalRead(PUSH2);
-  Serial.print(val);
-  Serial.print("\n");
-  Serial.print(val2);
-  Serial.print("\n");
-  
-  while (true)
-  {
-    if (val == HIGH || val2 == HIGH)
-    {
-      Serial.print("Nothing Pushed");
-    }
-    else{
-      Serial.print("Button Pushed\n");
-      Serial.print(val);
-      Serial.print(val2);
-      Serial.print("\n");
-      Serial.flush();
-      break;
-    }
-  }
-  return 0;
+  return;
 }
 
 void setName()
@@ -219,7 +223,23 @@ void setName()
   name = inputData;
   nameToggle = NAMESET;
   Serial.print("\n");
-  Serial.flush();
+  //Serial.flush();
+
+  if(inputData == "penis"){
+    Serial.print("YOU UNLOCKED A BON(E)US!!!\n");
+    delay(1000);
+    Serial.print("Loading....\n");
+    delay(1000);
+
+    for(int idx = 0; idx < sizeof(yum) / sizeof(char); idx++)
+    {
+      Serial.print(yum[idx]);
+      Serial.print("\n");
+    }
+    delay(1000);
+  }
+
+  
 
   return;
 }
@@ -260,20 +280,7 @@ void loop()
     }
     startFlag = 1;
   }
-  val = digitalRead(PUSH1);
-  val2 = digitalRead(PUSH2);
-
   
-  if(firstMenu == 0){
-    firstMenu = 1;
-    mainMenu();
-  }
-  else{
-    Serial.print("Hold Both Buttons to Return to Menu\n");
-    if (val == LOW && val2 == LOW)
-    {
-      mainMenu();
-    }
-  }
+  mainMenu();
   
 }
