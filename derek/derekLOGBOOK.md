@@ -136,4 +136,90 @@ Entries here will be reserved specifically for the month of October.
 * Looking into setting up our CI/CD and pipeline hygiene, will set a workshop for Gherkin Model user story writing to "nail down" our functionality and describe "pin-pointed" features
 * Looking into LCD libraries for TIMSP, and how to not only write sample code, but also flash binaries into the rom
 * looking into creating a Basic Input Output System to control the memory management of the applications and inpit (BIOS).
+### 10/26/2021
+* First logbook entry for Logbook #2
+* Set up a CI/CD Pipeline, officially all unstable code will be pushed to our invididual branches. Once functionality is confirmed, code will be merged to testing for debugging on secondary boards and then relesed to stable once we are satisfied and decide to start another function.
+* Essentially team member scratchpads --> testing --> main
+* Our First IDR went well, only feedback from Prof Osama was to bewary when opening up the repo and to ensure that there isn't too much involvement from the client side.
+* Discussed logistics of Trello/Agile and User Story Writing using the gherkin model. Wrote a sample story to discuss how tackling solutions using "the smallest vertical slice" allows for concision and accuracy when describing functionality from a user perspective.
+* Began to play around with some test code from TI and using TI dev tools. Got an LED to blink (our helloworld) and was able to wrtie scrolling text using the segmented display built into the evalutation board.
+* Set up a meeting with the client to touch base and discuss project status. 
+### 10/28/2021
+* User story session 1! Wrote our first Epic. Epic #1, Gilgamesh, has 4 user stories which focus on the inital functioning of the badge, AKA "main menu" functionality.
+	* Story 1: First Boot/Power On Sequence
+	* Story 2: Main Menu and Bootloader
+	* Story 3: Main Menu Navigation
+	* Story 4: Program Execution and Return
+* Trello Board link will be made public eventually!
+* Along the way we also made the following design decisions:
+	* Attempt to source another LCD module which will allow us to draw custom graphics.
+	* If that doesn't pan out, either use the current LCD on the evaluation/development board AND use the badge itself as a "serial" console to PC/make an application that uses the terminal output as it's GUI.
+* We also decided on the following roles
+	* Derek & Ryan -- Software
+	* Julia * John -- Cybersecurity and Display Modules
+	* Carlos -- Design/Architecture
+## November 
+Entries here will be specifically reserved for the month of November.
 
+### 11/2/2021
+* Start of Sprint 1: My+Ryan's role is to interact with the bootloader for the MSP420.
+* GIT Logs here:
+	* adding bootloader to src -- COMMIT 10EAB35
+	* adding mspboot and apps to repo -- COMMIT 01fb27c
+	* cleaned up stuff. Deleted old objects and cloned samples of bootloader -- COMMIT 3ac7051
+	* attempting to figure out what is going on with gmake compile errors -- COMMIT f322794
+## 11/3/2021
+* Rewriting <include> files to get the demo bootloader applications to function on non-windows systems
+	* the demos written by the TI team were targeted for windows, so a lot of the dependency paths are written with "C:\" Win32 style NTFS directories rather than the standard Unix-like method of accessing directories from root "/usr/bin"
+* Gmake continues to fail on compile, potential broken Gmake modules
+* Build failures attributed to "all" target failing. I am suspecting that the built-in makefile may be broken.
+* Came to realization that the demo files were written with an older version of the MSP compiler in mind, newer versions of the compiler break the "all" build rule in the makefile.
+* Downloaded and installed a new version of the compiler, .c files are able to be compiled with succesful output.
+* However, getting the bootloader to load and switch between two applications (at least with the demo files) is a bit of a complicated process:
+	* For some reason, the demo requires us to compile the C code, which results in a .txt file being generated.
+	* This .txt file needs to be copied to a certain directory for both applications (App1 and App2)
+	* Once copied, the .bat (windows batch file) for some reason takes the .txt file and uses a python script to convert it back to C (weird, right?)
+	* The both C files are then compiled down to one object and passed onto the bootloader. A host board is then required to flash the target board with the desired programs.
+	* All in all, overcomplication for something that was supposed to be a bit more straightforward. The tutorial seemed to provide an example of how to provide OTA updates rather than focus on creating a bootloader.
+* Ryan and I are scrapping this approach and will simply write our own self-contained bootloader that will simply be an application that calls different appications in memory.
+### 11/4/2021
+* First attempt at creating our own bootloader was highly unsuccesful. We were not able to compile code that was effective in getting anything done.
+* Documented some issues with the TI Documentation. Decided to stop and focus on helping other teammembers complete their tasks.
+* Assisted Carlos in getting KiCad reinstalled after major vulnerability expoit in the binary was leaked.
+* Assisted John and Julian in getting their serial console to "print something"
+* Set up a clean instance of the IDE back to a "hello world" state.
+### 11/8/2021
+* Met with Ryan to arrange time on Tuesday to get a headstart before prototypes, want some sort of "app loader" functional by Thursday.
+* Played around with the LCDs and read up on datasheets to better understand them.
+## 11/9/2021
+* Discussed Upcoming Pre-Prototype plans and reviewed the assignments posted on Blackboard.
+* Specifically, we discussed our challenges at hand (see previous logbook entries) and how we should potentially move to a simpler approach.
+	* Discussed how we were not able to access the bootloader and rewrite "what was there" to reimplement our own - cause of concern for a few reasons
+		1. We have NO idea now how much ROM is actually available to us since the BSL (base bootloader)
+		2. Not sure how writing a simple App loader un top of the BSL will interact with memory
+	* Texas Instrument's Documentation on the bootloader isn't great, actually flashing bootloader code is a very convoluted process that isn't friendly with other environments
+	* Putting a large game alongside other applications will prove to be difficult. 
+* Assisted Julian with getting serial output to print a Char Array.
+	* Was difficult because we had to specifically manipulate a 16 bit register responible for the output stream
+* Investigating the PlatformIO suite (https://platformio.org/) which would allow for easier debugging and monitoring of serial output for embedded system.
+	* According to the documentation, the TI-MSP family is supported, specifically all of the EXP (launchpad) boards are suitable "targets" for the Plugin.
+	* Because the plugin runs purely in Python, it is compatible on all environments -- suitable for use across the team and on VMs if needed.
+	* Specifically, the PlatformIO plugin provides a flexible IDE in a modern environment (VSCode vs Proprietary Eclipse IDE)
+	* The build process automatically tags SW dependencies and applies them automatically during the build stage, removing plenty of the compiler issues we were running into.
+	* This could also help with the issue we're currently having: monitoring serial output consistently across dev machines (different environments handle USB comms differently) and allow us to create consistent output on our applications.
+	* Warrants further investigation
+## 11/11/2021
+* Discovered serial output can be manipulated on the board by clearing, setting and flipping a 16 bit (2-byte) register.
+	* Challenge presented: how to continually clear and set the output register with preprocessor directives.
+	* Setting a outer while condition while iterating through the character bytestream did not prompt any success
+* Carlos, responsible for PCB design asked what he could do in the meantime to "fill the void" while we pushed down the path of attempting to get communication functional on the board
+	* I proposed he do our game development side of things, so far we have a Dino Run prototype going :)
+* We decided to meet again the following day to get some more progress going
+## 11/12/2021
+* PlatformIO was super succesful! Writing serial output proved perfectly fine, and we are now able to import third party libraries with ease!
+	* We can now print to console output and use board functionality
+* One issue: Mapping of IO pins from the cross-compiler "environment" to the native pins on the board is a bit murky, so todays session was figuring out "what mapped to what"
+* Otherwise, we are in the clear so far.
+## 11/13/2021
+* Met with the team over the weekend to do some more work in preparation for the prototype
+## 11/15/2021
