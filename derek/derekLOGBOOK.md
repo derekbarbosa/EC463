@@ -191,7 +191,7 @@ Entries here will be specifically reserved for the month of November.
 ### 11/8/2021
 * Met with Ryan to arrange time on Tuesday to get a headstart before prototypes, want some sort of "app loader" functional by Thursday.
 * Played around with the LCDs and read up on datasheets to better understand them.
-## 11/9/2021
+### 11/9/2021
 * Discussed Upcoming Pre-Prototype plans and reviewed the assignments posted on Blackboard.
 * Specifically, we discussed our challenges at hand (see previous logbook entries) and how we should potentially move to a simpler approach.
 	* Discussed how we were not able to access the bootloader and rewrite "what was there" to reimplement our own - cause of concern for a few reasons
@@ -208,18 +208,43 @@ Entries here will be specifically reserved for the month of November.
 	* The build process automatically tags SW dependencies and applies them automatically during the build stage, removing plenty of the compiler issues we were running into.
 	* This could also help with the issue we're currently having: monitoring serial output consistently across dev machines (different environments handle USB comms differently) and allow us to create consistent output on our applications.
 	* Warrants further investigation
-## 11/11/2021
+### 11/11/2021
 * Discovered serial output can be manipulated on the board by clearing, setting and flipping a 16 bit (2-byte) register.
 	* Challenge presented: how to continually clear and set the output register with preprocessor directives.
 	* Setting a outer while condition while iterating through the character bytestream did not prompt any success
 * Carlos, responsible for PCB design asked what he could do in the meantime to "fill the void" while we pushed down the path of attempting to get communication functional on the board
 	* I proposed he do our game development side of things, so far we have a Dino Run prototype going :)
 * We decided to meet again the following day to get some more progress going
-## 11/12/2021
+### 11/12/2021
 * PlatformIO was super succesful! Writing serial output proved perfectly fine, and we are now able to import third party libraries with ease!
 	* We can now print to console output and use board functionality
 * One issue: Mapping of IO pins from the cross-compiler "environment" to the native pins on the board is a bit murky, so todays session was figuring out "what mapped to what"
 * Otherwise, we are in the clear so far.
-## 11/13/2021
+### 11/13/2021
 * Met with the team over the weekend to do some more work in preparation for the prototype
-## 11/15/2021
+* Set up Serial Interface loop, follows typial REPL methodology to parse user input and accept valid commands. Helper functions were established to jump to different locations in memory to execute desired functionalities.
+* Added functionality to display text/ASCII graphics to serial monitor
+* Attempted to include button functionality, ran into problems trying to get button inputs to "read" properly. Issues we had and suspicions are listed below
+	* Button presses only worked properly within our void loop() function, which sits atop of the Return Stack Pointer on our call stack, so we suspected that buttons in functions that were called from loop() were consequentially "higher up" on our stack, and therefore unable to be properly "sampled."
+	* Another suspicion we had, which was similar to the one above, was that the hardware could only be accessed in non-blocking functions, so we decided to write an interrupt that attached itself to a button pin, which ultimately proved unsuccesful 
+* After attempting to correct button issue, we called it quits for the night.
+### 11/15/2021
+* Included button debouncing libraries to correct our input problems. Buttons are now able to be properly read albeit with very slight delay.
+	* Why does this work? The buttons on the TIMSP430-EXPFR2433 specifically have "pullup" properties, meaning that the rising/falling edges aren't exactly "clean" and can't be reliable sampled. 
+	* Including a debouncing library takes care of button "bounce" (i.e. what happens when you press and release a button) and accounts for the delay between presses.
+* Took care of repo sanitization, testing branch is now up-to-date.
+* Hosted Carlos' Dino game on Github Pages
+### 11/16/2021
+* added the URL to the webgame to our device!
+* preparing for prototype testing
+
+### 11/18/2021
+* Prototype Testing went great, only feedback from Professor Osama was to "keep it up" and to continue to "have fun" with the project.
+* Today we set new goals for until the "end of semester"
+	* emphasis on polishing our software and our peripheral interfaces before we go into hardware design for the following semester.
+	* allows us to focus on writing a better serial interface and providing "fun" interactivity with the badge.
+* Roles have been reassigned for the remainder of the semester:
+	* Derek -- web games
+	* Carlos && Ryan -- memory interface
+	* Julian -- Obfuscation of code
+	* John -- LCD interface
