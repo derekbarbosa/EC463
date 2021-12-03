@@ -248,3 +248,11 @@ Entries here will be specifically reserved for the month of November.
 	* Carlos && Ryan -- memory interface
 	* Julian -- Obfuscation of code
 	* John -- LCD interface
+
+## December
+Entries here are reserved for December
+
+### 12/2/21
+* Finished the majority of our written tasks. No updates in logbook because of deadlines. Not much technical progress other than finishing PDR slides, individual reports, team contracts, video, etc.
+* Began brainstorming potential scenarios for "verifying" communication between boards. Started work on BLE modules.
+
