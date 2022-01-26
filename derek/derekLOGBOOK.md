@@ -256,3 +256,48 @@ Entries here are reserved for December
 * Finished the majority of our written tasks. No updates in logbook because of deadlines. Not much technical progress other than finishing PDR slides, individual reports, team contracts, video, etc.
 * Began brainstorming potential scenarios for "verifying" communication between boards. Started work on BLE modules.
 
+### 12/7/21 
+* Began efforts to clean up GIT repos, pulled latest commits into some branches
+* Continued drafting of final semester report. Assigned parts and gathered evidence/logs/info for said report.
+* Discussed future semester plans with rest of team, discussed action items and reassessed "problem areas"
+	* for example, discussing the worth of wireless communication and its compatibility with current approaches and tech stack.
+
+### 12/11/21
+* Report due tomorrow 9 AM, finished writing up technical plan/report (my section of it)
+	* Highlighted the performance period and divided the major phases of technical development
+	* Phase 2 has 3 tasks, ranging from a SW wrap up period to a circuit design schematic
+	* Phase 3 is final integration, with system testing and packaging as the final tasks
+* Taking hiatus from the project to rest up and recharge!
+
+## END OF 1ST SEMESTER SENIOR DESIGN
+Entries from this point are reserved for Spring Semester EC464
+
+## January
+Entries here are reserved for January
+Note for reviewer: I already spoke to Professor Osama regarding this issue: but I forgot to push and commit my logbook over the Winter Break. The next few entries have NOT been backdated, but were just stored locally (not commited) due to my negligence. I will be linking documentation providing POW under each entry.
+
+### 1/7/22 
+* Contacted the rest of the team to begin preparations for upcoming semester
+* Got in contact with the client as he requested an update/plan for a meeting the week of the 28th
+(see screenshot labelled 1-7-21 attached)
+ 
+### 1/20/22
+* Team reconvened over slack/SMS to discuss upcoming deadlines.
+
+### 1/25/22
+* First "real" in-person team work session
+* Ran into several issues with Bluetooth, current BT HW only programmable via CCStudio which we want to avoid as it is a problem for various reasons.
+	* Currently, we are using PlatformIO, which works off TI's Wired Framework (a FOSS Framework) that is compatible with Arduino code. PlatformIO leverages this header from the Wiring Project that is currently used in TI's Ardunio/Wired IDE, Energia, and enables community code-snippets and "dependencies" for button debouncing/delay and etc (as mentioned before in this logbook)
+	* Having the BLE/BT HW only programmable through CCStudio throws a wrench in our current tech-stack as there is no way we can (feasibly, with our time and skills) port over the Wiring Framework to a niche BT Device like ours. 
+	* Currently, we plan on programming the full BT functionality through the device itself, flash it, and use it as a simple add-on to the main board as an "accessory" and nothing else. We are still drafting a better approach, that will require a bit more brainstorming.
+	* Making progress on EEPROMs, just ordered a batch.
+	* Info on Wiring here: https://github.com/WiringProject/Wiring 
+### 1/26/22
+* Pulled sample code of "coin flip" game the idea/plan-of-execution is the following:
+	* User goes to coin-flip website to receive secret code
+	* User "flips" the coin.
+	* User receives either-heads-or-tails, but no secret is delivered (obviously)
+	* Secret code will be hidden as a cookie on the user's device, with a 50-50 chance that the code is the correct one, and not a red herring.
+	* Code will be "hashed" within the cookie, if hashed correctly, the incorrect code will be apparent that it is incorrect.
+	* Entering the incorrect code will wipe the EEPROMs and reset the badge progress. The correct code will advance the user's progress.
+* Looking into how to store cookies on-browser with JS libraries.
