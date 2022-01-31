@@ -292,6 +292,7 @@ Note for reviewer: I already spoke to Professor Osama regarding this issue: but 
 	* Currently, we plan on programming the full BT functionality through the device itself, flash it, and use it as a simple add-on to the main board as an "accessory" and nothing else. We are still drafting a better approach, that will require a bit more brainstorming.
 	* Making progress on EEPROMs, just ordered a batch.
 	* Info on Wiring here: https://github.com/WiringProject/Wiring 
+
 ### 1/26/22
 * Pulled sample code of "coin flip" game the idea/plan-of-execution is the following:
 	* User goes to coin-flip website to receive secret code
@@ -301,3 +302,14 @@ Note for reviewer: I already spoke to Professor Osama regarding this issue: but 
 	* Code will be "hashed" within the cookie, if hashed correctly, the incorrect code will be apparent that it is incorrect.
 	* Entering the incorrect code will wipe the EEPROMs and reset the badge progress. The correct code will advance the user's progress.
 * Looking into how to store cookies on-browser with JS libraries.
+
+## 1/27/22
+* Worked on the Coinflip game. Have the basic HTML structure ready to go, still lacking cookie storage and need to develop a key for the hash.
+* IDR today -- briefed Osama on our progress, he is pleased! :) 
+	* Relayed our concerns with our bluetooth modules and conflict with current tech stack. May require a future pivot if things don't go well
+* Continued to work on the coinflip game, fine tuning graphics and pulling sample code from internet (sources will be sited in that readme)
+
+### 1/28/22
+* Met with Mike -- relayed our concerns and frustrations, he understood them and assured us that we were on-track and meeting all of his requirements and specifications.
+* Discussions about contingency plans if Bluetooth connection does not pan out.
+
