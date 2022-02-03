@@ -312,4 +312,11 @@ Note for reviewer: I already spoke to Professor Osama regarding this issue: but 
 ### 1/28/22
 * Met with Mike -- relayed our concerns and frustrations, he understood them and assured us that we were on-track and meeting all of his requirements and specifications.
 * Discussions about contingency plans if Bluetooth connection does not pan out.
+	
+### 1/31/22
+* Referenced the mozilla docs https://developer.mozilla.org/en-US/docs/Web/API/document/cookie for incorporating cookies into our webgame
+* Editing source code to make it more *unique* to our project, including handling for cookie setting/resetting
+	
+### 2/3/22
+* Finished the Webgame! The source code will be available at github.com/derekbarbosa/EC463Webgames2
 
