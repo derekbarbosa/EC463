@@ -3,6 +3,7 @@
 #include <string.h>
 #include <Button.h>
 
+
 #define NAMESET 1
 
 
@@ -15,6 +16,7 @@ int startFlag = 0;
 int secretFlag = 0;
 int firstMenu = 0;
 int nameToggle = 0;
+int secretFlag2 = 0;
 
 
 String name = "";
@@ -33,6 +35,8 @@ int playGame();
 void secret();
 
 void resetBadge();
+
+void secretCode();
 
 void setup()
 {
@@ -95,6 +99,7 @@ statement:
         Serial.print("YOU ALREADY SET YOUR NAME\n");
         Serial.print("Name: ");
         Serial.print(name);
+        Serial.print("\n");
         Serial.print("PLEASE CHOOSE ANOTHER FUNCTION\n");
         delay(1000);
       }
@@ -111,7 +116,8 @@ statement:
       delay(1000);
       Serial.print("You Chose to Play the Game!\n"); // Game Link
       delay(1000);
-      Serial.print("URL: ___________\n");
+      Serial.print("URL:\n");
+      Serial.print("shorturl.at/advFT\n");
       delay(1000);
       goto statement;
     case '4':
@@ -121,8 +127,11 @@ statement:
         goto statement;
       }
       else{
-        Serial.print("Enter Secret Token:\n");
-        //secret function
+        if(secretFlag2 == 1){
+          Serial.print("Secret already unlocked\n");
+          goto statement;
+        }
+        secretCode();
         goto statement;
       }
     case '9':
@@ -164,6 +173,7 @@ void resetBadge(){
       secretFlag = 0;
       firstMenu = 0;
       nameToggle = 0;
+      secretFlag2 = 0;
       name = "";
       Serial.print("BADGE RESET\n");
       break;
@@ -184,6 +194,26 @@ void secret(){
   return;
 }
 
+void secretCode(){
+  
+  char answer[] = "alpha_omega";
+  Serial.print("Please Enter The Secret Code:\n");
+  while (Serial.available() == 0)
+  {
+    // THIS BLOCK STAYS EMPTY!
+  }
+  String inputData = Serial.readString();
+  if(inputData == answer){
+    Serial.print("CONGRATS! SECRET 1 SOLVED\n");
+    secretFlag2 = 1;
+  }
+  else{
+    Serial.print("INCORRECT CODE\n");
+  }
+  return;
+
+}
+
 void displayName()
 {
   return;
@@ -197,6 +227,21 @@ void setName()
     // THIS BLOCK STAYS EMPTY!
   }
   String inputData = Serial.readString();
+  //Serial.print(inputData);
+  //Serial.print("\n");
+  char secretString1[] = "Pepe";
+  
+  char secretAnswer1[] = 
+"\n⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠛⠻⠿⣿⣿⣿⣿⣿⠿⠿⠿⢿⣿⣿⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⣿⣿⠟⠉⠄⠄⠄⠄⠄⠄⠄⠉⢟⠉⠄⠄⠄⠄⠄⠈⢻⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⡿⠃⠄⠄⠤⠐⠉⠉⠉⠉⠉⠒⠬⡣⠤⠤⠄⠄⠄⠤⠤⠿⣿⣿⣿⣿\n⣿⣿⣿⣿⠁⠄⠄⠄⠄⠄⠄⠠⢀⡒⠤⠭⠅⠚⣓⡆⡆⣔⡙⠓⠚⠛⠄⣹⠿⣿\n⣿⠟⠁⡌⠄⠄⠄⢀⠤⠬⠐⣈⠠⡤⠤⠤⣤⠤⢄⡉⢁⣀⣠⣤⣤⣀⣐⡖⢦⣽\n⠏⠄⠄⠄⠄⠄⠄⠄⠐⠄⡿⠛⠯⠍⠭⣉⣉⠉⠍⢀⢀⡀⠉⠉⠉⠒⠒⠂⠄⣻\n⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠩⠵⠒⠒⠲⢒⡢⡉⠁⢐⡀⠬⠍⠁⢉⣉⣴⣿⣿\n⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠉⢉⣒⡉⠁⠁⠄⠄⠉⠂⠙⣉⣁⣀⣙⡿⣿⣿\n⠄⠄⠄⠄⠄⠄⠄⠄⢠⠄⡖⢉⠥⢤⠐⢲⠒⢲⠒⢲⠒⠲⡒⠒⡖⢲⠂⠄⢀⣿\n⠄⠄⠄⠄⠄⠄⠄⠄⠈⢆⡑⢄⠳⢾⠒⢺⠒⢺⠒⠚⡖⠄⡏⠉⣞⠞⠁⣠⣾⣿\n⠄⠄⠄⠄⠄⠄⢆⠄⠄⠄⠈⠢⠉⠢⠍⣘⣒⣚⣒⣚⣒⣒⣉⠡⠤⣔⣾⣿⣿⣿\n⠷⣤⠄⣀⠄⠄⠄⠈⠁⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢀⣤⣾⣿⣿⣿⣿⣿\n⠄⠄⠉⠐⠢⠭⠄⢀⣒⣒⡒⠄⠄⠄⠄⠄⠄⣀⡠⠶⢶⣿⣿⣿⣿⣿⣿⣿⣿⣿\n⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠈⠁⠈⠄⠄⠄⠄⠄⠄⠈⠻⣿⣿⣿⣿⣿⣿⣿\n";
+  char secretString2[] = "Senior Design";
+  char secretAnswer2[] = "\n   _____            _               ____            _           \n  / ___/___  ____  (_)___  _____   / __ \\___  _____(_)___ _____ \n  \\__ \\/ _ \\/ __ \\/ / __ \\/ ___/  / / / / _ \\/ ___/ / __ `/ __ \\ \n ___/ /  __/ / / / / /_/ / /     / /_/ /  __(__  ) / /_/ / / / /\n/____/\\___/_/ /_/_/\\____/_/     /_____/\\___/____/_/\\__, /_/ /_/ \n                                                  /____/        \n";
+  if(inputData == secretString1){
+    Serial.print(secretAnswer1);
+  }
+  if(inputData == secretString2){
+    Serial.print(secretAnswer2);
+  }
+  
   Serial.print("You entered ");
   Serial.print(inputData);
   name = inputData;
