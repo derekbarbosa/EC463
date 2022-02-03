@@ -317,6 +317,9 @@ Note for reviewer: I already spoke to Professor Osama regarding this issue: but 
 * Referenced the mozilla docs https://developer.mozilla.org/en-US/docs/Web/API/document/cookie for incorporating cookies into our webgame
 * Editing source code to make it more *unique* to our project, including handling for cookie setting/resetting
 	
+## February
+Entries here are reserved for February	
+
 ### 2/3/22
 * Finished the Webgame! The source code will be available at github.com/derekbarbosa/EC463Webgames2
 
