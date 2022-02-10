@@ -12,12 +12,14 @@
 Button push1(PUSH1);
 Button push2(PUSH2);
 
-int startFlag = 0;
-int secretFlag = 0;
-int firstMenu = 0;
-int nameToggle = 0;
-int secretFlag2 = 0;
 
+
+int startFlag PLACE_IN_FRAM;
+int secretFlag PLACE_IN_FRAM;
+int nameToggle PLACE_IN_FRAM;
+int secretFlag2 PLACE_IN_FRAM;
+int secretFlag3 PLACE_IN_FRAM;
+int wrongFlag PLACE_IN_FRAM;
 
 String name = "";
 String yes = "yes";
@@ -30,13 +32,15 @@ void setName();
 
 void displayName();
 
-int playGame();
-
 void secret();
 
 void resetBadge();
 
+void secretCode2();
+
 void secretCode();
+
+void wipeBoard();
 
 void setup()
 {
@@ -46,11 +50,6 @@ void setup()
   push2.begin();
 
   Serial.begin(9600);
-}
-
-int playGame()
-{
-  //print game URL and accept HASHED input
 }
 
 void mainMenu()
@@ -65,6 +64,10 @@ statement:
   Serial.print("*| 3: Game Link       |*\n");
   if(secretFlag == 1){
     Serial.print("*| 4: Secret Token    |*\n");
+  }
+  Serial.print("*| 5: Game Link 2     |*\n");
+  if(secretFlag == 1 && secretFlag2 == 1){
+    Serial.print("*| 6: Secret Token 2  |*\n");
   }
   Serial.print("*| 0: Reset Badge     |*\n");
   Serial.print("*|                    |*\n");
@@ -94,7 +97,7 @@ statement:
         delay(1000);
         setName();
       }
-      else if (nameToggle = NAMESET)
+      else if (nameToggle == NAMESET)
       {
         Serial.print("YOU ALREADY SET YOUR NAME\n");
         Serial.print("Name: ");
@@ -134,6 +137,28 @@ statement:
         secretCode();
         goto statement;
       }
+    case '5':
+      delay(1000);
+      Serial.print("You Chose to Play the Game!\n"); // Game Link
+      delay(1000);
+      Serial.print("URL:\n");
+      Serial.print("shorturl.at/lxIL6\n");
+      delay(1000);
+      goto statement;
+    case '6':
+      delay(1000);
+        if(secretFlag == 0 || secretFlag2 == 0){
+          Serial.print("Access Denied\n");
+          goto statement;
+        }
+        else{
+          if(secretFlag3 == 1){
+            Serial.print("Secret already unlocked\n");
+            goto statement;
+          }
+          secretCode2();
+          goto statement;
+        }
     case '9':
       delay(1000);
       secret();
@@ -169,12 +194,14 @@ void resetBadge(){
     if(push1.pressed()){
       Serial.print("RESETTING.....\n");
       delay(3000);
+      SYSCFG0 = FRWPPW | DFWP;
       startFlag = 0;
       secretFlag = 0;
-      firstMenu = 0;
       nameToggle = 0;
       secretFlag2 = 0;
+      secretFlag3 = 0;
       name = "";
+      SYSCFG0 = FRWPPW | PFWP | DFWP;
       Serial.print("BADGE RESET\n");
       break;
     }
@@ -190,7 +217,9 @@ void resetBadge(){
 
 void secret(){
   Serial.print("Secret Unlocked\n");
+  SYSCFG0 = FRWPPW | DFWP;
   secretFlag = 1;
+  SYSCFG0 = FRWPPW | PFWP | DFWP;
   return;
 }
 
@@ -205,13 +234,45 @@ void secretCode(){
   String inputData = Serial.readString();
   if(inputData == answer){
     Serial.print("CONGRATS! SECRET 1 SOLVED\n");
+    SYSCFG0 = FRWPPW | DFWP;
     secretFlag2 = 1;
+    SYSCFG0 = FRWPPW | PFWP | DFWP;
   }
   else{
     Serial.print("INCORRECT CODE\n");
   }
   return;
 
+}
+
+void secretCode2(){
+  char answer[] = "supersecretpassword";
+  char wrong[] = "wrongpassword";
+  Serial.print("Please Enter The Secret Code:\n");
+  while (Serial.available() == 0)
+  {
+    // THIS BLOCK STAYS EMPTY!
+  }
+  String inputData = Serial.readString();
+  if(inputData == answer){
+    Serial.print("CONGRATS! SECRET 3 SOLVED\n");
+    SYSCFG0 = FRWPPW | DFWP;
+    secretFlag3 = 1;
+    SYSCFG0 = FRWPPW | PFWP | DFWP;
+  }
+  else if(inputData == wrong){
+    for(int i = 0; i < 50; i++){
+      Serial.print("THIS IS NOT A GAME\n");
+    }
+    SYSCFG0 = FRWPPW | DFWP;
+    wrongFlag = 1;
+    SYSCFG0 = FRWPPW | PFWP | DFWP;
+    wipeBoard();
+  }
+  else{
+    Serial.print("INCORRECT CODE\n");
+  }
+  return;
 }
 
 void displayName()
@@ -245,9 +306,25 @@ void setName()
   Serial.print("You entered ");
   Serial.print(inputData);
   name = inputData;
+  SYSCFG0 = FRWPPW | DFWP;
   nameToggle = NAMESET;
+  SYSCFG0 = FRWPPW | PFWP | DFWP;
   Serial.print("\n");
   Serial.flush();
+  return;
+}
+
+void wipeBoard(){
+  SYSCFG0 = FRWPPW | DFWP;
+  startFlag = 0;
+  secretFlag = 0;
+  nameToggle = 0;
+  secretFlag2 = 0;
+  secretFlag3 = 0;
+  wrongFlag = 0;
+  SYSCFG0 = FRWPPW | PFWP | DFWP;
+  name = "";
+
   return;
 }
 
@@ -285,7 +362,9 @@ void loop()
       Serial.print(welcome[idx]);
       Serial.print("\n");
     }
+    SYSCFG0 = FRWPPW | DFWP;
     startFlag = 1;
+    SYSCFG0 = FRWPPW | PFWP | DFWP;
   }
   
   mainMenu();
