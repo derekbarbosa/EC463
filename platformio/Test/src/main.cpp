@@ -5,7 +5,7 @@
 
 
 #define NAMESET 1
-
+#define NAMELEN 128
 
 
   
@@ -21,14 +21,20 @@ int secretFlag2 PLACE_IN_FRAM;
 int secretFlag3 PLACE_IN_FRAM;
 int wrongFlag PLACE_IN_FRAM;
 
-String name = "";
+char name[NAMELEN] PLACE_IN_FRAM;
+char secret_word[NAMELEN] PLACE_IN_FRAM;
+
 String yes = "yes";
 
 
 // Function Prototypes
-void mainMenu();
+void clearStr();
 
 void setName();
+
+void mainMenu();
+
+void setStr();
 
 void displayName();
 
@@ -41,6 +47,18 @@ void secretCode2();
 void secretCode();
 
 void wipeBoard();
+
+void clearStr(char* str){
+  for(int i = 0; i < NAMELEN; i++)
+    str[i] = '\0';
+}
+
+void setStr(String x, char* str){
+  char new_name[NAMELEN];
+  x.toCharArray(new_name, NAMELEN);
+  for(int i = 0; i < NAMELEN; i++)
+    str[i] = new_name[i];
+}
 
 void setup()
 {
@@ -113,6 +131,8 @@ statement:
       delay(1000);
       Serial.print("Displaying Device Name on Badge\n");
       delay(1000);
+      Serial.print(name);
+      Serial.print("\n");
       //displayName();
       goto statement;
     case '3':
@@ -200,7 +220,7 @@ void resetBadge(){
       nameToggle = 0;
       secretFlag2 = 0;
       secretFlag3 = 0;
-      name = "";
+      clearStr(name);
       SYSCFG0 = FRWPPW | PFWP | DFWP;
       Serial.print("BADGE RESET\n");
       break;
@@ -248,6 +268,7 @@ void secretCode(){
 void secretCode2(){
   char answer[] = "supersecretpassword";
   char wrong[] = "wrongpassword";
+  String x = "penis";
   Serial.print("Please Enter The Secret Code:\n");
   while (Serial.available() == 0)
   {
@@ -265,6 +286,8 @@ void secretCode2(){
       Serial.print("THIS IS NOT A GAME\n");
     }
     SYSCFG0 = FRWPPW | DFWP;
+    clearStr(secret_word);
+    setStr(x, secret_word);
     wrongFlag = 1;
     SYSCFG0 = FRWPPW | PFWP | DFWP;
     wipeBoard();
@@ -305,8 +328,8 @@ void setName()
   
   Serial.print("You entered ");
   Serial.print(inputData);
-  name = inputData;
   SYSCFG0 = FRWPPW | DFWP;
+  setStr(inputData, name);
   nameToggle = NAMESET;
   SYSCFG0 = FRWPPW | PFWP | DFWP;
   Serial.print("\n");
@@ -322,8 +345,8 @@ void wipeBoard(){
   secretFlag2 = 0;
   secretFlag3 = 0;
   wrongFlag = 0;
+  clearStr(name);
   SYSCFG0 = FRWPPW | PFWP | DFWP;
-  name = "";
 
   return;
 }
