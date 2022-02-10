@@ -323,3 +323,22 @@ Entries here are reserved for February
 ### 2/3/22
 * Finished the Webgame! The source code will be available at github.com/derekbarbosa/EC463Webgames2
 
+### 2/8/22
+* Started game 3! Text based adventure written in CPP
+* Managed to directly write to the board's FRAM, makes it easier to store programs for future use. Able to get persistent memory between various boot sessions.
+* Began to brainstorm game 4 alongside game 3 development... suprise for now :) but will involve data recovery and various cybersecurity "red herrings"
+* Still pursuing bluetooth debugging, with eventual conversion to platformio in the works.
+
+### 2/10/22
+* Continued to work on game 3, so far, here is the design "schema"
+	* console-based text game, written in CPP
+	* "time-based" activities -- each action consumes a "unit" of time, if you run out of time you lose
+	* You are tasked with an objective, the game takes place over a day, and you must complete smaller, cascading tasks to reach the final "goal"
+	* Very akin to the early-90s style text-based "choose your own adventure" game.
+	* Signficiant less "cybersecurity" focus than the other games. This game is more geared towards confusing "multiple pathways".
+* Regarding the technical structure of the game:
+	* Core functions file with corresponding .cpp to flesh out core functionalities
+	* Main game loop handled in game.cpp
+	* user input will be grabbed and santiized in the same way, using a "grab" function to main consistent santization
+	* every "action" reduces the time counter by a set amount based on initial decision
+* Adding support for multiple pathways (eventually) and multiple endings. Only the "best ending" will print the code 
