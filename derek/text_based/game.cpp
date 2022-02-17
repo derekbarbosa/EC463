@@ -2,6 +2,7 @@
 
 int main()
 {
+    //welcomePrompt();
     initalizeGame();
     return 0;
 }

@@ -29,14 +29,7 @@ void grabInput(int &x);
 
 void actionPenalty();
 
-// debating whether or not i should keep this stuff below this line
-void initalizeInventory();
-
-//shower, check texts, homework, go to dining hall
-void dormRoomScene();
-
-//talk to your friends
-void diningHall();
+void crashGame();
 
 enum majors
 {
@@ -58,13 +51,39 @@ struct userProfile
     std::string name;
     majors major;
     int timeRemaining;
+
+    int socialPoints = 100;
+    int healthPoints = 100;
+    int gradePoints = 100;
+    int money = 100;
+
     struct scenariosList *tasksRemaining;
 
-    void decreaseTime();
 
     /* member functions */
+    void decreaseTime(){
+        this->timeRemaining--;
+    }
+
+    /* Get Functions */
     int getTimeRemaining(){
         return this->timeRemaining;
+    }
+    
+    int getSP(){
+        return this->socialPoints;
+    }
+
+    int getHP(){
+        return this->healthPoints;
+    }
+
+    int getGP(){
+        return this->gradePoints;
+    }
+
+    int getMoney(){
+        return this->money;
     }
 
     majors getMajor(){
@@ -80,6 +99,8 @@ struct userProfile
         std::cout << "Status of task 2:" << this->tasksRemaining->task1Complete << '\n';
         std::cout << "Status of task 3:" << this->tasksRemaining->task1Complete << '\n';
     }
+
+    /* Update Functions */
 
 };
 
