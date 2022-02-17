@@ -342,3 +342,11 @@ Entries here are reserved for February
 	* user input will be grabbed and santiized in the same way, using a "grab" function to main consistent santization
 	* every "action" reduces the time counter by a set amount based on initial decision
 * Adding support for multiple pathways (eventually) and multiple endings. Only the "best ending" will print the code 
+
+### 2/15/22
+* Chrono support added, program is able to sleep/stop on demand
+* Continued work on fleshing out functionalites for IDR this thursday
+
+### 2/16/22 
+* Finished "skeleton" of game 3 -- all structures and inits are tested and fleshed out.
+* moving on to writing text based scenarios 

@@ -1,6 +1,7 @@
 #include "core_functions.h"
 
-int main(){
-    welcomePrompt();
+int main()
+{
+    initalizeGame();
     return 0;
 }
