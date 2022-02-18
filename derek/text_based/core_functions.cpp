@@ -242,11 +242,6 @@ void initalizeGame()
     this_thread::sleep_for(smallNS);
 
     cout << "STARTING GAME" << endl;
-    crashGame();
-    cout << "STARTING GAME" << endl;
-    cout << "STARTING GAME" << endl;
-    cout << "STARTING GAME" << endl;
-
 }
 
 void gameLoop(){

@@ -2,7 +2,7 @@
 
 int main()
 {
-    //welcomePrompt();
+    welcomePrompt();
     initalizeGame();
     return 0;
 }

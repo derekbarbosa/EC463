@@ -65,6 +65,23 @@ struct userProfile
         this->timeRemaining--;
     }
 
+    /*Update Functions*/
+    void updateSP(int param){
+        this->socialPoints = this->socialPoints+param;
+    }
+
+    void updateHP(int param){
+        this->healthPoints = this->healthPoints+param;
+    }
+
+    void updateGP(int param){
+        this->gradePoints = this->gradePoints+param;
+    }
+
+    void updateMoney(int param){
+        this->money = this->money+param;
+    }
+    
     /* Get Functions */
     int getTimeRemaining(){
         return this->timeRemaining;
