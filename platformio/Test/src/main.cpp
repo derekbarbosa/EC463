@@ -68,6 +68,10 @@ void setup()
   push2.begin();
 
   Serial.begin(9600);
+  Serial.setTimeout(2000);
+
+  pinMode(P1_6, OUTPUT);
+  pinMode(P1_7, OUTPUT);
 }
 
 void mainMenu()
@@ -245,15 +249,16 @@ void secret(){
 
 void secretCode(){
   
-  char answer[] = "alpha_omega";
+  char answer[] = "1016";
   Serial.print("Please Enter The Secret Code:\n");
   while (Serial.available() == 0)
   {
     // THIS BLOCK STAYS EMPTY!
   }
-  String inputData = Serial.readString();
+  String inputData = Serial.readStringUntil('\n');
   if(inputData == answer){
     Serial.print("CONGRATS! SECRET 1 SOLVED\n");
+    digitalWrite(P1_6, HIGH);
     SYSCFG0 = FRWPPW | DFWP;
     secretFlag2 = 1;
     SYSCFG0 = FRWPPW | PFWP | DFWP;
@@ -266,17 +271,18 @@ void secretCode(){
 }
 
 void secretCode2(){
-  char answer[] = "supersecretpassword";
-  char wrong[] = "wrongpassword";
+  char answer[] = "semperdisco";
+  char wrong[] = "4315323515421424431334";
   String x = "penis";
   Serial.print("Please Enter The Secret Code:\n");
   while (Serial.available() == 0)
   {
     // THIS BLOCK STAYS EMPTY!
   }
-  String inputData = Serial.readString();
+  String inputData = Serial.readStringUntil('\n');
   if(inputData == answer){
-    Serial.print("CONGRATS! SECRET 3 SOLVED\n");
+    Serial.print("CONGRATS! SECRET 2 SOLVED\n");
+    digitalWrite(P1_7, HIGH);
     SYSCFG0 = FRWPPW | DFWP;
     secretFlag3 = 1;
     SYSCFG0 = FRWPPW | PFWP | DFWP;
@@ -310,7 +316,7 @@ void setName()
   {
     // THIS BLOCK STAYS EMPTY!
   }
-  String inputData = Serial.readString();
+  String inputData = Serial.readStringUntil('\n');
   //Serial.print(inputData);
   //Serial.print("\n");
   char secretString1[] = "Pepe";
