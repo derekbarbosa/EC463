@@ -166,7 +166,7 @@ void constructScenarioList(scenario *scenarioHead)
 
     scenarioHead = scenarioNode;
 
-    ifstream filestream("");
+    ifstream filestream("game_scenes.tsv");
     if (!filestream.is_open() || !filestream.good())
     {
         cout << "can't open file" << '\n';
