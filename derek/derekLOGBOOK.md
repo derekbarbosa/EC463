@@ -350,3 +350,25 @@ Entries here are reserved for February
 ### 2/16/22 
 * Finished "skeleton" of game 3 -- all structures and inits are tested and fleshed out.
 * moving on to writing text based scenarios 
+
+### 2/18/22
+* Spent the day with the team brainstorming "scenarios" for the text-based game
+* Game style will be similar to "Reigns" -- see the link here: https://reignsgame.com/
+	* instead of being a "king" you are a BU student, trying to navigate through the semester and manage your four attributes
+    	* Money
+      	* Social
+      	* Grades
+      	* Health
+  	* If any of these get too low, you lose!
+* See previous notes for info on "update" functions for updating stats and user profiles
+* Text-based scenarios will be fed through, parsed and set up in a "linked-list" structure
+* IDs pertaining to each scenario will determine stats/choices.
+
+
+### 2/22/22
+* Edited file headers, light code refactors. Investigating how to parse textfile to feed into structs.
+
+### 2/24/22
+* Importing .xlsx to TSV (tab separated csv) and using getline() with 't' delimiter. 
+* Created structs with proper IDs to feed text into scenario.
+* Almost complete with game 3 :) 

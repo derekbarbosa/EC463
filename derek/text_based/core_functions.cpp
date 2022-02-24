@@ -1,5 +1,5 @@
 // core_functions.cpp
-#include "core_functions.h"
+#include "core_functions.hpp"
 using namespace std;
 
 //Game duration -- 50 days

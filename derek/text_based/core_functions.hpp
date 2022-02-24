@@ -8,6 +8,9 @@
 #include <unistd.h>
 #include <thread>
 #include <string>
+#include <sstream>
+#include <vector>
+#include <fstream>
 
 // HELPER FUNCTION FOR MATRIX ART
 int Modulus(int iN, int iN2);
