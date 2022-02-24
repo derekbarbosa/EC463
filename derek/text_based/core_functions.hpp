@@ -65,15 +65,6 @@ enum majors
     DROPOUT
 };
 
-bool isGradesPersistentPlus = false;
-bool isGradesPersistentMinus = false;
-bool isHealthPersistentPlus = false;
-bool isHealthPersistentMinus = false;
-bool isSocialPersistentPlus = false;
-bool isSocialPersistentMinus = false;
-bool isMoneyPersistentPlus = false;
-bool isMoneyPersistentMinus = false;
-
 // node for text scenarios
 struct scenario
 {
@@ -91,7 +82,7 @@ struct scenario
     scenario *next;
 };
 
-void constructScenarioList(scenario* scenarioHead);
+void constructScenarioList(scenario *scenarioHead);
 
 struct userProfile
 {
@@ -168,7 +159,6 @@ struct userProfile
     {
         return this->name;
     }
-
 };
 
 #endif /*CORE_FUNCTIONS.HPP*/

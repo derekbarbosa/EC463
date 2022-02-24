@@ -289,7 +289,3 @@ void initalizeGame()
 
     cout << "STARTING GAME" << endl;
 }
-
-void gameLoop()
-{
-}
