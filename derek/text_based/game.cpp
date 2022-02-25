@@ -1,7 +1,9 @@
 #include "core_functions.hpp"
+using namespace std;
 
-int main()
+int main(int argc, char *argv[])
 {
+    /*
     bool isGradesPersistentPlus = false;
     bool isGradesPersistentMinus = false;
     bool isHealthPersistentPlus = false;
@@ -10,20 +12,20 @@ int main()
     bool isSocialPersistentMinus = false;
     bool isMoneyPersistentPlus = false;
     bool isMoneyPersistentMinus = false;
+    */
 
-    struct scenario *scenarioList = NULL;
-    struct userProfile *userProfile = NULL;
+    struct scenario *scenarioList = nullptr;
+    userProfile *testProfile = new userProfile();
+
+    testProfile->setName("test");
+    userProfile *userProfile = nullptr;
 
     constructScenarioList(scenarioList);
-    welcomePrompt();
+    // welcomePrompt();
 
-    initalizeGame(userProfile);
-    
-    //segfault
-    while(userProfile->timeRemaining >= 0){
-        std::cout << "Day" << 51-(userProfile->timeRemaining) << '\n';
-    }
+    initalizeGame(userProfile, argv[1]);
 
+    cout << testProfile->getGP() << endl;
 
     return 0;
 }

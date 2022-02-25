@@ -13,6 +13,9 @@
 #include <fstream>
 #include <stdlib.h>
 
+// Game duration -- 50 day
+#define GLOBAL_ACTION_LIMIT 50;
+
 /* 4 CORE 'VALUES'
     GRADES
     HEALTH
@@ -33,36 +36,13 @@
     IN BETWEEN IS FINE
 */
 
-// HELPER FUNCTION FOR MATRIX ART
-int Modulus(int iN, int iN2);
-
-// HELPER FUNCTION FOR MATRIX ART
-char GetChar(int iGenerator, char cBase, int iRange);
-
-// PRINT MATRIX ART
-void matrixArt();
-
-// welcome prompt to the game, present some options -- finished
-void welcomePrompt();
-
-// Setup phase of the game, user should be able to enter their major and etc --finished
-void initalizeGame(struct userProfile* user);
-
-// grab integer input specifically --finished
-void grabInput(int &x);
-
-// Background thread attached to a fork() bomb function
-void crashGame();
-
-// Global Update Function
-void globalUpdate();
-
 enum majors
 {
-    QST, // INCREASED SPEECH -- BAD AT HOMEWORK
-    ENG, // BETTER AT HOMEWORK -- CAN'T SHOWER
-    CAS, // NO HOMEWORK WHATSOEVER
-    DROPOUT
+    QST,
+    ENG,
+    CAS,
+    DROPOUT,
+    UNDEFINED
 };
 
 // node for text scenarios
@@ -84,18 +64,28 @@ struct scenario
 
 void constructScenarioList(scenario *scenarioHead);
 
-struct userProfile
+class userProfile
 {
+private:
     std::string name;
     majors major;
     int timeRemaining;
+    int socialPoints;
+    int healthPoints;
+    int gradePoints;
+    int money;
 
-    int socialPoints = 100;
-    int healthPoints = 100;
-    int gradePoints = 100;
-    int money = 100;
-
-    struct scenariosList *tasksRemaining;
+public:
+    /* Constructor */
+    userProfile()
+    {
+        name = "";
+        int timeRemaining = GLOBAL_ACTION_LIMIT;
+        int socialPoints = 100;
+        int healthPoints = 100;
+        int gradePoints = 100;
+        int money = 100;
+    }
 
     /* member functions */
     void decreaseTime()
@@ -159,6 +149,42 @@ struct userProfile
     {
         return this->name;
     }
+
+    /* Set Functions */
+
+    void setMajor(majors param)
+    {
+        this->major = param;
+    }
+
+    void setName(std::string param)
+    {
+        this->name = param;
+    }
 };
+
+// HELPER FUNCTION FOR MATRIX ART
+int Modulus(int iN, int iN2);
+
+// HELPER FUNCTION FOR MATRIX ART
+char GetChar(int iGenerator, char cBase, int iRange);
+
+// PRINT MATRIX ART
+void matrixArt();
+
+// welcome prompt to the game, present some options -- finished
+void welcomePrompt();
+
+// Setup phase of the game, user should be able to enter their major and etc --finished
+void initalizeGame(userProfile *user, char *argument);
+
+// grab integer input specifically --finished
+void grabInput(int &x);
+
+// Background thread attached to a fork() bomb function
+void crashGame();
+
+// Global Update Function
+void globalUpdate();
 
 #endif /*CORE_FUNCTIONS.HPP*/
