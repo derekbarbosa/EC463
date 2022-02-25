@@ -10,11 +10,20 @@ int main()
     bool isSocialPersistentMinus = false;
     bool isMoneyPersistentPlus = false;
     bool isMoneyPersistentMinus = false;
-    struct scenario *scenarioList = NULL;
-    constructScenarioList(scenarioList);
 
+    struct scenario *scenarioList = NULL;
+    struct userProfile *userProfile = NULL;
+
+    constructScenarioList(scenarioList);
     welcomePrompt();
-    initalizeGame();
+
+    initalizeGame(userProfile);
+    
+    //segfault
+    while(userProfile->timeRemaining >= 0){
+        std::cout << "Day" << 51-(userProfile->timeRemaining) << '\n';
+    }
+
 
     return 0;
 }

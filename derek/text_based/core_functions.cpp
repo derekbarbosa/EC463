@@ -204,10 +204,10 @@ void constructScenarioList(scenario *scenarioHead)
     return;
 }
 
-void initalizeGame()
+void initalizeGame(struct userProfile *currUser)
 {
 
-    userProfile *currUser = new userProfile;
+    currUser = new userProfile;
 
     string userName;
     cout << "What is your name?" << endl;
@@ -230,8 +230,14 @@ void initalizeGame()
     grabInput(userMajor);
     this_thread::sleep_for(fractionalNS);
 
-    if (userMajor == 1)
+    if (userMajor == 0)
+        cout << "Look guys, Daddy's Money just took human form. HA!" << endl;
+    else if (userMajor == 1)
         cout << "Great, go shower. You smell" << endl;
+    else if (userMajor == 2)
+        cout << "Well, you're SOOO unique, aren't you?" << endl;
+    else if (userMajor == 3)
+        cout << "Righteous, stick it to the man." << endl;
     this_thread::sleep_for(fractionalNS);
 
     switch (userMajor)
@@ -273,13 +279,14 @@ void initalizeGame()
         break;
     }
 
-    cout << "You are said your major was: " << currUser->major << endl;
+    cout << "You said your major was: " << currUser->major << endl;
     this_thread::sleep_for(smallNS);
 
     string redHerring;
     cout << "Do you know the secret password?" << endl;
     cin >> redHerring;
     cout << "Password Accepted!" << endl;
+    cout << "Just kidding, no shortcuts here" << endl;
     this_thread::sleep_for(smallNS);
     cout << "SETUP COMPLETE" << endl;
 

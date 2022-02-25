@@ -46,7 +46,7 @@ void matrixArt();
 void welcomePrompt();
 
 // Setup phase of the game, user should be able to enter their major and etc --finished
-void initalizeGame();
+void initalizeGame(struct userProfile* user);
 
 // grab integer input specifically --finished
 void grabInput(int &x);
