@@ -372,3 +372,7 @@ Entries here are reserved for February
 * Importing .xlsx to TSV (tab separated csv) and using getline() with 't' delimiter. 
 * Created structs with proper IDs to feed text into scenario.
 * Almost complete with game 3 :) 
+
+### 2/25/22
+* Running into a weird heap memory error. Attempting to debug by initalizing memory with class constructor
+* Pushing code up for Ryan to help debug. GDB is broken on MacOS
