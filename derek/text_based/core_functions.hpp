@@ -79,12 +79,12 @@ public:
     /* Constructor */
     userProfile()
     {
-        name = "";
-        int timeRemaining = GLOBAL_ACTION_LIMIT;
-        int socialPoints = 100;
-        int healthPoints = 100;
-        int gradePoints = 100;
-        int money = 100;
+        this->name = "";
+        this->timeRemaining = GLOBAL_ACTION_LIMIT;
+        this->socialPoints = 100;
+        this->healthPoints = 100;
+        this->gradePoints = 100;
+        this->money = 100;
     }
 
     /* member functions */

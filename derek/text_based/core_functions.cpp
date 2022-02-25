@@ -2,8 +2,6 @@
 #include "core_functions.hpp"
 using namespace std;
 
-
-
 // refactor to use unistd.h
 const chrono::nanoseconds fractionalNS = 250ms;
 const chrono::nanoseconds smallNS = 1000ms;

@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     constructScenarioList(scenarioList);
     // welcomePrompt();
 
-    initalizeGame(userProfile, argv[1]);
+    //initalizeGame(userProfile, argv[1]);
 
     cout << testProfile->getGP() << endl;
 
