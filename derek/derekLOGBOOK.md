@@ -376,3 +376,11 @@ Entries here are reserved for February
 ### 2/25/22
 * Running into a weird heap memory error. Attempting to debug by initalizing memory with class constructor
 * Pushing code up for Ryan to help debug. GDB is broken on MacOS
+
+### 2/27/22
+* Even after some refactors, initializing memory in a separate CPP file is causing segfaults to occur when accessing said ptr in game.cpp (main)
+* Doesn't occur when dereferencing memory that is allocated in main. 
+* Weird behavior considering that both instances of mem are allocated on the heap and therefore can be accessed by dereferencing, rather than on the stack.
+
+### 2/28/22
+* Continued investigation of the segfaults yield no results. Will attempt to brute force by manually allocating in mem.
