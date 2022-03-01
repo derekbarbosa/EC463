@@ -52,10 +52,16 @@ struct scenario
     std::string prompt;
     std::string option1;
     std::string option2;
-    std::string consequence1;
-    std::string consequence2;
-    int consequence1Points;
-    int consequence2Points;
+    
+    /*
+        0 GRADES
+        1 HEALTH
+        2 SOCIAL
+        3 MONEY
+    */
+   
+    string consequence1Points[4] = {"","","",""};
+    string consequence2Points[4] = {"","","",""};
     std::string consequence1Text;
     std::string consequence2Text; // delimiter of 'n'
 
