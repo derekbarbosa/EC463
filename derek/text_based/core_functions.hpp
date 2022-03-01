@@ -60,8 +60,8 @@ struct scenario
         3 MONEY
     */
    
-    string consequence1Points[4] = {"","","",""};
-    string consequence2Points[4] = {"","","",""};
+    std::string consequence1Points[4] = {"","","",""};
+    std::string consequence2Points[4] = {"","","",""};
     std::string consequence1Text;
     std::string consequence2Text; // delimiter of 'n'
 

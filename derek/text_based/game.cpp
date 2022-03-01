@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     initalizeGame(userProfile, argv[1]);
 
     while(scenarioCounter <= 50){
-        print_scenario(scenarioList);
+        //print_scenario(scenarioList);
         scenarioList = scenarioList->next;
         scenarioCounter++;
     }

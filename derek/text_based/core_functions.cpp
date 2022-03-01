@@ -157,10 +157,11 @@ void grabInput(int &x)
 }
 
 void print_scenario(scenario *sc){
-    printf("Scenario: %s\nPrompt: %s\nOption1: %s\t Option2: %s\nConsequence1: %s\t Consequence2: %s\nConsequence1_pts: %d\t Consequence2_pts: %d\nConsequence1_txt: %s\t Consequence2_txt: %s\n\n",
-            sc->id.c_str(), sc->prompt.c_str(), sc->option1.c_str(), sc->option2.c_str(), sc->consequence1.c_str(),
-            sc->consequence2.c_str(), sc->consequence1Points, sc->consequence2Points, sc->consequence1Text.c_str(),
-            sc->consequence2Text.c_str());
+    printf("Scenario: %s\nPrompt: %s\nOption1: %s\t Option2: %s\nConsequence1: %s\t Consequence2: %s\nConsequence1_pts: %s,%s,%s,%s\t Consequence2_pts: %s,%s,%s,%s\n\n",
+            sc->id.c_str(), sc->prompt.c_str(), sc->option1.c_str(), sc->option2.c_str(), sc->consequence1Text.c_str(),
+            sc->consequence2Text.c_str(), sc->consequence1Points[0].c_str(), sc->consequence1Points[1].c_str(), 
+            sc->consequence1Points[2].c_str(), sc->consequence1Points[3].c_str(), sc->consequence2Points[0].c_str(), 
+            sc->consequence2Points[1].c_str(), sc->consequence2Points[2].c_str(), sc->consequence2Points[3].c_str());
 }
 
 void constructScenarioList(scenario **scenarioHead)
@@ -193,132 +194,153 @@ void constructScenarioList(scenario **scenarioHead)
         while (getline(ss, temp1, ','))
         {
             string temp1a = temp1;
-            if (temp1.find("Grades"))
+            //printf("TEMP1: %s\n\n", temp1.c_str());
+            if (temp1.find("Grades") != string::npos)
             {
-                if (temp1.find("+") != string::npos)
+                size_t delim_p = temp1.find("+");
+                size_t delim_n = temp1.find("-");
+                if (delim_p != string::npos)
                 {
-                    size_t pos = temp1.find("+");
+                    size_t pos = delim_p;
                     temp1a = temp1.substr(pos);
                 }
-                else if (temp1.find("-") != string::npos)
+                else if (delim_n != string::npos)
                 {
-                    size_t pos = temp1.find("-");
+                    size_t pos = delim_n;
                     temp1a = temp1.substr(pos);
                 }
                 scenarioNode->consequence1Points[0] = temp1a;
             }
-            else if (temp1.find("Health"))
+            else if (temp1.find("Health") != string::npos)
             {
-                if (temp1.find("+") != string::npos)
+                size_t delim_p = temp1.find("+");
+                size_t delim_n = temp1.find("-");
+                if (delim_p != string::npos)
                 {
-                    size_t pos = temp1.find("+");
+                    size_t pos = delim_p;
                     temp1a = temp1.substr(pos);
                 }
-                else if (temp1.find("-") != string::npos)
+                else if (delim_n != string::npos)
                 {
-                    size_t pos = temp1.find("-");
+                    size_t pos = delim_n;
                     temp1a = temp1.substr(pos);
                 }
                 scenarioNode->consequence1Points[1] = temp1a;
             }
-            else if (temp1.find("Social"))
+            else if (temp1.find("Social") != string::npos)
             {
-                if (temp1.find("+") != string::npos)
+                size_t delim_p = temp1.find("+");
+                size_t delim_n = temp1.find("-");
+                if (delim_p != string::npos)
                 {
-                    size_t pos = temp1.find("+");
+                    size_t pos = delim_p;
                     temp1a = temp1.substr(pos);
                 }
-                else if (temp1.find("-") != string::npos)
+                else if (delim_n != string::npos)
                 {
-                    size_t pos = temp1.find("-");
+                    size_t pos = delim_n;
                     temp1a = temp1.substr(pos);
                 }
                 scenarioNode->consequence1Points[2] = temp1a;
             }
-            else if (temp1.find("Money"))
+            else if (temp1.find("Money") != string::npos)
             {
-                if (temp1.find("+") != string::npos)
+                size_t delim_p = temp1.find("+");
+                size_t delim_n = temp1.find("-");
+                if (delim_p != string::npos)
                 {
-                    size_t pos = temp1.find("+");
+                    size_t pos = delim_p;
                     temp1a = temp1.substr(pos);
                 }
-                else if (temp1.find("-") != string::npos)
+                else if (delim_n != string::npos)
                 {
-                    size_t pos = temp1.find("-");
+                    size_t pos = delim_n;
                     temp1a = temp1.substr(pos);
                 }
                 scenarioNode->consequence1Points[3] = temp1a;
             }
+           // printf("CONSEQUENCE_ARR: %s,%s,%s,%s\n\n", scenarioNode->consequence1Points[0].c_str(), scenarioNode->consequence1Points[1].c_str(), 
+            //scenarioNode->consequence1Points[2].c_str(), scenarioNode->consequence1Points[3].c_str());
         }
+        ss.clear();
 
         getline(filestream, pointTemp2, '\t');
-        stringstream ss(pointTemp2);
+        stringstream ss2(pointTemp2);
         string temp2;
-        while (getline(ss, temp2, ','))
+        while (getline(ss2, temp2, ','))
         {
             string temp2a;
-            if (temp2.find("Grades"))
+            if (temp2.find("Grades") != string::npos)
             {
-                if (temp2.find("+") != string::npos)
+                size_t delim_p = temp2.find("+");
+                size_t delim_n = temp2.find("-");
+                if (delim_p != string::npos)
                 {
-                    size_t pos = temp2.find("+");
+                    size_t pos = delim_p;
                     temp2a = temp2.substr(pos);
                 }
-                else if (temp1.find("-") != string::npos)
+                else if (delim_n != string::npos)
                 {
-                    size_t pos = temp2.find("-");
+                    size_t pos = delim_n;
                     temp2a = temp2.substr(pos);
                 }
                 scenarioNode->consequence2Points[0] = temp2a;
             }
-            else if (temp2.find("Health"))
+            else if (temp2.find("Health") != string::npos)
             {
-                if (temp2.find("+") != string::npos)
+                size_t delim_p = temp2.find("+");
+                size_t delim_n = temp2.find("-");
+                if (delim_p != string::npos)
                 {
-                    size_t pos = temp2.find("+");
+                    size_t pos = delim_p;
                     temp2a = temp2.substr(pos);
                 }
-                else if (temp1.find("-") != string::npos)
+                else if (delim_n != string::npos)
                 {
-                    size_t pos = temp2.find("-");
+                    size_t pos = delim_n;
                     temp2a = temp2.substr(pos);
                 }
                 scenarioNode->consequence2Points[1] = temp2a;
             }
-            else if (temp2.find("Social"))
+            else if (temp2.find("Social") != string::npos)
             {
-                if (temp2.find("+") != string::npos)
+                size_t delim_p = temp2.find("+");
+                size_t delim_n = temp2.find("-");
+                if (delim_p != string::npos)
                 {
-                    size_t pos = temp2.find("+");
+                    size_t pos = delim_p;
                     temp2a = temp2.substr(pos);
                 }
-                else if (temp1.find("-") != string::npos)
+                else if (delim_n != string::npos)
                 {
-                    size_t pos = temp2.find("-");
+                    size_t pos = delim_n;
                     temp2a = temp2.substr(pos);
                 }
                 scenarioNode->consequence2Points[2] = temp2a;
             }
-            else if (temp2.find("Money"))
+            else if (temp2.find("Money") != string::npos)
             {
-                if (temp2.find("+") != string::npos)
+                size_t delim_p = temp2.find("+");
+                size_t delim_n = temp2.find("-");
+                if (delim_p != string::npos)
                 {
-                    size_t pos = temp2.find("+");
+                    size_t pos = delim_p;
                     temp2a = temp2.substr(pos);
                 }
-                else if (temp1.find("-") != string::npos)
+                else if (delim_n != string::npos)
                 {
-                    size_t pos = temp2.find("-");
+                    size_t pos = delim_n;
                     temp2a = temp2.substr(pos);
                 }
                 scenarioNode->consequence2Points[3] = temp2a;
             }
         }
+        ss2.clear();
 
         getline(filestream, scenarioNode->consequence1Text, '\t');
         getline(filestream, scenarioNode->consequence2Text, '\n');
         struct scenario *newNode = new scenario;
-
+        //print_scenario(scenarioNode);
         scenarioNode->next = newNode;
 
         scenarioNode = scenarioNode->next;
