@@ -157,9 +157,10 @@ void grabInput(int &x)
 }
 
 void print_scenario(scenario *sc){
-    printf("Scenario : %s\nPrompt: %s\nOption1: %s \t Option2: %s\nConsequence1: %s\t Consequence2: %s\n\n",
+    printf("Scenario: %s\nPrompt: %s\nOption1: %s\t Option2: %s\nConsequence1: %s\t Consequence2: %s\nConsequence1_pts: %d\t Consequence2_pts: %d\nConsequence1_txt: %s\t Consequence2_txt: %s\n\n",
             sc->id.c_str(), sc->prompt.c_str(), sc->option1.c_str(), sc->option2.c_str(), sc->consequence1.c_str(),
-            sc->consequence2.c_str());
+            sc->consequence2.c_str(), sc->consequence1Points, sc->consequence2Points, sc->consequence1Text.c_str(),
+            sc->consequence2Text.c_str());
 }
 
 void constructScenarioList(scenario **scenarioHead)
@@ -187,14 +188,9 @@ void constructScenarioList(scenario **scenarioHead)
 
         std::string pointTemp;
         std::string pointTemp2;
-        getline(filestream, pointTemp, '\t');
-        getline(filestream, pointTemp2, '\t');
-        scenarioNode->consequence1Points = atoi(pointTemp.c_str());
-        scenarioNode->consequence2Points = atoi(pointTemp2.c_str());
-
         getline(filestream, scenarioNode->consequence1Text, '\t');
-        getline(filestream, scenarioNode->consequence2Text, '\n');
-
+        getline(filestream, scenarioNode->consequence2Text, '\t');
+        
         struct scenario *newNode = new scenario;
 
         scenarioNode->next = newNode;
