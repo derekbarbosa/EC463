@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <Button.h>
+#include <HardwareSerial.h>
+
 
 
 #define NAMESET 1
@@ -48,6 +50,8 @@ void secretCode();
 
 void wipeBoard();
 
+void bluetooth();
+
 void clearStr(char* str){
   for(int i = 0; i < NAMELEN; i++)
     str[i] = '\0';
@@ -68,10 +72,15 @@ void setup()
   push2.begin();
 
   Serial.begin(9600);
+  Serial1.begin(9600);
   Serial.setTimeout(2000);
+
+
 
   pinMode(P1_6, OUTPUT);
   pinMode(P1_7, OUTPUT);
+
+  
 }
 
 void ledCheck(){
@@ -89,8 +98,10 @@ void ledCheck(){
   }
 }
 
+
 void mainMenu()
 {
+
 
 statement:
   Serial.print("************************\n");
@@ -106,11 +117,15 @@ statement:
   if(secretFlag == 1 && secretFlag2 == 1){
     Serial.print("*| 6: Secret Token 2  |*\n");
   }
+  Serial.print("*| 8: Start Bluetooth |*\n");
   Serial.print("*| 0: Reset Badge     |*\n");
   Serial.print("*|                    |*\n");
   Serial.print("************************\n");
 
+  
+
   Serial.print("Please enter input\n");
+  
   while (Serial.available() == 0)
   {
     // THIS BLOCK STAYS EMPTY!
@@ -126,7 +141,7 @@ statement:
     {
     case '1':
       delay(1000);
-      Serial.print("You Chose to Set your Device Name!\n"); // DeviceID Input
+      Serial.print("You Chose to Set your Device Name!\n");// DeviceID Input
       delay(1000);
       if (nameToggle == 0)
       {
@@ -198,6 +213,12 @@ statement:
           secretCode2();
           goto statement;
         }
+    case '8':
+      delay(1000);
+      Serial.print("Bluetooth Entered\n");
+      Serial.print("Exit Bluetooth Menu to Return\n\n\n");
+      bluetooth();
+      goto statement;
     case '9':
       delay(1000);
       secret();
@@ -218,6 +239,58 @@ statement:
       goto statement;
     }
   }
+}
+
+void bluetooth(){
+  
+  statement:
+    Serial.print("VETCON BLUETOOTH:\n");
+    Serial.print("-----------------\n");
+    Serial.print("1) Advertise\n");
+    Serial.print("2) Scan\n");
+    Serial.print("3) View Friends\n");
+    Serial.print("0) Exit\n");
+    Serial.print("-----------------\n");
+
+    Serial.print("Please Choose An Option\n");
+    
+    while (Serial.available() == 0)
+    {
+      // THIS BLOCK STAYS EMPTY!
+    }
+    char inputData = (char)Serial.read();
+    Serial.print("Input: ");
+    Serial.print(inputData);
+    Serial.print("\n\n");
+
+    for (;;)
+    {
+      switch (inputData)
+      {
+      case '1':
+        delay(1000);
+        Serial.print("Advertising\n");
+        //HANDLE ADVERTISING
+        goto statement;
+      case '2':
+        delay(1000);
+        Serial.print("Scanning\n");
+        //HANDLE SCANNING
+        goto statement;
+      case '3':
+        delay(1000);
+        Serial.print("Friends List:\n");
+        //HANDLE FRIENDS LIST
+        goto statement;
+      case '0':
+        delay(1000);
+        return;
+      
+      default:
+        Serial.print("Invalid Menu Item\n");
+        goto statement;
+      }
+    }
 }
 
 void resetBadge(){
@@ -377,6 +450,7 @@ void wipeBoard(){
 void loop()
 {
   // put your main code here, to run repeatedly:
+  
   ledCheck();
   delay(2000);
   const char *welcome[] = {
