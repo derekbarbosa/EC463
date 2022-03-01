@@ -156,12 +156,13 @@ void grabInput(int &x)
     x = userInput;
 }
 
-void print_scenario(scenario *sc){
+void print_scenario(scenario *sc)
+{
     printf("Scenario: %s\nPrompt: %s\nOption1: %s\t Option2: %s\nConsequence1: %s\t Consequence2: %s\nConsequence1_pts: %s,%s,%s,%s\t Consequence2_pts: %s,%s,%s,%s\n\n",
-            sc->id.c_str(), sc->prompt.c_str(), sc->option1.c_str(), sc->option2.c_str(), sc->consequence1Text.c_str(),
-            sc->consequence2Text.c_str(), sc->consequence1Points[0].c_str(), sc->consequence1Points[1].c_str(), 
-            sc->consequence1Points[2].c_str(), sc->consequence1Points[3].c_str(), sc->consequence2Points[0].c_str(), 
-            sc->consequence2Points[1].c_str(), sc->consequence2Points[2].c_str(), sc->consequence2Points[3].c_str());
+           sc->id.c_str(), sc->prompt.c_str(), sc->option1.c_str(), sc->option2.c_str(), sc->consequence1Text.c_str(),
+           sc->consequence2Text.c_str(), sc->consequence1Points[0].c_str(), sc->consequence1Points[1].c_str(),
+           sc->consequence1Points[2].c_str(), sc->consequence1Points[3].c_str(), sc->consequence2Points[0].c_str(),
+           sc->consequence2Points[1].c_str(), sc->consequence2Points[2].c_str(), sc->consequence2Points[3].c_str());
 }
 
 void constructScenarioList(scenario **scenarioHead)
@@ -194,7 +195,7 @@ void constructScenarioList(scenario **scenarioHead)
         while (getline(ss, temp1, ','))
         {
             string temp1a = temp1;
-            //printf("TEMP1: %s\n\n", temp1.c_str());
+            // printf("TEMP1: %s\n\n", temp1.c_str());
             if (temp1.find("Grades") != string::npos)
             {
                 size_t delim_p = temp1.find("+");
@@ -259,8 +260,8 @@ void constructScenarioList(scenario **scenarioHead)
                 }
                 scenarioNode->consequence1Points[3] = temp1a;
             }
-           // printf("CONSEQUENCE_ARR: %s,%s,%s,%s\n\n", scenarioNode->consequence1Points[0].c_str(), scenarioNode->consequence1Points[1].c_str(), 
-            //scenarioNode->consequence1Points[2].c_str(), scenarioNode->consequence1Points[3].c_str());
+            // printf("CONSEQUENCE_ARR: %s,%s,%s,%s\n\n", scenarioNode->consequence1Points[0].c_str(), scenarioNode->consequence1Points[1].c_str(),
+            // scenarioNode->consequence1Points[2].c_str(), scenarioNode->consequence1Points[3].c_str());
         }
         ss.clear();
 
@@ -340,7 +341,7 @@ void constructScenarioList(scenario **scenarioHead)
         getline(filestream, scenarioNode->consequence1Text, '\t');
         getline(filestream, scenarioNode->consequence2Text, '\n');
         struct scenario *newNode = new scenario;
-        //print_scenario(scenarioNode);
+        // print_scenario(scenarioNode);
         scenarioNode->next = newNode;
 
         scenarioNode = scenarioNode->next;
@@ -351,7 +352,7 @@ void constructScenarioList(scenario **scenarioHead)
     return;
 }
 
-void initalizeGame(userProfile *newUser, char *argument)
+void initalizeGame(userProfile **newUser, char *argument)
 {
 
     userProfile *currUser = new userProfile();
@@ -458,6 +459,34 @@ void initalizeGame(userProfile *newUser, char *argument)
     }
 
 endfunction:
-    newUser = currUser;
+    *newUser = currUser;
     cout << "STARTING GAME" << endl;
+}
+
+int globalUpdate(userProfile *user, int grades, int health, int social, int money)
+{
+    user->updateGP(grades);
+    user->updateHP(health);
+    user->updateSP(social);
+    user->updateMoney(money);
+
+    // check for boundaries
+    if (user->getGP() > 200 || user->getGP() <= 0)
+    {
+        return 1;
+    }
+    if (user->getHP() > 200 || user->getHP() <= 0)
+    {
+        return 2;
+    }
+    if (user->getSP() > 200 || user->getSP() <= 0)
+    {
+        return 3;
+    }
+    if (user->getMoney() > 200 || user->getMoney() <= 0)
+    {
+        return 4;
+    }
+
+    return 0;
 }

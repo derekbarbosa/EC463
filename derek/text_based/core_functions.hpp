@@ -52,16 +52,16 @@ struct scenario
     std::string prompt;
     std::string option1;
     std::string option2;
-    
+
     /*
         0 GRADES
         1 HEALTH
         2 SOCIAL
         3 MONEY
     */
-   
-    std::string consequence1Points[4] = {"","","",""};
-    std::string consequence2Points[4] = {"","","",""};
+
+    std::string consequence1Points[4] = {"", "", "", ""};
+    std::string consequence2Points[4] = {"", "", "", ""};
     std::string consequence1Text;
     std::string consequence2Text; // delimiter of 'n'
 
@@ -93,22 +93,22 @@ public:
     /*Update Functions*/
     void updateSP(int param)
     {
-        this->socialPoints = this->socialPoints + param;
+        this->socialPoints = this->socialPoints + (param*5);
     }
 
     void updateHP(int param)
     {
-        this->healthPoints = this->healthPoints + param;
+        this->healthPoints = this->healthPoints + (param*5);
     }
 
     void updateGP(int param)
     {
-        this->gradePoints = this->gradePoints + param;
+        this->gradePoints = this->gradePoints + (param*5);
     }
 
     void updateMoney(int param)
     {
-        this->money = this->money + param;
+        this->money = this->money + (param*5);
     }
 
     /* Get Functions */
@@ -169,7 +169,7 @@ void matrixArt();
 void welcomePrompt();
 
 // Setup phase of the game, user should be able to enter their major and etc --finished
-void initalizeGame(userProfile *user, char *argument);
+void initalizeGame(userProfile **user, char *argument);
 
 // grab integer input specifically --finished
 void grabInput(int &x);
@@ -178,8 +178,8 @@ void grabInput(int &x);
 void crashGame();
 
 // Global Update Function
-void globalUpdate();
+int globalUpdate(userProfile *user, int grades, int health, int social, int money);
 
-void print_scenario(scenario* sc);
+void print_scenario(scenario *sc);
 
 #endif /*CORE_FUNCTIONS.HPP*/
