@@ -158,8 +158,8 @@ void grabInput(int &x)
 
 void constructScenarioList(scenario *scenarioHead)
 {
-    struct scenario *scenarioNode = new struct scenario;
-    scenarioNode->next = NULL;
+    struct scenario *scenarioNode = new scenario;
+    scenarioNode->next = nullptr;
 
     scenarioHead = scenarioNode;
 
@@ -205,16 +205,20 @@ void initalizeGame(userProfile *newUser, char *argument)
 {
 
     userProfile *currUser = new userProfile();
-    string arg1 = (string)argument;
-    if (arg1 == argument)
+    string arg1;
+
+    if (argument)
+    {
+        if (argument == "debug")
         {
             currUser->setMajor(DROPOUT);
             currUser->setName("debug");
             goto endfunction;
         }
+    }
     else
     {
-        string userName;
+        string userName = "";
         cout << "What is your name?" << endl;
         getline(cin, userName);
         this_thread::sleep_for(fractionalNS);

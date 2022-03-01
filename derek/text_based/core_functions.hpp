@@ -69,7 +69,6 @@ class userProfile
 private:
     std::string name;
     majors major;
-    int timeRemaining;
     int socialPoints;
     int healthPoints;
     int gradePoints;
@@ -79,18 +78,10 @@ public:
     /* Constructor */
     userProfile()
     {
-        this->name = "";
-        this->timeRemaining = GLOBAL_ACTION_LIMIT;
         this->socialPoints = 100;
         this->healthPoints = 100;
         this->gradePoints = 100;
         this->money = 100;
-    }
-
-    /* member functions */
-    void decreaseTime()
-    {
-        this->timeRemaining--;
     }
 
     /*Update Functions*/
@@ -115,10 +106,6 @@ public:
     }
 
     /* Get Functions */
-    int getTimeRemaining()
-    {
-        return this->timeRemaining;
-    }
 
     int getSP()
     {

@@ -3,6 +3,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+    int scenarioCounter = 0;
     /*
     bool isGradesPersistentPlus = false;
     bool isGradesPersistentMinus = false;
@@ -15,9 +16,7 @@ int main(int argc, char *argv[])
     */
 
     struct scenario *scenarioList = nullptr;
-    userProfile *testProfile = new userProfile();
 
-    testProfile->setName("test");
     userProfile *userProfile = nullptr;
 
     constructScenarioList(scenarioList);
@@ -25,7 +24,11 @@ int main(int argc, char *argv[])
 
     initalizeGame(userProfile, argv[1]);
 
-    cout << testProfile->getGP() << endl;
+    while(scenarioCounter <= 50){
+
+        scenarioList = scenarioList->next;
+    }
+
 
     return 0;
 }
