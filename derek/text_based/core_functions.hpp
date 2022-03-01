@@ -62,7 +62,7 @@ struct scenario
     scenario *next;
 };
 
-void constructScenarioList(scenario *scenarioHead);
+void constructScenarioList(scenario **scenarioHead);
 
 class userProfile
 {
@@ -173,5 +173,7 @@ void crashGame();
 
 // Global Update Function
 void globalUpdate();
+
+void print_scenario(scenario* sc);
 
 #endif /*CORE_FUNCTIONS.HPP*/

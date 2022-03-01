@@ -19,16 +19,16 @@ int main(int argc, char *argv[])
 
     userProfile *userProfile = nullptr;
 
-    constructScenarioList(scenarioList);
+    constructScenarioList(&scenarioList);
     // welcomePrompt();
 
     initalizeGame(userProfile, argv[1]);
 
     while(scenarioCounter <= 50){
-
+        print_scenario(scenarioList);
         scenarioList = scenarioList->next;
+        scenarioCounter++;
     }
-
 
     return 0;
 }

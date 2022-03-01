@@ -156,12 +156,18 @@ void grabInput(int &x)
     x = userInput;
 }
 
-void constructScenarioList(scenario *scenarioHead)
+void print_scenario(scenario *sc){
+    printf("Scenario : %s\nPrompt: %s\nOption1: %s \t Option2: %s\nConsequence1: %s\t Consequence2: %s\n\n",
+            sc->id.c_str(), sc->prompt.c_str(), sc->option1.c_str(), sc->option2.c_str(), sc->consequence1.c_str(),
+            sc->consequence2.c_str());
+}
+
+void constructScenarioList(scenario **scenarioHead)
 {
     struct scenario *scenarioNode = new scenario;
     scenarioNode->next = nullptr;
 
-    scenarioHead = scenarioNode;
+    *scenarioHead = scenarioNode;
 
     ifstream filestream("game_scenes.tsv");
     if (!filestream.is_open() || !filestream.good())
