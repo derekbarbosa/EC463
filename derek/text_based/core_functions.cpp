@@ -44,7 +44,7 @@ void matrixArt()
     int l = 5;
     int m = 1;
     int counter = 0;
-    while (counter < 800000)
+    while (counter < 80000)
     {
         int i = 0;
         // Output a random row of characters
@@ -371,6 +371,8 @@ void initalizeGame(userProfile *newUser, char *argument)
         string userName = "";
         cout << "What is your name?" << endl;
         getline(cin, userName);
+        cin.clear();
+        fflush(stdin);
         this_thread::sleep_for(fractionalNS);
         cout << "Hello " << userName << endl;
         this_thread::sleep_for(smallNS);
@@ -441,9 +443,11 @@ void initalizeGame(userProfile *newUser, char *argument)
         cout << "You said your major was: " << currUser->getMajor() << endl;
         this_thread::sleep_for(smallNS);
 
-        string redHerring;
+        string redHerring = "";
         cout << "Do you know the secret password?" << endl;
-        cin >> redHerring;
+        getline(cin, redHerring);
+        cin.clear();
+        fflush(stdin);
         cout << "Password Accepted!" << endl;
         cout << "Just kidding, no shortcuts here" << endl;
         this_thread::sleep_for(smallNS);
