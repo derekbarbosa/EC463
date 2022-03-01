@@ -156,10 +156,11 @@ void grabInput(int &x)
     x = userInput;
 }
 
-void print_scenario(scenario *sc)
-{
-    printf("Scenario : %s\nPrompt: %s\nOption1: %s \t Option2: %s\n\n",
-           sc->id.c_str(), sc->prompt.c_str(), sc->option1.c_str(), sc->option2.c_str());
+void print_scenario(scenario *sc){
+    printf("Scenario: %s\nPrompt: %s\nOption1: %s\t Option2: %s\nConsequence1: %s\t Consequence2: %s\nConsequence1_pts: %d\t Consequence2_pts: %d\nConsequence1_txt: %s\t Consequence2_txt: %s\n\n",
+            sc->id.c_str(), sc->prompt.c_str(), sc->option1.c_str(), sc->option2.c_str(), sc->consequence1.c_str(),
+            sc->consequence2.c_str(), sc->consequence1Points, sc->consequence2Points, sc->consequence1Text.c_str(),
+            sc->consequence2Text.c_str());
 }
 
 void constructScenarioList(scenario **scenarioHead)
