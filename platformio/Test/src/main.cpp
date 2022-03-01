@@ -74,6 +74,21 @@ void setup()
   pinMode(P1_7, OUTPUT);
 }
 
+void ledCheck(){
+  if(secretFlag2 == 1){
+    digitalWrite(P1_6, secretFlag2);
+  }
+  else if(secretFlag2 == 0){
+    digitalWrite(P1_6, secretFlag2);
+  }
+  if(secretFlag3 == 1){
+    digitalWrite(P1_7, secretFlag3);
+  }
+  else if(secretFlag3 == 0){
+    digitalWrite(P1_7, secretFlag3);
+  }
+}
+
 void mainMenu()
 {
 
@@ -258,10 +273,11 @@ void secretCode(){
   String inputData = Serial.readStringUntil('\n');
   if(inputData == answer){
     Serial.print("CONGRATS! SECRET 1 SOLVED\n");
-    digitalWrite(P1_6, HIGH);
+    
     SYSCFG0 = FRWPPW | DFWP;
     secretFlag2 = 1;
     SYSCFG0 = FRWPPW | PFWP | DFWP;
+    digitalWrite(P1_6, secretFlag2);
   }
   else{
     Serial.print("INCORRECT CODE\n");
@@ -282,10 +298,11 @@ void secretCode2(){
   String inputData = Serial.readStringUntil('\n');
   if(inputData == answer){
     Serial.print("CONGRATS! SECRET 2 SOLVED\n");
-    digitalWrite(P1_7, HIGH);
+    
     SYSCFG0 = FRWPPW | DFWP;
     secretFlag3 = 1;
     SYSCFG0 = FRWPPW | PFWP | DFWP;
+    digitalWrite(P1_7, secretFlag3);
   }
   else if(inputData == wrong){
     for(int i = 0; i < 50; i++){
@@ -360,7 +377,7 @@ void wipeBoard(){
 void loop()
 {
   // put your main code here, to run repeatedly:
-
+  ledCheck();
   delay(2000);
   const char *welcome[] = {
       "*****************BEWARE*******************",
