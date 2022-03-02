@@ -93,22 +93,34 @@ public:
     /*Update Functions*/
     void updateSP(int param)
     {
-        this->socialPoints = this->socialPoints + (param*5);
+        if(param > 3){
+            param = 1;
+        }
+        this->socialPoints = this->socialPoints + (param*10);
     }
 
     void updateHP(int param)
     {
-        this->healthPoints = this->healthPoints + (param*5);
+         if(param > 3){
+            param = 1;
+        }
+        this->healthPoints = this->healthPoints + (param*10);
     }
 
     void updateGP(int param)
     {
-        this->gradePoints = this->gradePoints + (param*5);
+         if(param > 3){
+            param = 1;
+        }
+        this->gradePoints = this->gradePoints + (param*10);
     }
 
     void updateMoney(int param)
     {
-        this->money = this->money + (param*5);
+         if(param > 3){
+            param = 1;
+        }
+        this->money = this->money + (param*10);
     }
 
     /* Get Functions */

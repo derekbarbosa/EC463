@@ -92,6 +92,7 @@ Entries here will be reserved specifically for the month of October.
 	* Relay research back to Client -- inform them of approach
 	* Compare SOC approach vs SBC vs Bare-Metal
 	* Look into reverse-engineering SOC into bare-metal PCB
+  
 ### 10/8/2021
 * Regrouped with Team -- agreed to vote on specific approach next monday.
 * Discussed at length the pros+cons of each architecture, we described our preferences and laid out our "greivances"
@@ -136,6 +137,7 @@ Entries here will be reserved specifically for the month of October.
 * Looking into setting up our CI/CD and pipeline hygiene, will set a workshop for Gherkin Model user story writing to "nail down" our functionality and describe "pin-pointed" features
 * Looking into LCD libraries for TIMSP, and how to not only write sample code, but also flash binaries into the rom
 * looking into creating a Basic Input Output System to control the memory management of the applications and inpit (BIOS).
+  
 ### 10/26/2021
 * First logbook entry for Logbook #2
 * Set up a CI/CD Pipeline, officially all unstable code will be pushed to our invididual branches. Once functionality is confirmed, code will be merged to testing for debugging on secondary boards and then relesed to stable once we are satisfied and decide to start another function.
@@ -144,6 +146,7 @@ Entries here will be reserved specifically for the month of October.
 * Discussed logistics of Trello/Agile and User Story Writing using the gherkin model. Wrote a sample story to discuss how tackling solutions using "the smallest vertical slice" allows for concision and accuracy when describing functionality from a user perspective.
 * Began to play around with some test code from TI and using TI dev tools. Got an LED to blink (our helloworld) and was able to wrtie scrolling text using the segmented display built into the evalutation board.
 * Set up a meeting with the client to touch base and discuss project status. 
+  
 ### 10/28/2021
 * User story session 1! Wrote our first Epic. Epic #1, Gilgamesh, has 4 user stories which focus on the inital functioning of the badge, AKA "main menu" functionality.
 	* Story 1: First Boot/Power On Sequence
@@ -158,6 +161,7 @@ Entries here will be reserved specifically for the month of October.
 	* Derek & Ryan -- Software
 	* Julia * John -- Cybersecurity and Display Modules
 	* Carlos -- Design/Architecture
+  
 ## November 
 Entries here will be specifically reserved for the month of November.
 
@@ -168,6 +172,7 @@ Entries here will be specifically reserved for the month of November.
 	* adding mspboot and apps to repo -- COMMIT 01fb27c
 	* cleaned up stuff. Deleted old objects and cloned samples of bootloader -- COMMIT 3ac7051
 	* attempting to figure out what is going on with gmake compile errors -- COMMIT f322794
+  
 ## 11/3/2021
 * Rewriting <include> files to get the demo bootloader applications to function on non-windows systems
 	* the demos written by the TI team were targeted for windows, so a lot of the dependency paths are written with "C:\" Win32 style NTFS directories rather than the standard Unix-like method of accessing directories from root "/usr/bin"
@@ -182,15 +187,18 @@ Entries here will be specifically reserved for the month of November.
 	* The both C files are then compiled down to one object and passed onto the bootloader. A host board is then required to flash the target board with the desired programs.
 	* All in all, overcomplication for something that was supposed to be a bit more straightforward. The tutorial seemed to provide an example of how to provide OTA updates rather than focus on creating a bootloader.
 * Ryan and I are scrapping this approach and will simply write our own self-contained bootloader that will simply be an application that calls different appications in memory.
+
 ### 11/4/2021
 * First attempt at creating our own bootloader was highly unsuccesful. We were not able to compile code that was effective in getting anything done.
 * Documented some issues with the TI Documentation. Decided to stop and focus on helping other teammembers complete their tasks.
 * Assisted Carlos in getting KiCad reinstalled after major vulnerability expoit in the binary was leaked.
 * Assisted John and Julian in getting their serial console to "print something"
 * Set up a clean instance of the IDE back to a "hello world" state.
+
 ### 11/8/2021
 * Met with Ryan to arrange time on Tuesday to get a headstart before prototypes, want some sort of "app loader" functional by Thursday.
 * Played around with the LCDs and read up on datasheets to better understand them.
+
 ### 11/9/2021
 * Discussed Upcoming Pre-Prototype plans and reviewed the assignments posted on Blackboard.
 * Specifically, we discussed our challenges at hand (see previous logbook entries) and how we should potentially move to a simpler approach.
@@ -208,6 +216,7 @@ Entries here will be specifically reserved for the month of November.
 	* The build process automatically tags SW dependencies and applies them automatically during the build stage, removing plenty of the compiler issues we were running into.
 	* This could also help with the issue we're currently having: monitoring serial output consistently across dev machines (different environments handle USB comms differently) and allow us to create consistent output on our applications.
 	* Warrants further investigation
+  
 ### 11/11/2021
 * Discovered serial output can be manipulated on the board by clearing, setting and flipping a 16 bit (2-byte) register.
 	* Challenge presented: how to continually clear and set the output register with preprocessor directives.
@@ -215,11 +224,13 @@ Entries here will be specifically reserved for the month of November.
 * Carlos, responsible for PCB design asked what he could do in the meantime to "fill the void" while we pushed down the path of attempting to get communication functional on the board
 	* I proposed he do our game development side of things, so far we have a Dino Run prototype going :)
 * We decided to meet again the following day to get some more progress going
+  
 ### 11/12/2021
 * PlatformIO was super succesful! Writing serial output proved perfectly fine, and we are now able to import third party libraries with ease!
 	* We can now print to console output and use board functionality
 * One issue: Mapping of IO pins from the cross-compiler "environment" to the native pins on the board is a bit murky, so todays session was figuring out "what mapped to what"
 * Otherwise, we are in the clear so far.
+  
 ### 11/13/2021
 * Met with the team over the weekend to do some more work in preparation for the prototype
 * Set up Serial Interface loop, follows typial REPL methodology to parse user input and accept valid commands. Helper functions were established to jump to different locations in memory to execute desired functionalities.
@@ -228,12 +239,14 @@ Entries here will be specifically reserved for the month of November.
 	* Button presses only worked properly within our void loop() function, which sits atop of the Return Stack Pointer on our call stack, so we suspected that buttons in functions that were called from loop() were consequentially "higher up" on our stack, and therefore unable to be properly "sampled."
 	* Another suspicion we had, which was similar to the one above, was that the hardware could only be accessed in non-blocking functions, so we decided to write an interrupt that attached itself to a button pin, which ultimately proved unsuccesful 
 * After attempting to correct button issue, we called it quits for the night.
+  
 ### 11/15/2021
 * Included button debouncing libraries to correct our input problems. Buttons are now able to be properly read albeit with very slight delay.
 	* Why does this work? The buttons on the TIMSP430-EXPFR2433 specifically have "pullup" properties, meaning that the rising/falling edges aren't exactly "clean" and can't be reliable sampled. 
 	* Including a debouncing library takes care of button "bounce" (i.e. what happens when you press and release a button) and accounts for the delay between presses.
 * Took care of repo sanitization, testing branch is now up-to-date.
 * Hosted Carlos' Dino game on Github Pages
+  
 ### 11/16/2021
 * added the URL to the webgame to our device!
 * preparing for prototype testing
@@ -384,3 +397,20 @@ Entries here are reserved for February
 
 ### 2/28/22
 * Continued investigation of the segfaults yield no results. Will attempt to brute force by manually allocating in mem.
+
+## March
+Entries here are reserved for March	
+
+### 3/1/22
+* Bugfixes with multi-level pointers across files. Passed pointers by reference using "&" and dereferenced using **, mistake made between passing pointer-to-value and passing pointer to pointer to value.
+* Cleaned up value parsing with Getline. Points and point values are now completely parsed on the backend with string matching, stringstreams and getlines.
+* Added support for point calculation and parsing persistent point values to front-end game loop
+* finished global update function which calculates points & etc.
+
+### 3/2/22
+* Added support for multiple endings within game, different outcomes occur based on point values of each attribute of the "User Profile"
+* Increased game difficulty, no longer *easy* to do the game in one complete run.
+* Added persistent point support. Persistent flags now trigger a continuous increase/decrease in point valuation. 
+* Fixed some formatting oddities.
+* Game is complete and in "production mode" as of today! 
+* Moving onto HW, testing power consumption of prototype

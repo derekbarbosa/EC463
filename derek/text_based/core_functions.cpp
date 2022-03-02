@@ -153,6 +153,8 @@ void grabInput(int &x)
 
     int userInput;
     cin >> userInput;
+    cin.clear();
+    fflush(stdin);
     x = userInput;
 }
 
@@ -356,14 +358,14 @@ void initalizeGame(userProfile **newUser, char *argument)
 {
 
     userProfile *currUser = new userProfile();
-    string arg1;
+    string debug = "debug";
 
     if (argument)
     {
-        if (argument == "debug")
+        if (debug.compare(argument))
         {
             currUser->setMajor(DROPOUT);
-            currUser->setName("debug");
+            currUser->setName(debug);
             goto endfunction;
         }
     }
@@ -371,17 +373,26 @@ void initalizeGame(userProfile **newUser, char *argument)
     {
         string userName = "";
         cout << "What is your name?" << endl;
-        getline(cin, userName);
+        getline(cin, userName, '\n');
         cin.clear();
         fflush(stdin);
+
         this_thread::sleep_for(fractionalNS);
-        cout << "Hello " << userName << endl;
+        if (userName.compare("Neo") == 0 || userName.compare("neo") == 0)
+        {
+            cout << "\n Alright, well *SOMEBODY* has watched the Matrix, I guess." << endl;
+        }
+        else
+        {
+
+            cout << "Hello " << userName << endl;
+        }
         this_thread::sleep_for(smallNS);
 
-        cout << "Welcome to Game 3. Happy you've made it here so far. " << endl;
+        cout << "\n Welcome to Game 3. Happy you've made it here so far. " << endl;
 
         this_thread::sleep_for(smallNS);
-        cout << "What is your Major?" << endl;
+        cout << "\n \n What is your Major?" << endl;
         this_thread::sleep_for(fractionalNS);
         cout << "0 for Questrom" << endl;
         cout << "1 for Engineering" << endl;
@@ -391,6 +402,8 @@ void initalizeGame(userProfile **newUser, char *argument)
         int userMajor = INT16_MAX;
         grabInput(userMajor);
         this_thread::sleep_for(fractionalNS);
+        cout << endl;
+        cout << endl;
 
         if (userMajor == 0)
             cout << "Look guys, Daddy's Money just took human form. HA!" << endl;
@@ -441,18 +454,31 @@ void initalizeGame(userProfile **newUser, char *argument)
             break;
         }
 
-        cout << "You said your major was: " << currUser->getMajor() << endl;
+        cout << "\n You said your major was: " << currUser->getMajor() << endl;
         this_thread::sleep_for(smallNS);
 
         string redHerring = "";
-        cout << "Do you know the secret password?" << endl;
-        getline(cin, redHerring);
+        cout << "\n Do you know the secret password?" << endl;
+        getline(cin, redHerring, '\n');
         cin.clear();
         fflush(stdin);
-        cout << "Password Accepted!" << endl;
-        cout << "Just kidding, no shortcuts here" << endl;
+
+        if (redHerring.compare("white rabbit") == 0 || redHerring.compare("White Rabbit") == 0 || redHerring.compare("White rabbit") == 0)
+        {
+            this_thread::sleep_for(fractionalNS);
+            cout << "OK, WE GET IT, YOU WATCHED THE MOVIE" << endl;
+            cout << "Gosh man. Go outside once in a while, touch some grass or whatever." << endl;
+        }
+        else
+        {
+            this_thread::sleep_for(fractionalNS);
+            cout << "Password Accepted!" << endl;
+            this_thread::sleep_for(fractionalNS);
+            cout << "Just kidding, no shortcuts here" << endl;
+        }
+
         this_thread::sleep_for(smallNS);
-        cout << "SETUP COMPLETE" << endl;
+        cout << "\n \n SETUP COMPLETE" << endl;
 
         currUser->setName(userName);
         this_thread::sleep_for(smallNS);
@@ -460,7 +486,7 @@ void initalizeGame(userProfile **newUser, char *argument)
 
 endfunction:
     *newUser = currUser;
-    cout << "STARTING GAME" << endl;
+    cout << "\n \n STARTING GAME" << endl;
 }
 
 int globalUpdate(userProfile *user, int grades, int health, int social, int money)
@@ -471,21 +497,33 @@ int globalUpdate(userProfile *user, int grades, int health, int social, int mone
     user->updateMoney(money);
 
     // check for boundaries
-    if (user->getGP() > 200 || user->getGP() <= 0)
+    if (user->getGP() > 200)
     {
         return 1;
     }
-    if (user->getHP() > 200 || user->getHP() <= 0)
+    if (user->getGP() <= 0)
     {
         return 2;
     }
-    if (user->getSP() > 200 || user->getSP() <= 0)
+    if (user->getHP() > 200)
     {
         return 3;
     }
-    if (user->getMoney() > 200 || user->getMoney() <= 0)
+    if (user->getHP() <= 0)
     {
         return 4;
+    }
+    if (user->getSP() > 200)
+    {
+        return 5;
+    }
+    if (user->getMoney() > 200)
+    {
+        return 6;
+    }
+    if (user->getMoney() <= 0)
+    {
+        return 7;
     }
 
     return 0;
