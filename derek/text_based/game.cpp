@@ -3,6 +3,8 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+    string debug = "debug";
+
     int scenarioCounter = 0;
 
     bool isGradesPersistentPlus = false;
@@ -19,8 +21,14 @@ int main(int argc, char *argv[])
     userProfile *userProfile = nullptr;
 
     constructScenarioList(&scenarioList);
-    welcomePrompt();
 
+    if (argv)
+    {
+        if (debug.compare(argv[1]) == 0 )
+            goto skip;
+    }
+    welcomePrompt();
+skip:
     initalizeGame(&userProfile, argv[1]);
     int choice = 0;
     while (scenarioCounter < 50)
@@ -29,10 +37,13 @@ int main(int argc, char *argv[])
         // print_scenario(scenarioList);
         scenarioList = scenarioList->next;
         cout << "Loading day: " << scenarioList->id << endl;
+        cout << endl;
         cout << "These are your current stats\n"
              << "Grades: " << userProfile->getGP() << "\t Health: " << userProfile->getHP() << "\t Social: " << userProfile->getSP() << "\t Money: " << userProfile->getMoney() << endl;
-        cout << scenarioList->prompt << endl;
+        cout << scenarioList->prompt << "\n"
+             << endl;
         cout << "[1] " << scenarioList->option1 << "\t[2] " << scenarioList->option2 << endl;
+        cout << endl;
         grabInput(choice);
         if (choice == 1)
         {
@@ -60,40 +71,6 @@ int main(int argc, char *argv[])
 
             cout << scenarioList->consequence1Text << endl;
             globalUpdate(userProfile, grades, health, social, money);
-
-            if (isGradesPersistentPlus)
-            {
-                grades = 1;
-            }
-            if (isGradesPersistentMinus)
-            {
-                grades = -1;
-            }
-            if (isHealthPersistentPlus)
-            {
-                health = 1;
-            }
-            if (isHealthPersistentMinus)
-            {
-                health = -1;
-            }
-            if (isSocialPersistentPlus)
-            {
-                social = 1;
-            }
-            if (isSocialPersistentMinus)
-            {
-                social = -1;
-            }
-            if (isMoneyPersistentPlus)
-            {
-                money = 1;
-            }
-            if (isMoneyPersistentMinus)
-            {
-                money = -1;
-            }
-            update = globalUpdate(userProfile, grades, health, social, money);
         }
         else if (choice == 2)
         {
@@ -125,40 +102,6 @@ int main(int argc, char *argv[])
 
             cout << scenarioList->consequence2Text << endl;
             globalUpdate(userProfile, grades, health, social, money);
-
-            if (isGradesPersistentPlus)
-            {
-                grades = 1;
-            }
-            if (isGradesPersistentMinus)
-            {
-                grades = -1;
-            }
-            if (isHealthPersistentPlus)
-            {
-                health = 1;
-            }
-            if (isHealthPersistentMinus)
-            {
-                health = -1;
-            }
-            if (isSocialPersistentPlus)
-            {
-                social = 1;
-            }
-            if (isSocialPersistentMinus)
-            {
-                social = -1;
-            }
-            if (isMoneyPersistentPlus)
-            {
-                money = 1;
-            }
-            if (isMoneyPersistentMinus)
-            {
-                money = -1;
-            }
-            update = globalUpdate(userProfile, grades, health, social, money);
         }
         else
         {
@@ -169,7 +112,41 @@ int main(int argc, char *argv[])
             int money = -5;
             update = globalUpdate(userProfile, grades, health, social, money);
         }
+        int grades = 0, health = 0, social = 0, money = 0;
 
+        if (isGradesPersistentPlus)
+        {
+            grades += 1;
+        }
+        if (isGradesPersistentMinus)
+        {
+            grades += -1;
+        }
+        if (isHealthPersistentPlus)
+        {
+            health += 1;
+        }
+        if (isHealthPersistentMinus)
+        {
+            health += -1;
+        }
+        if (isSocialPersistentPlus)
+        {
+            social += 1;
+        }
+        if (isSocialPersistentMinus)
+        {
+            social += -1;
+        }
+        if (isMoneyPersistentPlus)
+        {
+            money += 1;
+        }
+        if (isMoneyPersistentMinus)
+        {
+            money += -1;
+        }
+        update = globalUpdate(userProfile, grades, health, social, money);
         switch (update)
         {
         case 1:

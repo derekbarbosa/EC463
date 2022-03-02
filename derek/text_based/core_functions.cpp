@@ -362,7 +362,7 @@ void initalizeGame(userProfile **newUser, char *argument)
 
     if (argument)
     {
-        if (debug.compare(argument))
+        if (debug.compare(argument) == 0)
         {
             currUser->setMajor(DROPOUT);
             currUser->setName(debug);
@@ -380,7 +380,7 @@ void initalizeGame(userProfile **newUser, char *argument)
         this_thread::sleep_for(fractionalNS);
         if (userName.compare("Neo") == 0 || userName.compare("neo") == 0)
         {
-            cout << "\n Alright, well *SOMEBODY* has watched the Matrix, I guess." << endl;
+            cout << "\n" << "Alright, well *SOMEBODY* has watched the Matrix, I guess." << endl;
         }
         else
         {
@@ -388,11 +388,12 @@ void initalizeGame(userProfile **newUser, char *argument)
             cout << "Hello " << userName << endl;
         }
         this_thread::sleep_for(smallNS);
-
-        cout << "\n Welcome to Game 3. Happy you've made it here so far. " << endl;
+            cout << "\n" << endl;
+        cout << "Welcome to Game 3. Happy you've made it here so far. " << endl;
 
         this_thread::sleep_for(smallNS);
-        cout << "\n \n What is your Major?" << endl;
+            cout << "\n" << endl;
+        cout << "What is your Major?" << endl;
         this_thread::sleep_for(fractionalNS);
         cout << "0 for Questrom" << endl;
         cout << "1 for Engineering" << endl;
@@ -458,7 +459,8 @@ void initalizeGame(userProfile **newUser, char *argument)
         this_thread::sleep_for(smallNS);
 
         string redHerring = "";
-        cout << "\n Do you know the secret password?" << endl;
+            cout << "\n" << endl;
+        cout << "Do you know the secret password?" << endl;
         getline(cin, redHerring, '\n');
         cin.clear();
         fflush(stdin);
@@ -478,7 +480,8 @@ void initalizeGame(userProfile **newUser, char *argument)
         }
 
         this_thread::sleep_for(smallNS);
-        cout << "\n \n SETUP COMPLETE" << endl;
+            cout << "\n" << endl;
+        cout << "SETUP COMPLETE" << endl;
 
         currUser->setName(userName);
         this_thread::sleep_for(smallNS);
@@ -486,7 +489,8 @@ void initalizeGame(userProfile **newUser, char *argument)
 
 endfunction:
     *newUser = currUser;
-    cout << "\n \n STARTING GAME" << endl;
+    cout << "\n" << endl;
+    cout << "STARTING GAME" << endl;
 }
 
 int globalUpdate(userProfile *user, int grades, int health, int social, int money)
@@ -501,7 +505,7 @@ int globalUpdate(userProfile *user, int grades, int health, int social, int mone
     {
         return 1;
     }
-    if (user->getGP() <= 0)
+    if (user->getGP() < 0)
     {
         return 2;
     }
@@ -509,7 +513,7 @@ int globalUpdate(userProfile *user, int grades, int health, int social, int mone
     {
         return 3;
     }
-    if (user->getHP() <= 0)
+    if (user->getHP() < 0)
     {
         return 4;
     }
@@ -521,7 +525,7 @@ int globalUpdate(userProfile *user, int grades, int health, int social, int mone
     {
         return 6;
     }
-    if (user->getMoney() <= 0)
+    if (user->getMoney() < 0)
     {
         return 7;
     }
