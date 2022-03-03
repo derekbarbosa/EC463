@@ -26,6 +26,9 @@ int wrongFlag PLACE_IN_FRAM;
 char name[NAMELEN] PLACE_IN_FRAM;
 char secret_word[NAMELEN] PLACE_IN_FRAM;
 
+bool bleSetup1 = false;
+bool bleSetup2 = false;
+
 String yes = "yes";
 
 
@@ -51,6 +54,10 @@ void secretCode();
 void wipeBoard();
 
 void bluetooth();
+
+void bleName();
+
+void blePassword();
 
 void clearStr(char* str){
   for(int i = 0; i < NAMELEN; i++)
@@ -240,58 +247,140 @@ statement:
     }
   }
 }
+void bleName(){
+  Serial.print("Please Enter A Name For Your Badge:\n");
+  while (Serial.available() == 0)
+  {
+    // THIS BLOCK STAYS EMPTY!
+  }
+  String inputData = Serial.readString();
+  Serial.print("You entered ");
+  Serial.print(inputData);
+  Serial.print("\n\n");
+  char badgeName[] = "AT+NAME=";
+  strcat(badgeName,inputData.c_str());
+  
+  Serial1.write(badgeName);
+  bleSetup1 = true;
+  return;
+  
+}
+
+void blePassword(){
+  Serial.print("Please Enter A Password For Your Badge:\n");
+  while (Serial.available() == 0)
+  {
+    // THIS BLOCK STAYS EMPTY!
+  }
+  String inputData = Serial.readString();
+  Serial.print("You entered ");
+  Serial.print(inputData);
+  Serial.print("\n\n");
+  char badgePassowrd[] = "AT+PSWD=";
+  strcat(badgePassowrd,inputData.c_str());
+  
+  Serial1.write(badgePassowrd);
+
+  bleSetup2 = true;
+  return;
+  
+}
 
 void bluetooth(){
   
-  statement:
-    Serial.print("VETCON BLUETOOTH:\n");
-    Serial.print("-----------------\n");
-    Serial.print("1) Advertise\n");
-    Serial.print("2) Scan\n");
-    Serial.print("3) View Friends\n");
-    Serial.print("0) Exit\n");
-    Serial.print("-----------------\n");
-
-    Serial.print("Please Choose An Option\n");
+  if(bleSetup1 == false && bleSetup2 == false){
     
-    while (Serial.available() == 0)
-    {
-      // THIS BLOCK STAYS EMPTY!
-    }
-    char inputData = (char)Serial.read();
-    Serial.print("Input: ");
-    Serial.print(inputData);
-    Serial.print("\n\n");
-
-    for (;;)
-    {
-      switch (inputData)
+    statement1:
+      Serial.print("Welcome to Bluetooth Setup:\n");
+      Serial.print("---------------------------\n");
+      Serial.print("1) Set Badge Name\n");
+      Serial.print("2) Set Badge Password\n");
+      Serial.print("0) Exit\n");
+      Serial.print("---------------------------\n");
+      while(Serial.available() == 0)
       {
-      case '1':
-        delay(1000);
-        Serial.print("Advertising\n");
-        //HANDLE ADVERTISING
-        goto statement;
-      case '2':
-        delay(1000);
-        Serial.print("Scanning\n");
-        //HANDLE SCANNING
-        goto statement;
-      case '3':
-        delay(1000);
-        Serial.print("Friends List:\n");
-        //HANDLE FRIENDS LIST
-        goto statement;
-      case '0':
-        delay(1000);
-        return;
-      
-      default:
-        Serial.print("Invalid Menu Item\n");
-        goto statement;
+        // THIS BLOCK STAYS EMPTY!
       }
-    }
+      char inputData = (char)Serial.read();
+      Serial.print("Input: ");
+      Serial.print(inputData);
+      Serial.print("\n\n");
+
+      for(;;){
+        switch (inputData)
+        {
+        case '1':
+          delay(1000);
+          bleName();
+          //HANDLE ADVERTISING
+          return;
+        case '2':
+          delay(1000);
+          blePassword();
+          //HANDLE SCANNING
+          return;
+        case '0':
+          delay(1000);
+          return;
+        default:
+          Serial.print("Invalid Menu Item\n");
+          goto statement1;
+        } 
+      }
+  }
+    else{
+      statement2:
+        Serial.print("VETCON BLUETOOTH:\n");
+        Serial.print("-----------------\n");
+        Serial.print("1) Advertise\n");
+        Serial.print("2) Scan\n");
+        Serial.print("3) View Friends\n");
+        Serial.print("0) Exit\n");
+        Serial.print("-----------------\n");
+
+        Serial.print("Please Choose An Option\n");
+        
+        while (Serial.available() == 0)
+        {
+          // THIS BLOCK STAYS EMPTY!
+        }
+        char inputData = (char)Serial.read();
+        Serial.print("Input: ");
+        Serial.print(inputData);
+        Serial.print("\n\n");
+
+        for (;;)
+        {
+          switch (inputData)
+          {
+          case '1':
+            delay(1000);
+            Serial.print("Advertising\n");
+            //HANDLE ADVERTISING
+            goto statement2;
+          case '2':
+            delay(1000);
+            Serial.print("Scanning\n");
+            //HANDLE SCANNING
+            goto statement2;
+          case '3':
+            delay(1000);
+            Serial.print("Friends List:\n");
+            //HANDLE FRIENDS LIST
+            goto statement2;
+          case '0':
+            delay(1000);
+            return;
+          
+          default:
+            Serial.print("Invalid Menu Item\n");
+            goto statement2;
+          }
+        }
+    } 
+  
 }
+
 
 void resetBadge(){
   Serial.print("Reset Badge:\n");
