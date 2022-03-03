@@ -402,7 +402,7 @@ Entries here are reserved for February
 Entries here are reserved for March	
 
 ### 3/1/22
-* Bugfixes with multi-level pointers across files. Passed pointers by reference using "&" and dereferenced using **, mistake made between passing pointer-to-value and passing pointer to pointer to value.
+* Bugfixes with multi-level pointers across files. Passed pointers by reference using "&" and dereferenced using, mistake made between passing pointer-to-value and passing pointer to pointer to value.
 * Cleaned up value parsing with Getline. Points and point values are now completely parsed on the backend with string matching, stringstreams and getlines.
 * Added support for point calculation and parsing persistent point values to front-end game loop
 * finished global update function which calculates points & etc.
@@ -414,3 +414,8 @@ Entries here are reserved for March
 * Fixed some formatting oddities.
 * Game is complete and in "production mode" as of today! 
 * Moving onto HW, testing power consumption of prototype
+
+### 3/3/22
+* Merging my branch into testing
+* Cleaned merge conflicts
+
