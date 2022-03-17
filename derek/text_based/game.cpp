@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 
     constructScenarioList(&scenarioList);
 
-    if (argv)
+    if (argc == 0)
     {
         if (debug.compare(argv[1]) == 0 )
             goto skip;
