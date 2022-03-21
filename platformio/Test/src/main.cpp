@@ -21,6 +21,7 @@ int secretFlag PLACE_IN_FRAM;
 int nameToggle PLACE_IN_FRAM;
 int secretFlag2 PLACE_IN_FRAM;
 int secretFlag3 PLACE_IN_FRAM;
+int secretFlag4 PLACE_IN_FRAM;
 int wrongFlag PLACE_IN_FRAM;
 
 char name[NAMELEN] PLACE_IN_FRAM;
@@ -51,6 +52,8 @@ void secretCode2();
 
 void secretCode();
 
+void secretCode3();
+
 void wipeBoard();
 
 void bluetooth();
@@ -58,6 +61,8 @@ void bluetooth();
 void bleName();
 
 void blePassword();
+
+void writeString(String s);
 
 void clearStr(char* str){
   for(int i = 0; i < NAMELEN; i++)
@@ -89,6 +94,15 @@ void setup()
 
   
 }
+
+void writeString(String stringData) { // Used to serially push out a String with Serial.write()
+
+  for (int i = 0; i < 15; i++)
+  {
+    Serial1.write(stringData[i]);   // Push each char 1 by 1 on each loop pass
+  }
+
+}// end writeString
 
 void ledCheck(){
   if(secretFlag2 == 1){
@@ -123,6 +137,9 @@ statement:
   Serial.print("*| 5: Game Link 2     |*\n");
   if(secretFlag == 1 && secretFlag2 == 1){
     Serial.print("*| 6: Secret Token 2  |*\n");
+  }
+  if(secretFlag == 1 && secretFlag2 == 1 && secretFlag3 == 1){
+    Serial.print("*| 7: Secret Token 3  |*\n");
   }
   Serial.print("*| 8: Start Bluetooth |*\n");
   Serial.print("*| 0: Reset Badge     |*\n");
@@ -220,6 +237,22 @@ statement:
           secretCode2();
           goto statement;
         }
+
+    case '7':
+      delay(1000);
+      if(secretFlag == 0 || secretFlag2 == 0 || secretFlag3 == 0){
+          Serial.print("Access Denied\n");
+          goto statement;
+      }
+      else{
+          if(secretFlag4 == 1){
+            Serial.print("Secret already unlocked\n");
+            goto statement;
+          }
+          secretCode3();
+          goto statement;
+      }
+
     case '8':
       delay(1000);
       Serial.print("Bluetooth Entered\n");
@@ -247,57 +280,14 @@ statement:
     }
   }
 }
-// void bleName(){
-//   Serial.print("Please Enter A Name For Your Badge:\n");
-//   while (Serial.available() == 0)
-//   {
-//     // THIS BLOCK STAYS EMPTY!
-//   }
-//   String inputData = Serial.readString();
-//   Serial.print("You entered ");
-//   Serial.print(inputData);
-//   Serial.print("\n\n");
-//   char badgeName[] = "AT+NAME=";
-//   strcat(badgeName,inputData.c_str());
-  
-//   Serial1.write(badgeName);
-//   bleSetup1 = true;
-//   return;
-  
-// }
 
-// void blePassword(){
-//   Serial.print("Please Enter A Password For Your Badge:\n");
-//   while (Serial.available() == 0)
-//   {
-//     // THIS BLOCK STAYS EMPTY!
-//   }
-//   String inputData = Serial.readString();
-//   Serial.print("You entered ");
-//   Serial.print(inputData);
-//   Serial.print("\n\n");
-//   char badgePassowrd[] = "AT+PSWD=";
-//   strcat(badgePassowrd,inputData.c_str());
-  
-//   Serial1.write(badgePassowrd);
-
-//   bleSetup2 = true;
-//   return;
-  
-// }
 
 void bluetooth(){
   
-  // if(bleSetup1 == false && bleSetup2 == false){
     
   statement:
       Serial.print("Welcome to Bluetooth\n");
       Serial.print("Your Device Should Automatically Connect to the Closest VETCON BADGE\n");
-      // Serial.print("---------------------------\n");
-      // Serial.print("1) Set Badge Name\n");
-      // Serial.print("2) Set Badge Password\n");
-      // Serial.print("0) Exit\n");
-      // Serial.print("---------------------------\n");
       Serial.print("Type 1 to Start Communication: \n");
       Serial.print("Type 0 to Exit: \n");
       while(Serial.available() == 0)
@@ -315,13 +305,29 @@ void bluetooth(){
         switch (inputData)
         {
         case '1':
+        {
           delay(1000);
-          if(Serial1.available() > 0){
-            String incomingData = Serial1.readString();
+          Serial.print("Type to send to other badge\n");
+          while(Serial.available() == 0)
+          {
+        // THIS BLOCK STAYS EMPTY!
+          }
+          String toSend = Serial.readString();
 
-            Serial.print(incomingData);
+          //Serial.print("got inside case 1\n");
+          writeString(toSend);
+          if(Serial1.available()){
+            //Serial.print("got inside Serial1\n");
+            //String incomingData = Serial1.readString();
+            String dataIn = Serial1.readString();
+
+            //Serial.print(incomingData);
+            Serial.print("Data Received: ");
+            Serial.print(dataIn);
+            Serial.print("\n");
           }
           break;
+        }
         case '0':
           delay(1000);
           return;
@@ -353,6 +359,7 @@ void resetBadge(){
       nameToggle = 0;
       secretFlag2 = 0;
       secretFlag3 = 0;
+      secretFlag4 = 0;
       clearStr(name);
       SYSCFG0 = FRWPPW | PFWP | DFWP;
       Serial.print("BADGE RESET\n");
@@ -373,6 +380,29 @@ void secret(){
   SYSCFG0 = FRWPPW | DFWP;
   secretFlag = 1;
   SYSCFG0 = FRWPPW | PFWP | DFWP;
+  return;
+}
+
+void secretCode3(){
+  char answer[] = "ilovevetcon";
+  Serial.print("Please Enter the Secret Code:\n");
+
+  while (Serial.available() == 0)
+  {
+    // THIS BLOCK STAYS EMPTY!
+  }
+  String inputData = Serial.readStringUntil('\n');
+  if(inputData == answer){
+    Serial.print("CONGRATS! SECRET 3 SOLVED\n");
+    
+    SYSCFG0 = FRWPPW | DFWP;
+    secretFlag4 = 1;
+    SYSCFG0 = FRWPPW | PFWP | DFWP;
+    //digitalWrite(P1_6, secretFlag4);
+  }
+  else{
+    Serial.print("INCORRECT CODE\n");
+  }
   return;
 }
 
@@ -402,8 +432,7 @@ void secretCode(){
 
 void secretCode2(){
   char answer[] = "semperdisco";
-  char wrong[] = "4315323515421424431334";
-  String x = "penis";
+  char wrong[] = "3411323115333443242344234424521532244442453454141544431152543131111542453454";
   Serial.print("Please Enter The Secret Code:\n");
   while (Serial.available() == 0)
   {
@@ -424,7 +453,7 @@ void secretCode2(){
     }
     SYSCFG0 = FRWPPW | DFWP;
     clearStr(secret_word);
-    setStr(x, secret_word);
+    //setStr(x, secret_word);
     wrongFlag = 1;
     SYSCFG0 = FRWPPW | PFWP | DFWP;
     wipeBoard();
