@@ -3,6 +3,7 @@
 #include <string.h>
 #include <Button.h>
 #include <HardwareSerial.h>
+#include <LiquidCrystal.h>
 
 
 
@@ -10,12 +11,15 @@
 #define NAMELEN 128
 
 
-  
+// Set Up LiquidCrystal Object
+LiquidCrystal lcd = LiquidCrystal(10,9,8,7,6,5);
+
+// Set Up PushButtons using Button.h
 Button push1(PUSH1);
 Button push2(PUSH2);
 
 
-
+// Establish Flags to place in FRAM
 int startFlag PLACE_IN_FRAM;
 int secretFlag PLACE_IN_FRAM;
 int nameToggle PLACE_IN_FRAM;
@@ -27,11 +31,23 @@ int wrongFlag PLACE_IN_FRAM;
 char name[NAMELEN] PLACE_IN_FRAM;
 char secret_word[NAMELEN] PLACE_IN_FRAM;
 
+// Booleans for BT Setup
 bool bleSetup1 = false;
 bool bleSetup2 = false;
 
 String yes = "yes";
 
+//
+byte Skull[8] = {
+0b00000,
+0b01110,
+0b10101,
+0b11011,
+0b01110,
+0b01110,
+0b00000,
+0b00000
+};
 
 // Function Prototypes
 void clearStr();
@@ -82,6 +98,7 @@ void setup()
 
   push1.begin();
   push2.begin();
+  lcd.begin(16,2);
 
   Serial.begin(9600);
   Serial1.begin(9600);
@@ -520,7 +537,8 @@ void wipeBoard(){
 void loop()
 {
   // put your main code here, to run repeatedly:
-  
+  lcd.setCursor(0,0);
+
   ledCheck();
   delay(2000);
   const char *welcome[] = {
