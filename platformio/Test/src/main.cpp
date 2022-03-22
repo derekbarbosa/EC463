@@ -10,13 +10,18 @@
 #define NAMESET 1
 #define NAMELEN 128
 
-//2.5 & 2.6 TX & RX
-// 1.2, 1.3, 2.7, 2.4, 1.7, 1.6, 5v Ground.
-//Chage LEDs to other digital
 
+
+// TX: 2.5
+// RX: 2.6
+
+// PUSH BUTTONS: 2.3, 2.7
+
+//LIQUID CRYSTAL: 10,  9,   7,   6,   5,   17
+//                1.2, 1.3, 2.4, 1.7, 1.6, 3.2
 
 // Set Up LiquidCrystal Object
-LiquidCrystal lcd = LiquidCrystal(10,9,8,7,6,5);
+LiquidCrystal lcd = LiquidCrystal(10,9,7,6,5,17);
 
 // Set Up PushButtons using Button.h
 Button push1(PUSH1);
@@ -35,9 +40,7 @@ int wrongFlag PLACE_IN_FRAM;
 char name[NAMELEN] PLACE_IN_FRAM;
 char secret_word[NAMELEN] PLACE_IN_FRAM;
 
-// Booleans for BT Setup
-bool bleSetup1 = false;
-bool bleSetup2 = false;
+
 
 String yes = "yes";
 
@@ -114,6 +117,9 @@ void setup()
   pinMode(P2_1, OUTPUT);
   pinMode(P2_0, OUTPUT);
 
+
+  lcd.createChar(0, Skull);
+
   
 }
 
@@ -159,10 +165,11 @@ statement:
   Serial.print("*| 1: Set Name Tag    |*\n");
   Serial.print("*| 2: Display Name Tag|*\n");
   Serial.print("*| 3: Game Link       |*\n");
+  
+  Serial.print("*| 4: Game Link 2     |*\n");
   if(secretFlag == 1){
-    Serial.print("*| 4: Secret Token    |*\n");
+    Serial.print("*| 5: Secret Token    |*\n");
   }
-  Serial.print("*| 5: Game Link 2     |*\n");
   if(secretFlag == 1 && secretFlag2 == 1){
     Serial.print("*| 6: Secret Token 2  |*\n");
   }
@@ -219,17 +226,17 @@ statement:
       delay(1000);
       Serial.print(name);
       Serial.print("\n");
-      //displayName();
+      displayName();
       goto statement;
     case '3':
       delay(1000);
-      Serial.print("You Chose to Play the Game!\n"); // Game Link
+      Serial.print("You Chose to Play Game 1!\n"); // Game Link
       delay(1000);
       Serial.print("URL:\n");
       Serial.print("shorturl.at/advFT\n");
       delay(1000);
       goto statement;
-    case '4':
+    case '5':
       delay(1000);
       if(secretFlag == 0){
         Serial.print("Access Denied\n");
@@ -243,9 +250,9 @@ statement:
         secretCode();
         goto statement;
       }
-    case '5':
+    case '4':
       delay(1000);
-      Serial.print("You Chose to Play the Game!\n"); // Game Link
+      Serial.print("You Chose to Play the Game 2!\n"); // Game Link
       delay(1000);
       Serial.print("URL:\n");
       Serial.print("shorturl.at/lxIL6\n");
@@ -380,6 +387,7 @@ void resetBadge(){
   while(true){
     if(push1.pressed()){
       Serial.print("RESETTING.....\n");
+      lcd.clear();
       delay(3000);
       SYSCFG0 = FRWPPW | DFWP;
       startFlag = 0;
@@ -494,6 +502,22 @@ void secretCode2(){
 
 void displayName()
 {
+  lcd.clear();
+
+  lcd.setCursor(2,0);
+  lcd.write(byte(0));
+  lcd.print("VETCON  30");
+  lcd.write(byte(0));
+
+  lcd.setCursor(0,1);
+  if(nameToggle == NAMESET){
+
+    lcd.print(name);
+  }
+  else{
+    Serial.print("ERROR: NAME NOT SET\n");
+  }
+
   return;
 }
 
@@ -527,7 +551,7 @@ void setName()
   nameToggle = NAMESET;
   SYSCFG0 = FRWPPW | PFWP | DFWP;
   Serial.print("\n");
-  Serial.flush();
+  Serial.flush(); 
   return;
 }
 
@@ -539,6 +563,7 @@ void wipeBoard(){
   secretFlag2 = 0;
   secretFlag3 = 0;
   wrongFlag = 0;
+  lcd.clear();
   clearStr(name);
   SYSCFG0 = FRWPPW | PFWP | DFWP;
 
@@ -548,7 +573,14 @@ void wipeBoard(){
 void loop()
 {
   // put your main code here, to run repeatedly:
-  lcd.setCursor(0,0);
+  lcd.setCursor(2,0);
+  lcd.write(byte(0));
+  lcd.print("WELCOME TO");
+  lcd.write(byte(0));
+  lcd.setCursor(2,1);
+  lcd.write(byte(0));
+  lcd.print("VETCON  30");
+  lcd.write(byte(0));
 
   ledCheck();
   delay(2000);
