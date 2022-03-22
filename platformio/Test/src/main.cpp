@@ -341,7 +341,7 @@ void bluetooth(){
         {
         case '1':
         {
-          delay(1000);
+          delay(100);
           Serial.print("Type to send to other badge\n");
           while(Serial.available() == 0)
           {
