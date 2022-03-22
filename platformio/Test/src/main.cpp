@@ -10,6 +10,10 @@
 #define NAMESET 1
 #define NAMELEN 128
 
+//2.5 & 2.6 TX & RX
+// 1.2, 1.3, 2.7, 2.4, 1.7, 1.6, 5v Ground.
+//Chage LEDs to other digital
+
 
 // Set Up LiquidCrystal Object
 LiquidCrystal lcd = LiquidCrystal(10,9,8,7,6,5);
@@ -106,8 +110,9 @@ void setup()
 
 
 
-  pinMode(P1_6, OUTPUT);
-  pinMode(P1_7, OUTPUT);
+  pinMode(P3_1, OUTPUT);
+  pinMode(P2_1, OUTPUT);
+  pinMode(P2_0, OUTPUT);
 
   
 }
@@ -123,16 +128,22 @@ void writeString(String stringData) { // Used to serially push out a String with
 
 void ledCheck(){
   if(secretFlag2 == 1){
-    digitalWrite(P1_6, secretFlag2);
+    digitalWrite(P3_1, secretFlag2);
   }
   else if(secretFlag2 == 0){
-    digitalWrite(P1_6, secretFlag2);
+    digitalWrite(P3_1, secretFlag2);
   }
   if(secretFlag3 == 1){
-    digitalWrite(P1_7, secretFlag3);
+    digitalWrite(P2_1, secretFlag3);
   }
   else if(secretFlag3 == 0){
-    digitalWrite(P1_7, secretFlag3);
+    digitalWrite(P2_1, secretFlag3);
+  }
+  if(secretFlag4 == 1){
+    digitalWrite(P2_0, secretFlag4);
+  }
+  else if(secretFlag4 == 0){
+    digitalWrite(P2_0, secretFlag4);
   }
 }
 
@@ -415,7 +426,7 @@ void secretCode3(){
     SYSCFG0 = FRWPPW | DFWP;
     secretFlag4 = 1;
     SYSCFG0 = FRWPPW | PFWP | DFWP;
-    //digitalWrite(P1_6, secretFlag4);
+    digitalWrite(P2_0, secretFlag4);
   }
   else{
     Serial.print("INCORRECT CODE\n");
@@ -438,7 +449,7 @@ void secretCode(){
     SYSCFG0 = FRWPPW | DFWP;
     secretFlag2 = 1;
     SYSCFG0 = FRWPPW | PFWP | DFWP;
-    digitalWrite(P1_6, secretFlag2);
+    digitalWrite(P3_1, secretFlag2);
   }
   else{
     Serial.print("INCORRECT CODE\n");
@@ -462,7 +473,7 @@ void secretCode2(){
     SYSCFG0 = FRWPPW | DFWP;
     secretFlag3 = 1;
     SYSCFG0 = FRWPPW | PFWP | DFWP;
-    digitalWrite(P1_7, secretFlag3);
+    digitalWrite(P2_1, secretFlag3);
   }
   else if(inputData == wrong){
     for(int i = 0; i < 50; i++){
