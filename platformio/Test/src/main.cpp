@@ -4,31 +4,31 @@
 #include <Button.h>
 #include <HardwareSerial.h>
 #include <LiquidCrystal.h>
-
-
-
 #define NAMESET 1
 #define NAMELEN 128
 
 
+/*
 
-// TX: 2.5
-// RX: 2.6
+TX: 2.5
+RX: 2.6
 
-// PUSH BUTTONS: 2.3, 2.7
+PUSH BUTTONS: 2.3, 2.7
 
-//LIQUID CRYSTAL: 10,  9,   7,   6,   5,   17
-//                1.2, 1.3, 2.4, 1.7, 1.6, 3.2
+LIQUID CRYSTAL: 10,  9,   7,   6,   5,   17
+                1.2, 1.3, 2.4, 1.7, 1.6, 3.2
 
-// Set Up LiquidCrystal Object
+*/
+
+// Define LiquidCrystal Object
 LiquidCrystal lcd = LiquidCrystal(10,9,7,6,5,17);
 
-// Set Up PushButtons using Button.h
+// Define PushButtons using Button.h
 Button push1(PUSH1);
 Button push2(PUSH2);
 
 
-// Establish Flags to place in FRAM
+// Define Flags to place in FRAM
 int startFlag PLACE_IN_FRAM;
 int secretFlag PLACE_IN_FRAM;
 int nameToggle PLACE_IN_FRAM;
@@ -42,9 +42,8 @@ char secret_word[NAMELEN] PLACE_IN_FRAM;
 
 
 
-String yes = "yes";
+// Custom GLYPHS for 16x2 LCD go HERE:
 
-//
 byte Skull[8] = {
 0b00000,
 0b01110,
@@ -57,6 +56,7 @@ byte Skull[8] = {
 };
 
 // Function Prototypes
+
 void clearStr();
 
 void setName();
@@ -87,6 +87,38 @@ void blePassword();
 
 void writeString(String s);
 
+void clearStr(char* str);
+
+void setStr(String x, char*str);
+
+void setup()
+{
+  // put your setup code here, to run once:
+
+  // Set Up Push Buttons and LCD
+  push1.begin();
+  push2.begin();
+  lcd.begin(16,2);
+
+  // Set Up Serial Parameters, BT Serial, and timeouts
+  Serial.begin(9600);
+  Serial1.begin(9600);
+  Serial.setTimeout(2000);
+
+
+  // Set Up Pins for LED
+  pinMode(P3_1, OUTPUT);
+  pinMode(P2_1, OUTPUT);
+  pinMode(P2_0, OUTPUT);
+
+  // Set Up Custom Characters
+  lcd.createChar(0, Skull);
+
+  
+}
+
+// String Set/Clear/Write functions for BT Serial/Serial Comms
+
 void clearStr(char* str){
   for(int i = 0; i < NAMELEN; i++)
     str[i] = '\0';
@@ -99,30 +131,6 @@ void setStr(String x, char* str){
     str[i] = new_name[i];
 }
 
-void setup()
-{
-  // put your setup code here, to run once:
-
-  push1.begin();
-  push2.begin();
-  lcd.begin(16,2);
-
-  Serial.begin(9600);
-  Serial1.begin(9600);
-  Serial.setTimeout(2000);
-
-
-
-  pinMode(P3_1, OUTPUT);
-  pinMode(P2_1, OUTPUT);
-  pinMode(P2_0, OUTPUT);
-
-
-  lcd.createChar(0, Skull);
-
-  
-}
-
 void writeString(String stringData) { // Used to serially push out a String with Serial.write()
 
   for (int i = 0; i < 15; i++)
@@ -130,7 +138,9 @@ void writeString(String stringData) { // Used to serially push out a String with
     Serial1.write(stringData[i]);   // Push each char 1 by 1 on each loop pass
   }
 
-}// end writeString
+}
+
+// Function to check if enabled secret prompts LED on/off
 
 void ledCheck(){
   if(secretFlag2 == 1){
@@ -153,6 +163,8 @@ void ledCheck(){
   }
 }
 
+
+// Main Menu selection function
 
 void mainMenu()
 {
@@ -316,6 +328,7 @@ statement:
   }
 }
 
+// Wireless/BT COMM function
 
 void bluetooth(){
   
@@ -343,14 +356,21 @@ void bluetooth(){
         {
           delay(100);
           Serial.print("Type to send to other badge\n");
+          Serial.print("Type 'exitnowpls' to quit!\n");
           while(Serial.available() == 0)
           {
-        // THIS BLOCK STAYS EMPTY!
+            // THIS BLOCK STAYS EMPTY!
           }
           String toSend = Serial.readString();
+          if(toSend == "exitnowpls"){
+            Serial.print("Exiting now!\n");
+            return;
+          }
 
           //Serial.print("got inside case 1\n");
+          Serial.print("Sending Data via Bluetooth...\n");
           writeString(toSend);
+
           if(Serial1.available()){
             //Serial.print("got inside Serial1\n");
             //String incomingData = Serial1.readString();
@@ -374,6 +394,7 @@ void bluetooth(){
       
 }
 
+// Badge Reset, CLEAR FRAM and LCD
 
 void resetBadge(){
   Serial.print("Reset Badge:\n");
@@ -411,6 +432,8 @@ void resetBadge(){
   }
 }
 
+// Badge Secret Functions
+
 void secret(){
   Serial.print("Secret Unlocked\n");
   SYSCFG0 = FRWPPW | DFWP;
@@ -419,28 +442,6 @@ void secret(){
   return;
 }
 
-void secretCode3(){
-  char answer[] = "ilovevetcon";
-  Serial.print("Please Enter the Secret Code:\n");
-
-  while (Serial.available() == 0)
-  {
-    // THIS BLOCK STAYS EMPTY!
-  }
-  String inputData = Serial.readStringUntil('\n');
-  if(inputData == answer){
-    Serial.print("CONGRATS! SECRET 3 SOLVED\n");
-    
-    SYSCFG0 = FRWPPW | DFWP;
-    secretFlag4 = 1;
-    SYSCFG0 = FRWPPW | PFWP | DFWP;
-    digitalWrite(P2_0, secretFlag4);
-  }
-  else{
-    Serial.print("INCORRECT CODE\n");
-  }
-  return;
-}
 
 void secretCode(){
   
@@ -500,6 +501,32 @@ void secretCode2(){
   return;
 }
 
+void secretCode3(){
+  char answer[] = "ilovevetcon";
+  Serial.print("Please Enter the Secret Code:\n");
+
+  while (Serial.available() == 0)
+  {
+    // THIS BLOCK STAYS EMPTY!
+  }
+  String inputData = Serial.readStringUntil('\n');
+  if(inputData == answer){
+    Serial.print("CONGRATS! SECRET 3 SOLVED\n");
+    
+    SYSCFG0 = FRWPPW | DFWP;
+    secretFlag4 = 1;
+    SYSCFG0 = FRWPPW | PFWP | DFWP;
+    digitalWrite(P2_0, secretFlag4);
+  }
+  else{
+    Serial.print("INCORRECT CODE\n");
+  }
+  return;
+}
+
+
+// LCD Name Display
+
 void displayName()
 {
   lcd.clear();
@@ -521,6 +548,7 @@ void displayName()
   return;
 }
 
+// Name Set 
 void setName()
 {
   Serial.print("Please Enter A Name:\n");
@@ -555,6 +583,8 @@ void setName()
   return;
 }
 
+// Board Wipe function specifically for 'red herring' key
+
 void wipeBoard(){
   SYSCFG0 = FRWPPW | DFWP;
   startFlag = 0;
@@ -570,6 +600,7 @@ void wipeBoard(){
   return;
 }
 
+// Main function "loop"
 void loop()
 {
   // put your main code here, to run repeatedly:
