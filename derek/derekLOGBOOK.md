@@ -419,3 +419,23 @@ Entries here are reserved for March
 * Merging my branch into testing
 * Cleaned merge conflicts
 
+### 3/4 to 3/26/22
+* Playing some catchup with logbooks because it was an eventful few weeks.
+* Lots of EC464 busywork, prevented me from updating this the way I should have.
+* 3/5 to 3/14 was Spring Break, so not many updates between those two dates.
+* 3/15/22 - began testing power consumption of MSP and semi-completed circuit. Determining draw of circuit to account for the 20-hour battery life of device as specified in client requirements. Preparing for CDR presentation by tying up loose ends (bluetooth and code "ciphers").
+* 3/17/22 -- Bluetooth in working state! Working on presentation for CDR, small work/regroup session afterwards.
+* 3/21/22 - Ditched addressable LCD for a 16x2 Segmented LCD for ease-of-use. Addressable LCD refuses to play well with MSP headers. Prototype and "hello world" completed. Intialized LCD class/objects in codebase as well as some function prototypes for user-functionality. 
+* 3/22/22 - Updated our client on progress so far:
+  * Software Portion Complete/Polished and in-working state
+  * Bluetooth Functional
+  * Games 1-3 finished
+  * Persistent State
+  * Serial Communication Complete
+  * Hardware -- mapping pins to schematic for PCB preliminary design
+  * User Manual/Budget -- Device is on track to be sub-50 dollars. User manual due following Friday.
+* Determined battery life of complete prototype (LCD, BT, multiple LEDs) w/ 500mAH 9v battery is 3-ish hours. Looking into NiMH batteries to provide desired capacity.
+* 3/23/22 -- Investigating using automated main/rechargable battery switching with LiPo charging ICs (TP5410 and 4506)
+* 3/24/22 -- User Manual draft complete, submitted.
+* 3/25/22 -- Investigating flashing firmware.bin files without need for source code!
+* 3/26/22 -- Updated logbooks to reflect progress made

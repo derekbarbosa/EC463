@@ -7,7 +7,6 @@
 #define NAMESET 1
 #define NAMELEN 128
 
-
 /*
 
 TX: 2.5
@@ -21,12 +20,11 @@ LIQUID CRYSTAL: 10,  9,   7,   6,   5,   17
 */
 
 // Define LiquidCrystal Object
-LiquidCrystal lcd = LiquidCrystal(10,9,7,6,5,17);
+LiquidCrystal lcd = LiquidCrystal(10, 9, 7, 6, 5, 17);
 
 // Define PushButtons using Button.h
 Button push1(PUSH1);
 Button push2(PUSH2);
-
 
 // Define Flags to place in FRAM
 int startFlag PLACE_IN_FRAM;
@@ -40,20 +38,17 @@ int wrongFlag PLACE_IN_FRAM;
 char name[NAMELEN] PLACE_IN_FRAM;
 char secret_word[NAMELEN] PLACE_IN_FRAM;
 
-
-
 // Custom GLYPHS for 16x2 LCD go HERE:
 
 byte Skull[8] = {
-0b00000,
-0b01110,
-0b10101,
-0b11011,
-0b01110,
-0b01110,
-0b00000,
-0b00000
-};
+    0b00000,
+    0b01110,
+    0b10101,
+    0b11011,
+    0b01110,
+    0b01110,
+    0b00000,
+    0b00000};
 
 // Function Prototypes
 
@@ -87,9 +82,9 @@ void blePassword();
 
 void writeString(String s);
 
-void clearStr(char* str);
+void clearStr(char *str);
 
-void setStr(String x, char*str);
+void setStr(String x, char *str);
 
 void setup()
 {
@@ -98,13 +93,12 @@ void setup()
   // Set Up Push Buttons and LCD
   push1.begin();
   push2.begin();
-  lcd.begin(16,2);
+  lcd.begin(16, 2);
 
   // Set Up Serial Parameters, BT Serial, and timeouts
   Serial.begin(9600);
   Serial1.begin(9600);
   Serial.setTimeout(2000);
-
 
   // Set Up Pins for LED
   pinMode(P3_1, OUTPUT);
@@ -113,62 +107,67 @@ void setup()
 
   // Set Up Custom Characters
   lcd.createChar(0, Skull);
-
-  
 }
 
 // String Set/Clear/Write functions for BT Serial/Serial Comms
 
-void clearStr(char* str){
-  for(int i = 0; i < NAMELEN; i++)
+void clearStr(char *str)
+{
+  for (int i = 0; i < NAMELEN; i++)
     str[i] = '\0';
 }
 
-void setStr(String x, char* str){
+void setStr(String x, char *str)
+{
   char new_name[NAMELEN];
   x.toCharArray(new_name, NAMELEN);
-  for(int i = 0; i < NAMELEN; i++)
+  for (int i = 0; i < NAMELEN; i++)
     str[i] = new_name[i];
 }
 
-void writeString(String stringData) { // Used to serially push out a String with Serial.write()
+void writeString(String stringData)
+{ // Used to serially push out a String with Serial.write()
 
   for (int i = 0; i < 15; i++)
   {
-    Serial1.write(stringData[i]);   // Push each char 1 by 1 on each loop pass
+    Serial1.write(stringData[i]); // Push each char 1 by 1 on each loop pass
   }
-
 }
 
 // Function to check if enabled secret prompts LED on/off
 
-void ledCheck(){
-  if(secretFlag2 == 1){
+void ledCheck()
+{
+  if (secretFlag2 == 1)
+  {
     digitalWrite(P3_1, secretFlag2);
   }
-  else if(secretFlag2 == 0){
+  else if (secretFlag2 == 0)
+  {
     digitalWrite(P3_1, secretFlag2);
   }
-  if(secretFlag3 == 1){
+  if (secretFlag3 == 1)
+  {
     digitalWrite(P2_1, secretFlag3);
   }
-  else if(secretFlag3 == 0){
+  else if (secretFlag3 == 0)
+  {
     digitalWrite(P2_1, secretFlag3);
   }
-  if(secretFlag4 == 1){
+  if (secretFlag4 == 1)
+  {
     digitalWrite(P2_0, secretFlag4);
   }
-  else if(secretFlag4 == 0){
+  else if (secretFlag4 == 0)
+  {
     digitalWrite(P2_0, secretFlag4);
   }
 }
-
 
 // Main Menu selection function
 
 void mainMenu()
 {
-
 
 statement:
   Serial.print("************************\n");
@@ -177,15 +176,18 @@ statement:
   Serial.print("*| 1: Set Name Tag    |*\n");
   Serial.print("*| 2: Display Name Tag|*\n");
   Serial.print("*| 3: Game Link       |*\n");
-  
+
   Serial.print("*| 4: Game Link 2     |*\n");
-  if(secretFlag == 1){
+  if (secretFlag == 1)
+  {
     Serial.print("*| 5: Secret Token    |*\n");
   }
-  if(secretFlag == 1 && secretFlag2 == 1){
+  if (secretFlag == 1 && secretFlag2 == 1)
+  {
     Serial.print("*| 6: Secret Token 2  |*\n");
   }
-  if(secretFlag == 1 && secretFlag2 == 1 && secretFlag3 == 1){
+  if (secretFlag == 1 && secretFlag2 == 1 && secretFlag3 == 1)
+  {
     Serial.print("*| 7: Secret Token 3  |*\n");
   }
   Serial.print("*| 8: Start Bluetooth |*\n");
@@ -193,10 +195,8 @@ statement:
   Serial.print("*|                    |*\n");
   Serial.print("************************\n");
 
-  
-
   Serial.print("Please enter input\n");
-  
+
   while (Serial.available() == 0)
   {
     // THIS BLOCK STAYS EMPTY!
@@ -212,7 +212,7 @@ statement:
     {
     case '1':
       delay(1000);
-      Serial.print("You Chose to Set your Device Name!\n");// DeviceID Input
+      Serial.print("You Chose to Set your Device Name!\n"); // DeviceID Input
       delay(1000);
       if (nameToggle == 0)
       {
@@ -250,12 +250,15 @@ statement:
       goto statement;
     case '5':
       delay(1000);
-      if(secretFlag == 0){
+      if (secretFlag == 0)
+      {
         Serial.print("Access Denied\n");
         goto statement;
       }
-      else{
-        if(secretFlag2 == 1){
+      else
+      {
+        if (secretFlag2 == 1)
+        {
           Serial.print("Secret already unlocked\n");
           goto statement;
         }
@@ -272,32 +275,38 @@ statement:
       goto statement;
     case '6':
       delay(1000);
-        if(secretFlag == 0 || secretFlag2 == 0){
-          Serial.print("Access Denied\n");
+      if (secretFlag == 0 || secretFlag2 == 0)
+      {
+        Serial.print("Access Denied\n");
+        goto statement;
+      }
+      else
+      {
+        if (secretFlag3 == 1)
+        {
+          Serial.print("Secret already unlocked\n");
           goto statement;
         }
-        else{
-          if(secretFlag3 == 1){
-            Serial.print("Secret already unlocked\n");
-            goto statement;
-          }
-          secretCode2();
-          goto statement;
-        }
+        secretCode2();
+        goto statement;
+      }
 
     case '7':
       delay(1000);
-      if(secretFlag == 0 || secretFlag2 == 0 || secretFlag3 == 0){
-          Serial.print("Access Denied\n");
-          goto statement;
+      if (secretFlag == 0 || secretFlag2 == 0 || secretFlag3 == 0)
+      {
+        Serial.print("Access Denied\n");
+        goto statement;
       }
-      else{
-          if(secretFlag4 == 1){
-            Serial.print("Secret already unlocked\n");
-            goto statement;
-          }
-          secretCode3();
+      else
+      {
+        if (secretFlag4 == 1)
+        {
+          Serial.print("Secret already unlocked\n");
           goto statement;
+        }
+        secretCode3();
+        goto statement;
       }
 
     case '8':
@@ -310,17 +319,19 @@ statement:
       delay(1000);
       secret();
       goto statement;
-      
+
     case '0':
       delay(1000);
       resetBadge();
-      if(startFlag == 1){
+      if (startFlag == 1)
+      {
         goto statement;
       }
-      else{
+      else
+      {
         return;
       }
-      
+
     default:
       Serial.print("Invalid Statement\n");
       goto statement;
@@ -330,73 +341,76 @@ statement:
 
 // Wireless/BT COMM function
 
-void bluetooth(){
-  
-    
-  statement:
-      Serial.print("Welcome to Bluetooth\n");
-      Serial.print("Your Device Should Automatically Connect to the Closest VETCON BADGE\n");
-      Serial.print("Type 1 to Start Communication: \n");
-      Serial.print("Type 0 to Exit: \n");
-      while(Serial.available() == 0)
+void bluetooth()
+{
+
+statement:
+  Serial.print("Welcome to Bluetooth\n");
+  Serial.print("Your Device Should Automatically Connect to the Closest VETCON BADGE\n");
+  Serial.print("Type 1 to Start Communication: \n");
+  Serial.print("Type 0 to Exit: \n");
+  while (Serial.available() == 0)
+  {
+    // THIS BLOCK STAYS EMPTY!
+  }
+  char inputData = (char)Serial.read();
+  Serial.print("You entered ");
+  Serial.print(inputData);
+  Serial.print("\n\n");
+  // char badgePassowrd[] = "AT+PSWD=";
+  // strcat(badgePassowrd,inputData.c_str());
+
+  for (;;)
+  {
+    switch (inputData)
+    {
+    case '1':
+    {
+      delay(100);
+      Serial.print("Type to send to other badge\n");
+      Serial.print("Type 'exitnowpls' to quit!\n");
+      while (Serial.available() == 0)
       {
         // THIS BLOCK STAYS EMPTY!
       }
-      char inputData = (char)Serial.read();
-      Serial.print("You entered ");
-      Serial.print(inputData);
-      Serial.print("\n\n");
-      // char badgePassowrd[] = "AT+PSWD=";
-      // strcat(badgePassowrd,inputData.c_str());
-
-      for(;;){
-        switch (inputData)
-        {
-        case '1':
-        {
-          delay(100);
-          Serial.print("Type to send to other badge\n");
-          Serial.print("Type 'exitnowpls' to quit!\n");
-          while(Serial.available() == 0)
-          {
-            // THIS BLOCK STAYS EMPTY!
-          }
-          String toSend = Serial.readString();
-          if(toSend == "exitnowpls"){
-            Serial.print("Exiting now!\n");
-            return;
-          }
-
-          //Serial.print("got inside case 1\n");
-          Serial.print("Sending Data via Bluetooth...\n");
-          writeString(toSend);
-
-          if(Serial1.available()){
-            //Serial.print("got inside Serial1\n");
-            //String incomingData = Serial1.readString();
-            String dataIn = Serial1.readString();
-
-            //Serial.print(incomingData);
-            Serial.print("Data Received: ");
-            Serial.print(dataIn);
-            Serial.print("\n");
-          }
-          break;
-        }
-        case '0':
-          delay(1000);
-          return;
-        default:
-          Serial.print("Invalid Menu Item\n");
-          goto statement;
-        }
+      String toSend = Serial.readString();
+      if (toSend == "exitnowpls")
+      {
+        Serial.print("Exiting now!\n");
+        return;
       }
-      
+
+      // Serial.print("got inside case 1\n");
+      Serial.print("Sending Data via Bluetooth...\n");
+      writeString(toSend);
+
+      if (Serial1.available())
+      {
+        // Serial.print("got inside Serial1\n");
+        // String incomingData = Serial1.readString();
+        String dataIn = Serial1.readString();
+
+        // Serial.print(incomingData);
+        Serial.print("Data Received: ");
+        Serial.print(dataIn);
+        Serial.print("\n");
+      }
+      break;
+    }
+    case '0':
+      delay(1000);
+      return;
+    default:
+      Serial.print("Invalid Menu Item\n");
+      goto statement;
+    }
+  }
 }
 
 // Badge Reset, CLEAR FRAM and LCD
 
-void resetBadge(){
+void resetBadge()
+{
   Serial.print("Reset Badge:\n");
   delay(1000);
   Serial.print("ARE YOU SURE YOU WANT TO RESET?\n");
@@ -405,8 +419,10 @@ void resetBadge(){
   Serial.print("Otherwise, Press Button 2\n");
 
   delay(200);
-  while(true){
-    if(push1.pressed()){
+  while (true)
+  {
+    if (push1.pressed())
+    {
       Serial.print("RESETTING.....\n");
       lcd.clear();
       delay(3000);
@@ -422,7 +438,8 @@ void resetBadge(){
       Serial.print("BADGE RESET\n");
       break;
     }
-    else if(push2.pressed()){
+    else if (push2.pressed())
+    {
       Serial.print("Badge Reset Aborted...\n");
       break;
     }
@@ -434,7 +451,8 @@ void resetBadge(){
 
 // Badge Secret Functions
 
-void secret(){
+void secret()
+{
   Serial.print("Secret Unlocked\n");
   SYSCFG0 = FRWPPW | DFWP;
   secretFlag = 1;
@@ -442,9 +460,9 @@ void secret(){
   return;
 }
 
+void secretCode()
+{
 
-void secretCode(){
-  
   char answer[] = "1016";
   Serial.print("Please Enter The Secret Code:\n");
   while (Serial.available() == 0)
@@ -452,22 +470,24 @@ void secretCode(){
     // THIS BLOCK STAYS EMPTY!
   }
   String inputData = Serial.readStringUntil('\n');
-  if(inputData == answer){
+  if (inputData == answer)
+  {
     Serial.print("CONGRATS! SECRET 1 SOLVED\n");
-    
+
     SYSCFG0 = FRWPPW | DFWP;
     secretFlag2 = 1;
     SYSCFG0 = FRWPPW | PFWP | DFWP;
     digitalWrite(P3_1, secretFlag2);
   }
-  else{
+  else
+  {
     Serial.print("INCORRECT CODE\n");
   }
   return;
-
 }
 
-void secretCode2(){
+void secretCode2()
+{
   char answer[] = "semperdisco";
   char wrong[] = "3411323115333443242344234424521532244442453454141544431152543131111542453454";
   Serial.print("Please Enter The Secret Code:\n");
@@ -476,32 +496,37 @@ void secretCode2(){
     // THIS BLOCK STAYS EMPTY!
   }
   String inputData = Serial.readStringUntil('\n');
-  if(inputData == answer){
+  if (inputData == answer)
+  {
     Serial.print("CONGRATS! SECRET 2 SOLVED\n");
-    
+
     SYSCFG0 = FRWPPW | DFWP;
     secretFlag3 = 1;
     SYSCFG0 = FRWPPW | PFWP | DFWP;
     digitalWrite(P2_1, secretFlag3);
   }
-  else if(inputData == wrong){
-    for(int i = 0; i < 50; i++){
+  else if (inputData == wrong)
+  {
+    for (int i = 0; i < 50; i++)
+    {
       Serial.print("THIS IS NOT A GAME\n");
     }
     SYSCFG0 = FRWPPW | DFWP;
     clearStr(secret_word);
-    //setStr(x, secret_word);
+    // setStr(x, secret_word);
     wrongFlag = 1;
     SYSCFG0 = FRWPPW | PFWP | DFWP;
     wipeBoard();
   }
-  else{
+  else
+  {
     Serial.print("INCORRECT CODE\n");
   }
   return;
 }
 
-void secretCode3(){
+void secretCode3()
+{
   char answer[] = "ilovevetcon";
   Serial.print("Please Enter the Secret Code:\n");
 
@@ -510,20 +535,21 @@ void secretCode3(){
     // THIS BLOCK STAYS EMPTY!
   }
   String inputData = Serial.readStringUntil('\n');
-  if(inputData == answer){
+  if (inputData == answer)
+  {
     Serial.print("CONGRATS! SECRET 3 SOLVED\n");
-    
+
     SYSCFG0 = FRWPPW | DFWP;
     secretFlag4 = 1;
     SYSCFG0 = FRWPPW | PFWP | DFWP;
     digitalWrite(P2_0, secretFlag4);
   }
-  else{
+  else
+  {
     Serial.print("INCORRECT CODE\n");
   }
   return;
 }
-
 
 // LCD Name Display
 
@@ -531,24 +557,26 @@ void displayName()
 {
   lcd.clear();
 
-  lcd.setCursor(2,0);
+  lcd.setCursor(2, 0);
   lcd.write(byte(0));
   lcd.print("VETCON  30");
   lcd.write(byte(0));
 
-  lcd.setCursor(0,1);
-  if(nameToggle == NAMESET){
+  lcd.setCursor(0, 1);
+  if (nameToggle == NAMESET)
+  {
 
     lcd.print(name);
   }
-  else{
+  else
+  {
     Serial.print("ERROR: NAME NOT SET\n");
   }
 
   return;
 }
 
-// Name Set 
+// Name Set
 void setName()
 {
   Serial.print("Please Enter A Name:\n");
@@ -556,22 +584,26 @@ void setName()
   {
     // THIS BLOCK STAYS EMPTY!
   }
+
   String inputData = Serial.readStringUntil('\n');
-  //Serial.print(inputData);
-  //Serial.print("\n");
+  // Serial.print(inputData);
+  // Serial.print("\n");
   char secretString1[] = "Pepe";
-  
-  char secretAnswer1[] = 
-"\n⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠛⠻⠿⣿⣿⣿⣿⣿⠿⠿⠿⢿⣿⣿⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⣿⣿⠟⠉⠄⠄⠄⠄⠄⠄⠄⠉⢟⠉⠄⠄⠄⠄⠄⠈⢻⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⡿⠃⠄⠄⠤⠐⠉⠉⠉⠉⠉⠒⠬⡣⠤⠤⠄⠄⠄⠤⠤⠿⣿⣿⣿⣿\n⣿⣿⣿⣿⠁⠄⠄⠄⠄⠄⠄⠠⢀⡒⠤⠭⠅⠚⣓⡆⡆⣔⡙⠓⠚⠛⠄⣹⠿⣿\n⣿⠟⠁⡌⠄⠄⠄⢀⠤⠬⠐⣈⠠⡤⠤⠤⣤⠤⢄⡉⢁⣀⣠⣤⣤⣀⣐⡖⢦⣽\n⠏⠄⠄⠄⠄⠄⠄⠄⠐⠄⡿⠛⠯⠍⠭⣉⣉⠉⠍⢀⢀⡀⠉⠉⠉⠒⠒⠂⠄⣻\n⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠩⠵⠒⠒⠲⢒⡢⡉⠁⢐⡀⠬⠍⠁⢉⣉⣴⣿⣿\n⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠉⢉⣒⡉⠁⠁⠄⠄⠉⠂⠙⣉⣁⣀⣙⡿⣿⣿\n⠄⠄⠄⠄⠄⠄⠄⠄⢠⠄⡖⢉⠥⢤⠐⢲⠒⢲⠒⢲⠒⠲⡒⠒⡖⢲⠂⠄⢀⣿\n⠄⠄⠄⠄⠄⠄⠄⠄⠈⢆⡑⢄⠳⢾⠒⢺⠒⢺⠒⠚⡖⠄⡏⠉⣞⠞⠁⣠⣾⣿\n⠄⠄⠄⠄⠄⠄⢆⠄⠄⠄⠈⠢⠉⠢⠍⣘⣒⣚⣒⣚⣒⣒⣉⠡⠤⣔⣾⣿⣿⣿\n⠷⣤⠄⣀⠄⠄⠄⠈⠁⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢀⣤⣾⣿⣿⣿⣿⣿\n⠄⠄⠉⠐⠢⠭⠄⢀⣒⣒⡒⠄⠄⠄⠄⠄⠄⣀⡠⠶⢶⣿⣿⣿⣿⣿⣿⣿⣿⣿\n⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠈⠁⠈⠄⠄⠄⠄⠄⠄⠈⠻⣿⣿⣿⣿⣿⣿⣿\n";
+
+  char secretAnswer1[] =
+      "\n⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠛⠻⠿⣿⣿⣿⣿⣿⠿⠿⠿⢿⣿⣿⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⣿⣿⠟⠉⠄⠄⠄⠄⠄⠄⠄⠉⢟⠉⠄⠄⠄⠄⠄⠈⢻⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⡿⠃⠄⠄⠤⠐⠉⠉⠉⠉⠉⠒⠬⡣⠤⠤⠄⠄⠄⠤⠤⠿⣿⣿⣿⣿\n⣿⣿⣿⣿⠁⠄⠄⠄⠄⠄⠄⠠⢀⡒⠤⠭⠅⠚⣓⡆⡆⣔⡙⠓⠚⠛⠄⣹⠿⣿\n⣿⠟⠁⡌⠄⠄⠄⢀⠤⠬⠐⣈⠠⡤⠤⠤⣤⠤⢄⡉⢁⣀⣠⣤⣤⣀⣐⡖⢦⣽\n⠏⠄⠄⠄⠄⠄⠄⠄⠐⠄⡿⠛⠯⠍⠭⣉⣉⠉⠍⢀⢀⡀⠉⠉⠉⠒⠒⠂⠄⣻\n⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠩⠵⠒⠒⠲⢒⡢⡉⠁⢐⡀⠬⠍⠁⢉⣉⣴⣿⣿\n⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠉⢉⣒⡉⠁⠁⠄⠄⠉⠂⠙⣉⣁⣀⣙⡿⣿⣿\n⠄⠄⠄⠄⠄⠄⠄⠄⢠⠄⡖⢉⠥⢤⠐⢲⠒⢲⠒⢲⠒⠲⡒⠒⡖⢲⠂⠄⢀⣿\n⠄⠄⠄⠄⠄⠄⠄⠄⠈⢆⡑⢄⠳⢾⠒⢺⠒⢺⠒⠚⡖⠄⡏⠉⣞⠞⠁⣠⣾⣿\n⠄⠄⠄⠄⠄⠄⢆⠄⠄⠄⠈⠢⠉⠢⠍⣘⣒⣚⣒⣚⣒⣒⣉⠡⠤⣔⣾⣿⣿⣿\n⠷⣤⠄⣀⠄⠄⠄⠈⠁⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢀⣤⣾⣿⣿⣿⣿⣿\n⠄⠄⠉⠐⠢⠭⠄⢀⣒⣒⡒⠄⠄⠄⠄⠄⠄⣀⡠⠶⢶⣿⣿⣿⣿⣿⣿⣿⣿⣿\n⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠈⠁⠈⠄⠄⠄⠄⠄⠄⠈⠻⣿⣿⣿⣿⣿⣿⣿\n";
   char secretString2[] = "Senior Design";
   char secretAnswer2[] = "\n   _____            _               ____            _           \n  / ___/___  ____  (_)___  _____   / __ \\___  _____(_)___ _____ \n  \\__ \\/ _ \\/ __ \\/ / __ \\/ ___/  / / / / _ \\/ ___/ / __ `/ __ \\ \n ___/ /  __/ / / / / /_/ / /     / /_/ /  __(__  ) / /_/ / / / /\n/____/\\___/_/ /_/_/\\____/_/     /_____/\\___/____/_/\\__, /_/ /_/ \n                                                  /____/        \n";
-  if(inputData == secretString1){
+
+  if (inputData == secretString1)
+  {
     Serial.print(secretAnswer1);
   }
-  if(inputData == secretString2){
+  if (inputData == secretString2)
+  {
     Serial.print(secretAnswer2);
   }
-  
+
   Serial.print("You entered ");
   Serial.print(inputData);
   SYSCFG0 = FRWPPW | DFWP;
@@ -579,13 +611,14 @@ void setName()
   nameToggle = NAMESET;
   SYSCFG0 = FRWPPW | PFWP | DFWP;
   Serial.print("\n");
-  Serial.flush(); 
+  Serial.flush();
   return;
 }
 
 // Board Wipe function specifically for 'red herring' key
 
-void wipeBoard(){
+void wipeBoard()
+{
   SYSCFG0 = FRWPPW | DFWP;
   startFlag = 0;
   secretFlag = 0;
@@ -604,11 +637,11 @@ void wipeBoard(){
 void loop()
 {
   // put your main code here, to run repeatedly:
-  lcd.setCursor(2,0);
+  lcd.setCursor(2, 0);
   lcd.write(byte(0));
   lcd.print("WELCOME TO");
   lcd.write(byte(0));
-  lcd.setCursor(2,1);
+  lcd.setCursor(2, 1);
   lcd.write(byte(0));
   lcd.print("VETCON  30");
   lcd.write(byte(0));
@@ -637,8 +670,9 @@ void loop()
       "******************************************",
       "******************************************",
   };
-  
-  if(startFlag == 0){ //On display welcome on startup, never again.
+
+  if (startFlag == 0)
+  { // On display welcome on startup, never again.
     for (int idx = 0; idx < sizeof(welcome) / sizeof(char); idx++)
     {
       Serial.print(welcome[idx]);
@@ -648,6 +682,6 @@ void loop()
     startFlag = 1;
     SYSCFG0 = FRWPPW | PFWP | DFWP;
   }
-  
+
   mainMenu();
 }
