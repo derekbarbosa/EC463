@@ -1,0 +1,393 @@
+
+game:	file format mach-o 64-bit x86-64
+
+Mach header
+      magic cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags
+MH_MAGIC_64  X86_64        ALL  0x00     EXECUTE    20       2368   NOUNDEFS DYLDLINK TWOLEVEL WEAK_DEFINES BINDS_TO_WEAK PIE
+Load command 0
+      cmd LC_SEGMENT_64
+  cmdsize 72
+  segname __PAGEZERO
+   vmaddr 0x0000000000000000
+   vmsize 0x0000000100000000
+  fileoff 0
+ filesize 0
+  maxprot ---
+ initprot ---
+   nsects 0
+    flags (none)
+Load command 1
+      cmd LC_SEGMENT_64
+  cmdsize 712
+  segname __TEXT
+   vmaddr 0x0000000100000000
+   vmsize 0x0000000000014000
+  fileoff 0
+ filesize 81920
+  maxprot r-x
+ initprot r-x
+   nsects 8
+    flags (none)
+Section
+  sectname __text
+   segname __TEXT
+      addr 0x00000001000029e0
+      size 0x000000000000dc8f
+    offset 10720
+     align 2^4 (16)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes PURE_INSTRUCTIONS SOME_INSTRUCTIONS
+ reserved1 0
+ reserved2 0
+Section
+  sectname __stubs
+   segname __TEXT
+      addr 0x0000000100010670
+      size 0x0000000000000222
+    offset 67184
+     align 2^1 (2)
+    reloff 0
+    nreloc 0
+      type S_SYMBOL_STUBS
+attributes PURE_INSTRUCTIONS SOME_INSTRUCTIONS
+ reserved1 0 (index into indirect symbol table)
+ reserved2 6 (size of stubs)
+Section
+  sectname __stub_helper
+   segname __TEXT
+      addr 0x0000000100010894
+      size 0x0000000000000376
+    offset 67732
+     align 2^2 (4)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes PURE_INSTRUCTIONS SOME_INSTRUCTIONS
+ reserved1 0
+ reserved2 0
+Section
+  sectname __gcc_except_tab
+   segname __TEXT
+      addr 0x0000000100010c0c
+      size 0x0000000000000474
+    offset 68620
+     align 2^2 (4)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes (none)
+ reserved1 0
+ reserved2 0
+Section
+  sectname __asan_cstring
+   segname __TEXT
+      addr 0x0000000100011080
+      size 0x00000000000022c0
+    offset 69760
+     align 2^5 (32)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes (none)
+ reserved1 0
+ reserved2 0
+Section
+  sectname __cstring
+   segname __TEXT
+      addr 0x0000000100013340
+      size 0x00000000000006a4
+    offset 78656
+     align 2^0 (1)
+    reloff 0
+    nreloc 0
+      type S_CSTRING_LITERALS
+attributes (none)
+ reserved1 0
+ reserved2 0
+Section
+  sectname __const
+   segname __TEXT
+      addr 0x0000000100013a00
+      size 0x0000000000000219
+    offset 80384
+     align 2^5 (32)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes (none)
+ reserved1 0
+ reserved2 0
+Section
+  sectname __unwind_info
+   segname __TEXT
+      addr 0x0000000100013c1c
+      size 0x00000000000003cc
+    offset 80924
+     align 2^2 (4)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes (none)
+ reserved1 0
+ reserved2 0
+Load command 2
+      cmd LC_SEGMENT_64
+  cmdsize 392
+  segname __DATA_CONST
+   vmaddr 0x0000000100014000
+   vmsize 0x0000000000004000
+  fileoff 81920
+ filesize 16384
+  maxprot rw-
+ initprot rw-
+   nsects 4
+    flags 0x00000010 (unknown flags)
+Section
+  sectname __got
+   segname __DATA_CONST
+      addr 0x0000000100014000
+      size 0x0000000000000118
+    offset 81920
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+      type S_NON_LAZY_SYMBOL_POINTERS
+attributes (none)
+ reserved1 91 (index into indirect symbol table)
+ reserved2 0
+Section
+  sectname __mod_init_func
+   segname __DATA_CONST
+      addr 0x0000000100014118
+      size 0x0000000000000010
+    offset 82200
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+      type S_MOD_INIT_FUNC_POINTERS
+attributes (none)
+ reserved1 0
+ reserved2 0
+Section
+  sectname __mod_term_func
+   segname __DATA_CONST
+      addr 0x0000000100014128
+      size 0x0000000000000010
+    offset 82216
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+      type S_MOD_TERM_FUNC_POINTERS
+attributes (none)
+ reserved1 0
+ reserved2 0
+Section
+  sectname __const
+   segname __DATA_CONST
+      addr 0x0000000100014138
+      size 0x0000000000000a70
+    offset 82232
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes (none)
+ reserved1 0
+ reserved2 0
+Load command 3
+      cmd LC_SEGMENT_64
+  cmdsize 472
+  segname __DATA
+   vmaddr 0x0000000100018000
+   vmsize 0x0000000000004000
+  fileoff 98304
+ filesize 16384
+  maxprot rw-
+ initprot rw-
+   nsects 5
+    flags (none)
+Section
+  sectname __la_symbol_ptr
+   segname __DATA
+      addr 0x0000000100018000
+      size 0x00000000000002d8
+    offset 98304
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+      type S_LAZY_SYMBOL_POINTERS
+attributes (none)
+ reserved1 126 (index into indirect symbol table)
+ reserved2 0
+Section
+  sectname __asan_globals
+   segname __DATA
+      addr 0x00000001000182e0
+      size 0x00000000000019c0
+    offset 99040
+     align 2^4 (16)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes (none)
+ reserved1 0
+ reserved2 0
+Section
+  sectname __asan_liveness
+   segname __DATA
+      addr 0x0000000100019ca0
+      size 0x0000000000000670
+    offset 105632
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes (none)
+ reserved1 0
+ reserved2 0
+Section
+  sectname __data
+   segname __DATA
+      addr 0x000000010001a310
+      size 0x0000000000000008
+    offset 107280
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes (none)
+ reserved1 0
+ reserved2 0
+Section
+  sectname __common
+   segname __DATA
+      addr 0x000000010001a318
+      size 0x0000000000000008
+    offset 0
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+      type S_ZEROFILL
+attributes (none)
+ reserved1 0
+ reserved2 0
+Load command 4
+      cmd LC_SEGMENT_64
+  cmdsize 72
+  segname __LINKEDIT
+   vmaddr 0x000000010001c000
+   vmsize 0x0000000000010000
+  fileoff 114688
+ filesize 52992
+  maxprot r--
+ initprot r--
+   nsects 0
+    flags (none)
+Load command 5
+            cmd LC_DYLD_INFO_ONLY
+        cmdsize 48
+     rebase_off 114688
+    rebase_size 680
+       bind_off 115368
+      bind_size 2312
+  weak_bind_off 117680
+ weak_bind_size 680
+  lazy_bind_off 118360
+ lazy_bind_size 3432
+     export_off 121792
+    export_size 864
+Load command 6
+     cmd LC_SYMTAB
+ cmdsize 24
+  symoff 123096
+   nsyms 827
+  stroff 137200
+ strsize 30480
+Load command 7
+            cmd LC_DYSYMTAB
+        cmdsize 80
+      ilocalsym 0
+      nlocalsym 676
+     iextdefsym 676
+     nextdefsym 21
+      iundefsym 697
+      nundefsym 130
+         tocoff 0
+           ntoc 0
+      modtaboff 0
+        nmodtab 0
+   extrefsymoff 0
+    nextrefsyms 0
+ indirectsymoff 136328
+  nindirectsyms 217
+      extreloff 0
+        nextrel 0
+      locreloff 0
+        nlocrel 0
+Load command 8
+          cmd LC_LOAD_DYLINKER
+      cmdsize 32
+         name /usr/lib/dyld (offset 12)
+Load command 9
+     cmd LC_UUID
+ cmdsize 24
+    uuid 0C90578E-A098-3D88-9C9E-5A296F1FC588
+Load command 10
+       cmd LC_BUILD_VERSION
+   cmdsize 32
+  platform macos
+       sdk 11.3
+     minos 11.0
+    ntools 1
+      tool ld
+   version 650.9
+Load command 11
+      cmd LC_SOURCE_VERSION
+  cmdsize 16
+  version 0.0
+Load command 12
+       cmd LC_MAIN
+   cmdsize 24
+  entryoff 10720
+ stacksize 0
+Load command 13
+          cmd LC_LOAD_DYLIB
+      cmdsize 48
+         name /usr/lib/libc++.1.dylib (offset 24)
+   time stamp 2 Wed Dec 31 19:00:02 1969
+      current version 905.6.0
+compatibility version 1.0.0
+Load command 14
+          cmd LC_LOAD_DYLIB
+      cmdsize 72
+         name @rpath/libclang_rt.asan_osx_dynamic.dylib (offset 24)
+   time stamp 2 Wed Dec 31 19:00:02 1969
+      current version 0.0.0
+compatibility version 0.0.0
+Load command 15
+          cmd LC_LOAD_DYLIB
+      cmdsize 56
+         name /usr/lib/libSystem.B.dylib (offset 24)
+   time stamp 2 Wed Dec 31 19:00:02 1969
+      current version 1292.100.5
+compatibility version 1.0.0
+Load command 16
+          cmd LC_RPATH
+      cmdsize 32
+         path @executable_path (offset 12)
+Load command 17
+          cmd LC_RPATH
+      cmdsize 128
+         path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/lib/darwin (offset 12)
+Load command 18
+      cmd LC_FUNCTION_STARTS
+  cmdsize 16
+  dataoff 122656
+ datasize 416
+Load command 19
+      cmd LC_DATA_IN_CODE
+  cmdsize 16
+  dataoff 123072
+ datasize 24
