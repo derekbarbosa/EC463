@@ -3,6 +3,7 @@
 #define CORE_FUNCTIONS
 
 #include <string>
+#include <cstring>
 #include <iostream>
 #include <chrono>
 #include <unistd.h>
