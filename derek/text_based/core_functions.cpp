@@ -458,13 +458,12 @@ void initalizeGame(userProfile **newUser, char *argument)
         cout << "\n You said your major was: " << currUser->getMajor() << endl;
         this_thread::sleep_for(smallNS);
 
-        cin.clear();
-        fflush(stdin);
 
-        string redHerring = "";
+        string redHerring;
             cout << "\n" << endl;
         cout << "Do you know the secret password?" << endl;
-        getline(cin, redHerring, '\n');
+        
+        cin >> redHerring;
         cin.clear();
         fflush(stdin);
 
