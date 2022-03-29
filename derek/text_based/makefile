@@ -1,8 +1,8 @@
 CPP=g++
-CFLAGS=-std=c++14 -g -O1 -fsanitize=address -Wall -pthread
+CFLAGS=-std=c++14 -O1 -fsanitize=address -Wall -pthread -static-libstdc++
 
 game: core_functions.cpp game.cpp
 	$(CPP) $(CFLAGS) -o game game.cpp core_functions.cpp
 
 clean:
-	rm game
+	rm -r game
