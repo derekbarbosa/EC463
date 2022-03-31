@@ -103,8 +103,7 @@ void setup()
   /*
   // Set Up Push Buttons and LCD
   push1.begin();
-  push2.begin();
-  */
+ d  */
 
   lcd.begin(16, 2);
 
@@ -146,7 +145,7 @@ void writeString(String stringData)
     Serial1.write(stringData[i]); // Push each char 1 by 1 on each loop pass
   }
 }
-
+ 
 // Function to check if enabled secret prompts LED on/off
 
 void ledCheck()

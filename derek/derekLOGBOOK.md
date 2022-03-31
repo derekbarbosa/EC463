@@ -439,3 +439,47 @@ Entries here are reserved for March
 * 3/24/22 -- User Manual draft complete, submitted.
 * 3/25/22 -- Investigating flashing firmware.bin files without need for source code!
 * 3/26/22 -- Updated logbooks to reflect progress made
+
+
+### 3/28/22
+* Day dedicated to writing out final testing plan
+  
+### 3/29/22
+* Final testing. 
+* Professor Pisano and Professor Osama had requested, that for ECE Day, we modify our material as a "learning course" or bootcamp to be more attractive to passerbys
+* No other updates. Slight code refactors. 
+* Began Power consumption testing w/ completed circuit and NiMH 2800 mAh batteries
+
+### 3/30/22
+* Battery results were promising! 15-16 hours out of 3x 2800 1.2v batteries from NiMH in AA form factor.
+* Some other battery stats from testing
+  
+* Remolded Stats:
+
+	*Using 500mAh 9 volt battery 
+	*Lasting around 3 - 4 hours
+	*Circuit consumption: 125mA - 160mA drain.
+
+	*Using 350mAh 3.7 volt battery
+	*Lasting around 2 - 3 hours
+	*Circuit consumption: 120mA - 175mA drain
+
+	*Using 3x 2800mAh 1.2 volt batteries in series: (3.6 volts)
+	*Lasting around 15 - 16 hours
+	*Circuit Consumption: 175mA - 185mA drain
+
+* Here is where we are at:
+
+* Today I refactored the code on my branch to lessen power consumption. 
+* By replacing delay() with sleep() we are able to enter a lower power state on the board and draw less milliamps
+* With this, I had the idea of creating an LED control menu. 
+* It is assigned to key ‘9’ once all secrets are unlocked. 
+* Here, users are able to choose to to turn off their LEDs, enter a ‘wave’ mode, ‘blink’ and ‘alternate blinking’ mode.
+* The idea was to attach an interrupt to one of the push buttons and attach a startup routine to the interrupt call and make it so that the LED functions just keep looping over and over again until disrupted. 
+* In the ‘OFF’ state we would just put the board in the lowest state, suspend() which draws little-to-no power, and in the other functions we would just have it microsleep to save power.
+* The current issue is that we block and wait for serial at full power, but by doing the above we can circumvent that until i find a way to attach an interrupt routine to serial input. 
+* some references:
+  * https://embeddedcomputing.weebly.com/ultra-low-power-with-msp430.html
+  * https://electronics.stackexchange.com/questions/228181/how-do-you-use-low-power-mode-on-an-msp430g2553-using-an-energia-sketch
+  * https://forum.43oh.com/topic/8608-energia-ide-msp430f5529lp-low-power-mode/
+  * https://energia.nu/reference/en/language/functions/time/delay/
