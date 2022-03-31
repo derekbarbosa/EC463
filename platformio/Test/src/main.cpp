@@ -98,6 +98,7 @@ void setup()
   // Set Up Serial Parameters, BT Serial, and timeouts
   Serial.begin(9600);
   Serial1.begin(9600);
+  //Serial1.begin(38400);
   Serial.setTimeout(2000);
 
   // Set Up Pins for LED
@@ -346,8 +347,8 @@ void bluetooth()
 
 statement:
   Serial.print("Welcome to Bluetooth\n");
-  Serial.print("Your Device Should Automatically Connect to the Closest VETCON BADGE\n");
   Serial.print("Type 1 to Start Communication: \n");
+  Serial.print("Type 2 to Change to Parent/Child\n");
   Serial.print("Type 0 to Exit: \n");
   while (Serial.available() == 0)
   {
@@ -366,6 +367,7 @@ statement:
     {
     case '1':
     {
+      //Serial1.begin(9600);
       delay(100);
       Serial.print("Type to send to other badge\n");
       Serial.print("Type 'exitnowpls' to quit!\n");
@@ -387,6 +389,41 @@ statement:
       if (Serial1.available())
       {
         // Serial.print("got inside Serial1\n");
+        // String incomingData = Serial1.readString();
+        String dataIn = Serial1.readString();
+
+        // Serial.print(incomingData);
+        Serial.print("Data Received: ");
+        Serial.print(dataIn);
+        Serial.print("\n");
+      }
+      break;
+    }
+    case '2':
+    {
+      
+      delay(100);
+      Serial.print("COMMANDS:\n");
+      Serial.print("Type: AT+ROLE=0 for child\n");
+      Serial.print("Type: AT+ROLE=1 for parent\n\n");
+      Serial.print("Type 'exitnowpls' to quit!\n");
+      while (Serial.available() == 0)
+      {
+        // THIS BLOCK STAYS EMPTY!
+      }
+      String toSend = Serial.readString();
+      if (toSend == "exitnowpls")
+      {
+        Serial.print("Exiting now!\n");
+        return;
+      }
+
+      Serial.print("Sending Command...\n");
+      writeString(toSend);
+
+      if (Serial1.available())
+      {
+        Serial.print("got inside Serial1\n");
         // String incomingData = Serial1.readString();
         String dataIn = Serial1.readString();
 
