@@ -24,7 +24,6 @@ LiquidCrystal lcd = LiquidCrystal(10, 9, 7, 6, 5, 17);
 
 // Define PushButtons using Button.h
 Button push1(PUSH1); // HARD RESET
-Button push2(PUSH2); // CANCEL
 
 // Define Flags to place in FRAM
 int startFlag PLACE_IN_FRAM;
@@ -96,14 +95,22 @@ void clearStr(char *str);
 
 void setStr(String x, char *str);
 
+
+
+// Interrupt function
+void interrupt()
+{
+  wakeup();
+}
+
 void setup()
 {
   // put your setup code here, to run once:
 
-  /*
   // Set Up Push Buttons and LCD
   push1.begin();
- d  */
+
+  attachInterrupt(digitalPinToInterrupt(PUSH2), interrupt, FALLING);
 
   lcd.begin(16, 2);
 
@@ -145,7 +152,7 @@ void writeString(String stringData)
     Serial1.write(stringData[i]); // Push each char 1 by 1 on each loop pass
   }
 }
- 
+
 // Function to check if enabled secret prompts LED on/off
 
 void ledCheck()
@@ -372,8 +379,6 @@ statement:
 
     case '0':
       // Set Up Push Buttons
-      push1.begin();
-      push2.begin();
 
       sleepSeconds(1);
       resetBadge();
@@ -472,12 +477,13 @@ void resetBadge()
   sleepSeconds(1);
   Serial.print("ARE YOU SURE YOU WANT TO RESET?\n");
   Serial.print("ALL SECRET PROGRESS WILL BE LOST\n\n");
-  Serial.print("Please Press Button 1 for reset\n");
-  Serial.print("Otherwise, Press Button 2\n");
+  Serial.print("Please Press & Hold Button 1 for reset\n");
+  Serial.print("Otherwise, wait 5 seconds! (after this message)\n");
 
   sleep(200);
   while (true)
   {
+    sleepSeconds(5);
     if (push1.pressed())
     {
       Serial.print("RESETTING.....\n");
@@ -495,13 +501,10 @@ void resetBadge()
       Serial.print("BADGE RESET\n");
       break;
     }
-    else if (push2.pressed())
+    else
     {
       Serial.print("Badge Reset Aborted...\n");
       break;
-    }
-    else
-    {
     }
   }
 }
@@ -612,55 +615,74 @@ void secretCode3()
 
 void ledWave()
 {
-  digitalWrite(P3_1, HIGH); // Turn LED 1 on
-  sleep(500);               // wait half a second
-  digitalWrite(P3_1, LOW);  // Turn LED 1 off
-  digitalWrite(P2_1, HIGH); // and repeat for LED 2 to 5
-  sleep(500);
-  digitalWrite(P2_1, LOW);
-  digitalWrite(P2_0, HIGH); // and repeat for LED 2 to 5
-  sleep(500);
-  digitalWrite(P2_0, LOW);
+  for (;;)
+  {
+    digitalWrite(P3_1, HIGH); // Turn LED 1 on
+    sleep(600);               // wait half a second
+    digitalWrite(P3_1, LOW);  // Turn LED 1 off
+    digitalWrite(P2_1, HIGH); // and repeat for LED 2 to 5
+    sleep(600);
+    digitalWrite(P2_1, LOW);
+    digitalWrite(P2_0, HIGH); // and repeat for LED 2 to 5
+    sleep(600);
+    digitalWrite(P2_0, LOW);
+    sleep(200);
+    if (push1.PRESSED)
+    {
+      break;
+    }
+  }
+  return;
 }
 
 void ledBlink()
 {
-  digitalWrite(P3_1, HIGH);
-  digitalWrite(P2_1, HIGH);
-  digitalWrite(P2_0, HIGH);
-  sleep(500);
-  digitalWrite(P3_1, LOW);
-  digitalWrite(P2_1, LOW);
-  digitalWrite(P2_0, LOW);
+  for (;;)
+  {
+    digitalWrite(P3_1, HIGH);
+    digitalWrite(P2_1, HIGH);
+    digitalWrite(P2_0, HIGH);
+    sleep(600);
+    digitalWrite(P3_1, LOW);
+    digitalWrite(P2_1, LOW);
+    digitalWrite(P2_0, LOW);
+    sleep(400);
+    if (push1.PRESSED)
+    {
+      break;
+    }
+  }
+  return;
 }
 
 void ledAlt()
 {
-  digitalWrite(P3_1, HIGH);
-  digitalWrite(P2_1, LOW);
-  digitalWrite(P2_0, HIGH);
-  sleep(500);
-  digitalWrite(P3_1, LOW);
-  digitalWrite(P2_1, HIGH);
-  digitalWrite(P2_0, LOW);
-}
+  for (;;)
+  {
 
-//Interrupt function
-void interrupt()
-{
-  wakeup();
+    digitalWrite(P3_1, HIGH);
+    digitalWrite(P2_1, LOW);
+    digitalWrite(P2_0, HIGH);
+    sleep(1500);
+    digitalWrite(P3_1, LOW);
+    digitalWrite(P2_1, HIGH);
+    digitalWrite(P2_0, LOW);
+    sleep(500);
+    if (push1.PRESSED)
+    {
+      break;
+    }
+  }
+  return;
 }
 
 // LED Menu
 
-
-//TODO: MAKE SURE WE CAN INTERRUPT AND MAINTAIN LED FUNCTIONALITY AT SAME TIME
-// LOOK INTO INTERRUPT + GO TO COMBINATION FOR INTERRUPT STARTUP ROUTINE
+// TODO: MAKE SURE WE CAN INTERRUPT AND MAINTAIN LED FUNCTIONALITY AT SAME TIME
+//  LOOK INTO INTERRUPT + GO TO COMBINATION FOR INTERRUPT STARTUP ROUTINE
 
 void ledMenu()
 {
-  attachInterrupt(PUSH2, interrupt, CHANGE);
-
   for (int i; i < 10; i++)
   {
     Serial.print("\r");
@@ -669,7 +691,7 @@ void ledMenu()
   Serial.print("Welcome to the LED Control Menu! \n\n");
 ledprompt:
   Serial.print("Option 5 will return you to the Main Menu \n\n");
-  Serial.print("Please Press Button 2 to cancel!\n\n");
+  Serial.print("Please Press Button 1 to cancel!\n\n");
 
   Serial.print("************************\n");
   Serial.print("*|        MENU        |*\n");
@@ -697,30 +719,24 @@ ledprompt:
   switch (inputData)
   {
   case '1':
+    Serial.print("Press the Reset Button to break out of sleep mode :) \n\n");
     digitalWrite(P3_1, 0);
     digitalWrite(P2_1, 0);
     digitalWrite(P2_0, 0);
     suspend();
-    detachInterrupt(PUSH2);
     goto ledprompt;
   case '2':
     ledWave();
     goto ledprompt;
   case '3':
+    ledBlink();
     goto ledprompt;
   case '4':
-    suspend();
+    ledAlt();
     goto ledprompt;
   case '5':
-    detachInterrupt(PUSH2);
     return;
   }
-
-  /*
-    pinMode(P3_1, OUTPUT);
-    pinMode(P2_1, OUTPUT);
-    pinMode(P2_0, OUTPUT);
-  */
   return;
 }
 
@@ -759,17 +775,10 @@ void setName()
   }
 
   String inputData = Serial.readStringUntil('\n');
-  char secretString1[] = "Pepe";
 
-  char secretAnswer1[] =
-      "\n⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠛⠻⠿⣿⣿⣿⣿⣿⠿⠿⠿⢿⣿⣿⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⣿⣿⠟⠉⠄⠄⠄⠄⠄⠄⠄⠉⢟⠉⠄⠄⠄⠄⠄⠈⢻⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⡿⠃⠄⠄⠤⠐⠉⠉⠉⠉⠉⠒⠬⡣⠤⠤⠄⠄⠄⠤⠤⠿⣿⣿⣿⣿\n⣿⣿⣿⣿⠁⠄⠄⠄⠄⠄⠄⠠⢀⡒⠤⠭⠅⠚⣓⡆⡆⣔⡙⠓⠚⠛⠄⣹⠿⣿\n⣿⠟⠁⡌⠄⠄⠄⢀⠤⠬⠐⣈⠠⡤⠤⠤⣤⠤⢄⡉⢁⣀⣠⣤⣤⣀⣐⡖⢦⣽\n⠏⠄⠄⠄⠄⠄⠄⠄⠐⠄⡿⠛⠯⠍⠭⣉⣉⠉⠍⢀⢀⡀⠉⠉⠉⠒⠒⠂⠄⣻\n⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠩⠵⠒⠒⠲⢒⡢⡉⠁⢐⡀⠬⠍⠁⢉⣉⣴⣿⣿\n⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠉⢉⣒⡉⠁⠁⠄⠄⠉⠂⠙⣉⣁⣀⣙⡿⣿⣿\n⠄⠄⠄⠄⠄⠄⠄⠄⢠⠄⡖⢉⠥⢤⠐⢲⠒⢲⠒⢲⠒⠲⡒⠒⡖⢲⠂⠄⢀⣿\n⠄⠄⠄⠄⠄⠄⠄⠄⠈⢆⡑⢄⠳⢾⠒⢺⠒⢺⠒⠚⡖⠄⡏⠉⣞⠞⠁⣠⣾⣿\n⠄⠄⠄⠄⠄⠄⢆⠄⠄⠄⠈⠢⠉⠢⠍⣘⣒⣚⣒⣚⣒⣒⣉⠡⠤⣔⣾⣿⣿⣿\n⠷⣤⠄⣀⠄⠄⠄⠈⠁⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢀⣤⣾⣿⣿⣿⣿⣿\n⠄⠄⠉⠐⠢⠭⠄⢀⣒⣒⡒⠄⠄⠄⠄⠄⠄⣀⡠⠶⢶⣿⣿⣿⣿⣿⣿⣿⣿⣿\n⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠈⠁⠈⠄⠄⠄⠄⠄⠄⠈⠻⣿⣿⣿⣿⣿⣿⣿\n";
   char secretString2[] = "Senior Design";
   char secretAnswer2[] = "\n   _____            _               ____            _           \n  / ___/___  ____  (_)___  _____   / __ \\___  _____(_)___ _____ \n  \\__ \\/ _ \\/ __ \\/ / __ \\/ ___/  / / / / _ \\/ ___/ / __ `/ __ \\ \n ___/ /  __/ / / / / /_/ / /     / /_/ /  __(__  ) / /_/ / / / /\n/____/\\___/_/ /_/_/\\____/_/     /_____/\\___/____/_/\\__, /_/ /_/ \n                                                  /____/        \n";
 
-  if (inputData == secretString1)
-  {
-    Serial.print(secretAnswer1);
-  }
   if (inputData == secretString2)
   {
     Serial.print(secretAnswer2);
@@ -805,19 +814,31 @@ void wipeBoard()
   return;
 }
 
-
 // Main function "loop"
 void loop()
 {
   // put your main code here, to run repeatedly:
-  lcd.setCursor(2, 0);
-  lcd.write(byte(0));
-  lcd.print("WELCOME TO");
-  lcd.write(byte(0));
-  lcd.setCursor(2, 1);
-  lcd.write(byte(0));
-  lcd.print("VETCON  30");
-  lcd.write(byte(0));
+
+  if (nameToggle == NAMESET)
+  {
+    lcd.setCursor(2, 0);
+    lcd.write(byte(0));
+    lcd.print("VETCON  30");
+    lcd.write(byte(0));
+    lcd.setCursor(0, 1);
+    lcd.print(name);
+  }
+  else
+  {
+    lcd.setCursor(2, 0);
+    lcd.write(byte(0));
+    lcd.print("WELCOME TO");
+    lcd.write(byte(0));
+    lcd.setCursor(2, 1);
+    lcd.write(byte(0));
+    lcd.print("VETCON  30");
+    lcd.write(byte(0));
+  }
 
   ledCheck();
   sleepSeconds(2);
