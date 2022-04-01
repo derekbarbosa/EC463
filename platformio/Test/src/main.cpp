@@ -24,6 +24,8 @@ LiquidCrystal lcd = LiquidCrystal(10, 9, 7, 6, 5, 17);
 
 // Define PushButtons using Button.h
 Button push1(PUSH1); // HARD RESET
+Button push2(PUSH2); // HARD RESET
+
 
 // Define Flags to place in FRAM
 int startFlag PLACE_IN_FRAM;
@@ -95,22 +97,13 @@ void clearStr(char *str);
 
 void setStr(String x, char *str);
 
-
-
-// Interrupt function
-void interrupt()
-{
-  wakeup();
-}
-
 void setup()
 {
   // put your setup code here, to run once:
 
   // Set Up Push Buttons and LCD
   push1.begin();
-
-  attachInterrupt(digitalPinToInterrupt(PUSH2), interrupt, FALLING);
+  push2.begin();
 
   lcd.begin(16, 2);
 
@@ -627,7 +620,7 @@ void ledWave()
     sleep(600);
     digitalWrite(P2_0, LOW);
     sleep(200);
-    if (push1.PRESSED)
+    if (push2.pressed())
     {
       break;
     }
@@ -647,7 +640,7 @@ void ledBlink()
     digitalWrite(P2_1, LOW);
     digitalWrite(P2_0, LOW);
     sleep(400);
-    if (push1.PRESSED)
+    if (push2.pressed())
     {
       break;
     }
@@ -668,7 +661,7 @@ void ledAlt()
     digitalWrite(P2_1, HIGH);
     digitalWrite(P2_0, LOW);
     sleep(500);
-    if (push1.PRESSED)
+    if (push2.pressed())
     {
       break;
     }
@@ -691,7 +684,7 @@ void ledMenu()
   Serial.print("Welcome to the LED Control Menu! \n\n");
 ledprompt:
   Serial.print("Option 5 will return you to the Main Menu \n\n");
-  Serial.print("Please Press Button 1 to cancel!\n\n");
+  Serial.print("Otherwise, press & hold Button 2\n\n");
 
   Serial.print("************************\n");
   Serial.print("*|        MENU        |*\n");
@@ -719,7 +712,7 @@ ledprompt:
   switch (inputData)
   {
   case '1':
-    Serial.print("Press the Reset Button to break out of sleep mode :) \n\n");
+    Serial.print("Entering deep sleep, press the Reset button to wake!");
     digitalWrite(P3_1, 0);
     digitalWrite(P2_1, 0);
     digitalWrite(P2_0, 0);

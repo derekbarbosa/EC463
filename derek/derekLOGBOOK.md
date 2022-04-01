@@ -483,3 +483,18 @@ Entries here are reserved for March
   * https://electronics.stackexchange.com/questions/228181/how-do-you-use-low-power-mode-on-an-msp430g2553-using-an-energia-sketch
   * https://forum.43oh.com/topic/8608-energia-ide-msp430f5529lp-low-power-mode/
   * https://energia.nu/reference/en/language/functions/time/delay/
+
+
+### 3/31/22
+* Meeting with client!
+* Greenlight battery life, and green lit 'swappable' batteries as opposed to building a charge/boost/protect module into our circuit for time constraints.
+* Spent more time attempting to program interrupts. No luck so far. Will reconfigure push buttons in attempt for power-save and customization control.
+* Energia interrupts() detected properly outside of loop() (similar to issue at beginning of last semester), need to figure out how exactly im going to afford the user control over LED menu
+
+## April
+Entries here are reserved for April	
+
+### 4/1/22
+* Not many updates
+* 18650 has 23 hours as of 5:00 pm. Fantastic
+* Exploring options of moving game 3 code into docker container for higher cross-compat.
