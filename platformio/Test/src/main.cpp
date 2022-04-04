@@ -26,7 +26,6 @@ LiquidCrystal lcd = LiquidCrystal(10, 9, 7, 6, 5, 17);
 Button push1(PUSH1); // HARD RESET
 Button push2(PUSH2); // HARD RESET
 
-
 // Define Flags to place in FRAM
 int startFlag PLACE_IN_FRAM;
 int secretFlag PLACE_IN_FRAM;
@@ -96,6 +95,8 @@ void writeString(String s);
 void clearStr(char *str);
 
 void setStr(String x, char *str);
+
+void lcdCheck();
 
 void setup()
 {
@@ -173,6 +174,33 @@ void ledCheck()
   else if (secretFlag4 == 0)
   {
     digitalWrite(P2_0, secretFlag4);
+  }
+}
+
+// Check and 'rebase' the lcd
+
+void lcdCheck()
+{
+  lcd.clear();
+  if (nameToggle == NAMESET)
+  {
+    lcd.setCursor(2, 0);
+    lcd.write(byte(0));
+    lcd.print("VETCON  30");
+    lcd.write(byte(0));
+    lcd.setCursor(0, 1);
+    lcd.print(name);
+  }
+  else
+  {
+    lcd.setCursor(2, 0);
+    lcd.write(byte(0));
+    lcd.print("WELCOME TO");
+    lcd.write(byte(0));
+    lcd.setCursor(2, 1);
+    lcd.write(byte(0));
+    lcd.print("VETCON  30");
+    lcd.write(byte(0));
   }
 }
 
@@ -480,17 +508,8 @@ void resetBadge()
     if (push1.pressed())
     {
       Serial.print("RESETTING.....\n");
-      lcd.clear();
       sleepSeconds(3);
-      SYSCFG0 = FRWPPW | DFWP;
-      startFlag = 0;
-      secretFlag = 0;
-      nameToggle = 0;
-      secretFlag2 = 0;
-      secretFlag3 = 0;
-      secretFlag4 = 0;
-      clearStr(name);
-      SYSCFG0 = FRWPPW | PFWP | DFWP;
+     wipeBoard();
       Serial.print("BADGE RESET\n");
       break;
     }
@@ -610,14 +629,18 @@ void ledWave()
 {
   for (;;)
   {
+    lcd.scrollDisplayLeft();
     digitalWrite(P3_1, HIGH); // Turn LED 1 on
     sleep(600);               // wait half a second
+    lcd.scrollDisplayLeft();
     digitalWrite(P3_1, LOW);  // Turn LED 1 off
     digitalWrite(P2_1, HIGH); // and repeat for LED 2 to 5
     sleep(600);
+    lcd.scrollDisplayLeft();
     digitalWrite(P2_1, LOW);
     digitalWrite(P2_0, HIGH); // and repeat for LED 2 to 5
     sleep(600);
+    lcd.scrollDisplayLeft();
     digitalWrite(P2_0, LOW);
     sleep(200);
     if (push2.pressed())
@@ -632,13 +655,21 @@ void ledBlink()
 {
   for (;;)
   {
+    lcd.scrollDisplayLeft();
     digitalWrite(P3_1, HIGH);
+    lcd.scrollDisplayLeft();
     digitalWrite(P2_1, HIGH);
+    lcd.scrollDisplayLeft();
     digitalWrite(P2_0, HIGH);
+    lcd.scrollDisplayLeft();
     sleep(600);
+    lcd.scrollDisplayLeft();
     digitalWrite(P3_1, LOW);
+    lcd.scrollDisplayLeft();
     digitalWrite(P2_1, LOW);
+    lcd.scrollDisplayLeft();
     digitalWrite(P2_0, LOW);
+    lcd.scrollDisplayLeft();
     sleep(400);
     if (push2.pressed())
     {
@@ -652,14 +683,21 @@ void ledAlt()
 {
   for (;;)
   {
-
+    lcd.scrollDisplayLeft();
     digitalWrite(P3_1, HIGH);
+    lcd.scrollDisplayLeft();
     digitalWrite(P2_1, LOW);
+    lcd.scrollDisplayLeft();
     digitalWrite(P2_0, HIGH);
+    lcd.scrollDisplayLeft();
     sleep(1500);
+    lcd.scrollDisplayLeft();
     digitalWrite(P3_1, LOW);
+    lcd.scrollDisplayLeft();
     digitalWrite(P2_1, HIGH);
+    lcd.scrollDisplayLeft();
     digitalWrite(P2_0, LOW);
+    lcd.scrollDisplayLeft();
     sleep(500);
     if (push2.pressed())
     {
@@ -683,6 +721,10 @@ void ledMenu()
 
   Serial.print("Welcome to the LED Control Menu! \n\n");
 ledprompt:
+
+  lcdCheck();
+  ledCheck();
+
   Serial.print("Option 5 will return you to the Main Menu \n\n");
   Serial.print("Otherwise, press & hold Button 2\n\n");
 
@@ -712,23 +754,28 @@ ledprompt:
   switch (inputData)
   {
   case '1':
-    Serial.print("Entering deep sleep, press the Reset button to wake!");
+    Serial.print("Entering deep sleep, press the Reset button to wake!\n\n");
     digitalWrite(P3_1, 0);
     digitalWrite(P2_1, 0);
     digitalWrite(P2_0, 0);
     suspend();
     goto ledprompt;
   case '2':
+    lcd.setCursor(2, 0);
     ledWave();
     goto ledprompt;
   case '3':
+    lcd.setCursor(2, 0);
     ledBlink();
     goto ledprompt;
   case '4':
+    lcd.setCursor(2, 0);
     ledAlt();
     goto ledprompt;
   case '5':
     return;
+  default:
+    goto ledprompt;
   }
   return;
 }
@@ -811,28 +858,7 @@ void wipeBoard()
 void loop()
 {
   // put your main code here, to run repeatedly:
-
-  if (nameToggle == NAMESET)
-  {
-    lcd.setCursor(2, 0);
-    lcd.write(byte(0));
-    lcd.print("VETCON  30");
-    lcd.write(byte(0));
-    lcd.setCursor(0, 1);
-    lcd.print(name);
-  }
-  else
-  {
-    lcd.setCursor(2, 0);
-    lcd.write(byte(0));
-    lcd.print("WELCOME TO");
-    lcd.write(byte(0));
-    lcd.setCursor(2, 1);
-    lcd.write(byte(0));
-    lcd.print("VETCON  30");
-    lcd.write(byte(0));
-  }
-
+  lcdCheck();
   ledCheck();
   sleepSeconds(2);
   const char *welcome[] = {
