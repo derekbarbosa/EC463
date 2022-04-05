@@ -499,7 +499,16 @@ Entries here are reserved for April
 * 18650 has 23 hours as of 5:00 pm. Fantastic
 * Exploring options of moving game 3 code into docker container for higher cross-compat.
 
-### 4/4/228181
+### 4/4/22
 * Finished push-button and sleep() code, refactored/refined codebase and finished LED menu support
 * Looking into adding physical toggle for LCD backlight
 * began looking into enclosure manuf. for ECE day
+
+### 4/5/22
+* Upon further inspection, Button 2 is the only button onboard that does not have a 1-for-1 digital pin representation (pin 2.3) on the TI MSP430 EXP-FR2433 module
+  * Refactored code to work solely off button 1. Slight changes in LCD menu logic to detect button1.pressed()
+* Discussed PCB design with Julian and Carlos
+* Began exploring resources for 3D-printing the enclosure for the MSP, PCB, Battery, LCD, and Switches.
+* Began testing fit of a protoboard on the MSP. Plan is to create a makeshift "hat" for the MSP and pull all necessary leads from there.
+  * Eventually final PCB design will be similar, but have resistors/LEDs pre-assembled on board.
+  

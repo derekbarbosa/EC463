@@ -24,7 +24,6 @@ LiquidCrystal lcd = LiquidCrystal(10, 9, 7, 6, 5, 17);
 
 // Define PushButtons using Button.h
 Button push1(PUSH1); // HARD RESET
-Button push2(PUSH2); // HARD RESET
 
 // Define Flags to place in FRAM
 int startFlag PLACE_IN_FRAM;
@@ -104,7 +103,6 @@ void setup()
 
   // Set Up Push Buttons and LCD
   push1.begin();
-  push2.begin();
 
   lcd.begin(16, 2);
 
@@ -509,7 +507,7 @@ void resetBadge()
     {
       Serial.print("RESETTING.....\n");
       sleepSeconds(3);
-     wipeBoard();
+      wipeBoard();
       Serial.print("BADGE RESET\n");
       break;
     }
@@ -643,7 +641,7 @@ void ledWave()
     lcd.scrollDisplayLeft();
     digitalWrite(P2_0, LOW);
     sleep(200);
-    if (push2.pressed())
+    if (push1.pressed())
     {
       break;
     }
@@ -671,7 +669,7 @@ void ledBlink()
     digitalWrite(P2_0, LOW);
     lcd.scrollDisplayLeft();
     sleep(400);
-    if (push2.pressed())
+    if (push1.pressed())
     {
       break;
     }
@@ -699,7 +697,7 @@ void ledAlt()
     digitalWrite(P2_0, LOW);
     lcd.scrollDisplayLeft();
     sleep(500);
-    if (push2.pressed())
+    if (push1.pressed())
     {
       break;
     }
@@ -726,7 +724,7 @@ ledprompt:
   ledCheck();
 
   Serial.print("Option 5 will return you to the Main Menu \n\n");
-  Serial.print("Otherwise, press & hold Button 2\n\n");
+  Serial.print("Otherwise, press & hold Button 1 \n\n");
 
   Serial.print("************************\n");
   Serial.print("*|        MENU        |*\n");
@@ -846,6 +844,7 @@ void wipeBoard()
   nameToggle = 0;
   secretFlag2 = 0;
   secretFlag3 = 0;
+  secretFlag4 = 0;
   wrongFlag = 0;
   lcd.clear();
   clearStr(name);
