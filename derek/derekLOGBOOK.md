@@ -498,3 +498,8 @@ Entries here are reserved for April
 * Not many updates
 * 18650 has 23 hours as of 5:00 pm. Fantastic
 * Exploring options of moving game 3 code into docker container for higher cross-compat.
+
+### 4/4/228181
+* Finished push-button and sleep() code, refactored/refined codebase and finished LED menu support
+* Looking into adding physical toggle for LCD backlight
+* began looking into enclosure manuf. for ECE day
