@@ -23,7 +23,7 @@ LIQUID CRYSTAL: 10,  9,   7,   6,   5,   17
 LiquidCrystal lcd = LiquidCrystal(10, 9, 7, 6, 5, 17);
 
 // Define PushButtons using Button.h
-Button push1(PUSH1); // HARD RESET
+Button push2(PUSH2); // HARD RESET
 
 // Define Flags to place in FRAM
 int startFlag PLACE_IN_FRAM;
@@ -102,7 +102,7 @@ void setup()
   // put your setup code here, to run once:
 
   // Set Up Push Buttons and LCD
-  push1.begin();
+  push2.begin();
 
   lcd.begin(16, 2);
 
@@ -503,7 +503,7 @@ void resetBadge()
   while (true)
   {
     sleepSeconds(5);
-    if (push1.pressed())
+    if (push2.pressed())
     {
       Serial.print("RESETTING.....\n");
       sleepSeconds(3);
@@ -641,7 +641,7 @@ void ledWave()
     lcd.scrollDisplayLeft();
     digitalWrite(P2_0, LOW);
     sleep(200);
-    if (push1.pressed())
+    if (push2.pressed())
     {
       break;
     }
@@ -669,7 +669,7 @@ void ledBlink()
     digitalWrite(P2_0, LOW);
     lcd.scrollDisplayLeft();
     sleep(400);
-    if (push1.pressed())
+    if (push2.pressed())
     {
       break;
     }
@@ -697,7 +697,7 @@ void ledAlt()
     digitalWrite(P2_0, LOW);
     lcd.scrollDisplayLeft();
     sleep(500);
-    if (push1.pressed())
+    if (push2.pressed())
     {
       break;
     }

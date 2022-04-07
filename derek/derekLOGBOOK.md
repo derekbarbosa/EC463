@@ -512,3 +512,7 @@ Entries here are reserved for April
 * Began testing fit of a protoboard on the MSP. Plan is to create a makeshift "hat" for the MSP and pull all necessary leads from there.
   * Eventually final PCB design will be similar, but have resistors/LEDs pre-assembled on board.
   
+### 4/7/22
+* Wired a hardware circuit and refactored the code to work solely off button2 (pin 2.7). Physical push button wired to digital pin now works as intended.
+* Tested some switches to cut off battery power, planning to append shottkey diode post-PCB
+* On track to get schematic sent out this Friday
