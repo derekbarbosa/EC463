@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/ryansullivan/Desktop/game3/core_functions.hpp
+string
+-
+cstring
+-
+iostream
+-
+algorithm
+-
+chrono
+-
+unistd.h
+-
+thread
+-
+string
+-
+sstream
+-
+vector
+-
+fstream
+-
+stdlib.h
+-
+
+/Users/ryansullivan/Desktop/game3/game.cpp
+core_functions.hpp
+/Users/ryansullivan/Desktop/game3/core_functions.hpp
+

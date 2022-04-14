@@ -1,0 +1,47 @@
+#include <msp430.h> 
+
+
+/**
+ * main.c
+ */
+int main(void)
+{
+    WDTCTL = WDTPW | WDTHOLD;
+
+    HAL_System_Init();
+    HAL_IO_InitButtons();
+    initRtc();
+    initAdc();
+
+    P1OUT ^= BIT1;
+    __delay_cycles(16000000);
+    P1OUT ^= BIT1;
+    /*// Configure UART
+    UCA0CTLW0 |= UCSWRST;                     // Put eUSCI in reset
+    UCA0CTLW0 |= UCSSEL__SMCLK;
+    // Baud Rate calculation
+    UCA0BR0 = 8;                              // 1000000/115200 = 8.68
+    UCA0MCTLW = 0xD600;                       // 1000000/115200 - INT(1000000/115200)=0.68
+                                              // UCBRSx value = 0xD6 (See UG)
+    UCA0BR1 = 0;
+    UCA0CTLW0 &= ~UCSWRST;                    // Initialize eUSCI
+    UCA0IE |= UCRXIE;                         // Enable USCI_A0 RX interrupt */
+
+
+    unsigned int select = 0;
+    //const char game[] = "suck me";
+    //const char name_tag[] = "NAME-TAG";
+ //   const char options[][] = {game, name_tag}
+
+
+//main_menu:
+    while(1){
+        if((P1IN & BIT3)!=BIT3)
+        {
+            __delay_cycles(220000);
+            P1OUT ^= BIT0;
+            select++;
+        }
+    }
+	return 0;
+}

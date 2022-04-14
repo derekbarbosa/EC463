@@ -1,0 +1,68 @@
+#include <msp430.h> 
+
+
+/**
+ * main.c
+ */
+
+void signal_SOS(void){
+    P1OUT ^= BIT1;
+    __delay_cycles(16000000);
+    P1OUT ^= BIT1;
+    __delay_cycles(16000000);
+    P1OUT ^= BIT1;
+    __delay_cycles(16000000);
+    P1OUT ^= BIT1;
+    __delay_cycles(16000000);
+    P1OUT ^= BIT1;
+    __delay_cycles(16000000);
+    P1OUT ^= BIT1;
+    __delay_cycles(16000000);
+
+    P1OUT ^= BIT1;
+    __delay_cycles(32000000);
+    P1OUT ^= BIT1;
+    __delay_cycles(16000000);
+    P1OUT ^= BIT1;
+    __delay_cycles(32000000);
+    P1OUT ^= BIT1;
+    __delay_cycles(16000000);
+    P1OUT ^= BIT1;
+    __delay_cycles(32000000);
+    P1OUT ^= BIT1;
+
+    __delay_cycles(16000000);
+    P1OUT ^= BIT1;
+    __delay_cycles(16000000);
+    P1OUT ^= BIT1;
+    __delay_cycles(16000000);
+    P1OUT ^= BIT1;
+    __delay_cycles(16000000);
+    P1OUT ^= BIT1;
+    __delay_cycles(16000000);
+    P1OUT ^= BIT1;
+    __delay_cycles(16000000);
+}
+
+void main(void)
+{
+    WDTCTL = WDTPW | WDTHOLD;
+
+    signal_SOS();
+
+    P2IFG &= ~(BIT3 | BIT7);
+
+    unsigned int select = 0;
+    char buttonS1Pressed = 0;
+    char buttonS2Pressed = 0;
+    char rtcWakeup = 0;
+
+    __enable_interrupt();
+
+
+    while(1){
+        __delay_cycles(220000);
+        P1OUT ^= BIT1;
+        select++;
+    }
+}
