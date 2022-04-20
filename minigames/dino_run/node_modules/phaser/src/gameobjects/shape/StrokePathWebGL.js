@@ -22,7 +22,7 @@ var Utils = require('../../renderer/webgl/Utils');
 var StrokePathWebGL = function (pipeline, src, alpha, dx, dy)
 {
     var strokeTint = pipeline.strokeTint;
-    var strokeTintColor = Utils.getTintAppendFloatAlphaAndSwap(src.strokeColor, src.strokeAlpha * alpha);
+    var strokeTintColor = Utils.getTintAppendFloatAlpha(src.strokeColor, src.strokeAlpha * alpha);
 
     strokeTint.TL = strokeTintColor;
     strokeTint.TR = strokeTintColor;
@@ -46,8 +46,6 @@ var StrokePathWebGL = function (pipeline, src, alpha, dx, dy)
     {
         var px2 = path[i] - dx;
         var py2 = path[i + 1] - dy;
-
-        pipeline.setTexture2D();
 
         pipeline.batchLine(
             px1,

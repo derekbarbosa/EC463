@@ -5,6 +5,7 @@
  */
 
 var GetOverlapX = require('./GetOverlapX');
+var ProcessX = require('./ProcessX');
 
 /**
  * Separates two overlapping bodies on the X-axis (horizontally).
@@ -21,61 +22,40 @@ var GetOverlapX = require('./GetOverlapX');
  * @param {boolean} overlapOnly - If `true`, the bodies will only have their overlap data set and no separation will take place.
  * @param {number} bias - A value to add to the delta value during overlap checking. Used to prevent sprite tunneling.
  *
- * @return {boolean} `true` if the two bodies overlap horizontally, otherwise `false`.
+ * @return {boolean} `true` if the two bodies overlap vertically, otherwise `false`.
  */
 var SeparateX = function (body1, body2, overlapOnly, bias)
 {
     var overlap = GetOverlapX(body1, body2, overlapOnly, bias);
 
+    var body1Immovable = body1.immovable;
+    var body2Immovable = body2.immovable;
+
     //  Can't separate two immovable bodies, or a body with its own custom separation logic
-    if (overlapOnly || overlap === 0 || (body1.immovable && body2.immovable) || body1.customSeparateX || body2.customSeparateX)
+    if (overlapOnly || overlap === 0 || (body1Immovable && body2Immovable) || body1.customSeparateX || body2.customSeparateX)
     {
         //  return true if there was some overlap, otherwise false
         return (overlap !== 0) || (body1.embedded && body2.embedded);
     }
 
-    //  Adjust their positions and velocities accordingly (if there was any overlap)
-    var v1 = body1.velocity.x;
-    var v2 = body2.velocity.x;
+    var blockedState = ProcessX.Set(body1, body2, overlap);
 
-    if (!body1.immovable && !body2.immovable)
+    if (!body1Immovable && !body2Immovable)
     {
-        overlap *= 0.5;
-
-        body1.x -= overlap;
-        body2.x += overlap;
-
-        var nv1 = Math.sqrt((v2 * v2 * body2.mass) / body1.mass) * ((v2 > 0) ? 1 : -1);
-        var nv2 = Math.sqrt((v1 * v1 * body1.mass) / body2.mass) * ((v1 > 0) ? 1 : -1);
-        var avg = (nv1 + nv2) * 0.5;
-
-        nv1 -= avg;
-        nv2 -= avg;
-
-        body1.velocity.x = avg + nv1 * body1.bounce.x;
-        body2.velocity.x = avg + nv2 * body2.bounce.x;
-    }
-    else if (!body1.immovable)
-    {
-        body1.x -= overlap;
-        body1.velocity.x = v2 - v1 * body1.bounce.x;
-
-        //  This is special case code that handles things like vertically moving platforms you can ride
-        if (body2.moves)
+        if (blockedState > 0)
         {
-            body1.y += (body2.y - body2.prev.y) * body2.friction.y;
+            return true;
         }
-    }
-    else
-    {
-        body2.x += overlap;
-        body2.velocity.x = v1 - v2 * body2.bounce.x;
 
-        //  This is special case code that handles things like vertically moving platforms you can ride
-        if (body1.moves)
-        {
-            body2.y += (body1.y - body1.prev.y) * body1.friction.y;
-        }
+        return ProcessX.Check();
+    }
+    else if (body1Immovable)
+    {
+        ProcessX.RunImmovableBody1(blockedState);
+    }
+    else if (body2Immovable)
+    {
+        ProcessX.RunImmovableBody2(blockedState);
     }
 
     //  If we got this far then there WAS overlap, and separation is complete, so return true

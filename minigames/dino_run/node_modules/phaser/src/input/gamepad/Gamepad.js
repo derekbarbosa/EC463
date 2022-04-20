@@ -313,6 +313,16 @@ var Gamepad = new Class({
          * @since 3.10.0
          */
         this.rightStick = new Vector2();
+
+        /**
+         * When was this Gamepad created? Used to avoid duplicate event spamming in the update loop.
+         *
+         * @name Phaser.Input.Gamepad.Gamepad#_created
+         * @type {number}
+         * @private
+         * @since 3.50.0
+         */
+        this._created = performance.now();
     },
 
     /**
@@ -321,7 +331,7 @@ var Gamepad = new Class({
      * @method Phaser.Input.Gamepad.Gamepad#getAxisTotal
      * @since 3.10.0
      *
-     * @return {integer} The total number of axes this Gamepad claims to support.
+     * @return {number} The total number of axes this Gamepad claims to support.
      */
     getAxisTotal: function ()
     {
@@ -336,7 +346,7 @@ var Gamepad = new Class({
      * @method Phaser.Input.Gamepad.Gamepad#getAxisValue
      * @since 3.10.0
      *
-     * @param {integer} index - The index of the axes to get the value for.
+     * @param {number} index - The index of the axes to get the value for.
      *
      * @return {number} The value of the axis, between 0 and 1.
      */
@@ -368,7 +378,7 @@ var Gamepad = new Class({
      * @method Phaser.Input.Gamepad.Gamepad#getButtonTotal
      * @since 3.10.0
      *
-     * @return {integer} The total number of buttons this Gamepad claims to have.
+     * @return {number} The total number of buttons this Gamepad claims to have.
      */
     getButtonTotal: function ()
     {
@@ -385,7 +395,7 @@ var Gamepad = new Class({
      * @method Phaser.Input.Gamepad.Gamepad#getButtonValue
      * @since 3.10.0
      *
-     * @param {integer} index - The index of the button to get the value for.
+     * @param {number} index - The index of the button to get the value for.
      *
      * @return {number} The value of the button, between 0 and 1.
      */
@@ -401,7 +411,7 @@ var Gamepad = new Class({
      * @method Phaser.Input.Gamepad.Gamepad#isButtonDown
      * @since 3.10.0
      *
-     * @param {integer} index - The index of the button to get the value for.
+     * @param {number} index - The index of the button to get the value for.
      *
      * @return {boolean} `true` if the button is considered as being pressed down, otherwise `false`.
      */
@@ -420,6 +430,11 @@ var Gamepad = new Class({
      */
     update: function (pad)
     {
+        if (pad.timestamp < this._created)
+        {
+            return;
+        }
+
         var i;
 
         //  Sync the button values
