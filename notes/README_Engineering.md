@@ -23,6 +23,7 @@
     - [:four: Game 3](#four-game-3)
   - [:hammer: Hardware Components](#hammer-hardware-components)
     - [:one: PCB Schematics](#one-pcb-schematics)
+    - [:two: Fabrication Files](#two-fabrication-files)
   - [:memo: Some Notes](#memo-some-notes)
 
 ## :star: About this Guide
@@ -67,37 +68,46 @@ Interact with the "Shell" and navigate the program
 - Navigate to the [dino_run](minigames/dino_run/) folder
 - Install the package dependencies via NPM ``` npm install ``` or Yarn ``` yarn install ```
 - View options available via npm by typing it into your terminal ``` npm run``` or ``` yarn run```
-- Run the 
-CLONE GITHUB.COM/DEREKBARBOSA/EC463WEBGAMES
-INSTALL DEPENDENCIES VIA NPM
-NPM INSTALL
-RUN THE GAME LOCALLY 
-NPM RUN *OPTION* (FOLLOW PROMPTS)
-GAME SHOULD RUN ON LOCALHOST:8000
-PLAY GAME
-CHECK CONSOLE LOG WHEN “GAME OVER” IS REACHED
-YOU HAVE NOW SUCCESSFULLY RUN GAME 1
+- Run the game locally via ```npm run serve``` or ```npm run start``` or the equivalent with ``` yarn ```
+- Navigate to the proper localhost port
+- Play the game :)
+
+:star2: SUCCESS! :star2:
+You have now succesfully built the dino run code!
 
 ### :three: Game 2
 <h5> Coin Flip </h5>
-CLONE GITHUB.COM/DEREKBARBOSA/EC463WEBGAMES2
-DOUBLE CLICK THE .HTML FILE
-VOILA 
+
+- Navigate to the [coin_flip](minigames/coin_flip) folder
+- Launch the .HTML file
+- Voila!
+
+:star2: SUCCESS! :star2:
+You have now succesfully built the coin flip code!
 
 ### :four: Game 3
 <h5> Text-based Adventure</h5>
-NAVIGATE to text_based
-Run the CMAKE file
-Game built
+
+- Navigate to the [text_based](mingames/text_based) folder
+- Run the "make" bash script to trigger the CMake Build Rules ``` ./make ```
+- Run the built game ``` ./game ```
+- Play the game
+- Cleanup when finished using the "clean" script ```./clean```
+
+:star2: SUCCESS! :star2:
+You have now succesfully built the text based code!
 
 ## :hammer: Hardware Components
 
 ### :one: PCB Schematics
+- Navigate to the [pcb](pcb/) folder in the root of the repository
+- Open the .PRO file with KiCad
+- Select from any of the options presented (PCB Viewer, Schematic Viewer, Footprint Viewer, etc.)
 
-DOWNLOAD AND INSTALL KICAD (OR WHATEVER ECAD SOFTWARE OF YOUR CHOICE, KICAD IS A FREE AND OPEN-SOURCE SOFTWARE THAT IS WIDELY USED AND SUPPORTED)
-NAVIGATE TO THE “PCB” FOLDER IN THE PARENT REPO
-OPEN THE .PRO FILE
-VOILA
+### :two: Fabrication Files
+- Within the pcb folder, navigate to the [fab_files](pcb/fab_files/) folder
+- View/Open the Gerber (.gbr) or Drill (.drl) files with your eCAD software of choice
+
 
 ## :memo: Some Notes
 If you'd like to continue this project, you might want to [fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) OR [duplicate](https://docs.github.com/en/repositories/creating-and-managing-repositories/duplicating-a-repository) this repository rather than attempting to push your own commits/do a pull request. This way, you get to have as much creative freedom with the code as you desire (obviously respecting the GNU GPL v3 license).
