@@ -71,13 +71,13 @@
 ## :star2: About the Project
 
 ### :label: Current Directory Structure
-<a href="https://www.github.com/derekbarbosa/EC463/tree/main/pcb">pcb</a> – All PCB/eCAD files and schematics. Includes manufacturing .gbr files
+<a href="pcb/">pcb</a> – All PCB/eCAD files and schematics. Includes manufacturing .gbr files
 
-<a href="https://www.github.com/derekbarbosa/EC463/tree/main/platformio">platformio</a> – All code/firmware files concerning the MSP430 development board
+<a href="platformio/">platformio</a> – All code/firmware files concerning the MSP430 development board
 
-<a href="https://www.github.com/derekbarbosa/EC463/tree/main/notes">notes</a> – Inital interview notes, MSP Documentation, useful infographics, additional READMEs
+<a href="notes/">notes</a> – Inital interview notes, MSP Documentation, useful infographics, additional READMEs
 
-<a href="https://www.github.com/derekbarbosa/EC463/tree/main/minigames">minigames</a> – All code regarding Games 1, 2, and 3 (with CMake Files)
+<a href="minigames/">minigames</a> – All code regarding Games 1, 2, and 3 (with CMake Files)
 
 <a href="reports/">reports</a> – All previous reports for the 2021-2022 semester
 
@@ -179,7 +179,7 @@ Clone the project
 ```
 
 Then refer to the Quick Start Guide in its entirety! :)
-[Quick Start Guide](./notes/README_Engineering.md)
+[Quick Start Guide](notes/README_Engineering.md)
 
 
 <!-- Usage -->
