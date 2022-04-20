@@ -1,6 +1,6 @@
 <div align=center>
-<h1> :skull: VETCON BADGE :skull: </h1>
-<h1> :stopwatch: :athletic_shoe: Quick Start Guide </h2>
+<h1> :skull: VETCON BADGE :skull: <br/>
+:stopwatch: :athletic_shoe: Quick Start Guide </h1>
 <h3> For the full manuals, please view the following: </h3>
 <h4>
 <h4>
@@ -34,9 +34,9 @@
 1. Have a working [MSP-EXP430FR2433](https://www.ti.com/tool/MSP-EXP430FR2433) development board (complete with MicroUSB to USB-A cable).
 a. Alternatively, have a [Wiring Framework](http://wiring.org.co/) compatible board that is listed on [PlatformIO's supported board list](https://registry.platformio.org/search?t=platform&f=arduino&p=1) and is cross-compile compatible with the [Arduino](https://www.arduino.cc/en/software) or [Energia](https://energia.nu/) IDEs.
 2. Download and install the [PlatformIO Toolchain](https://platformio.org/platformio-ide) via VSCode Extension (recommended).
-   a. It would be wise to read up on some of the documentation and get your own "Hello World" going to faciltate the rest of this guide!
+   1. It would be wise to read up on some of the documentation and get your own "Hello World" going to faciltate the rest of this guide!
 3. Have this repo cloned ```git clone https://github.com/derekbarbosa/EC463```
-   a. This repo houses everything you need for all components of the project. If you don't have it locally on your machine, now would be a good time to have it downloaded.
+   1. This repo houses everything you need for all components of the project. If you don't have it locally on your machine, now would be a good time to have it downloaded.
 4. If on Windows or any other non **nix*-based OS, have PuTTY (or your terminal emulator of choice) installed and ready to connect via serial (9600-ish baud). 
 5. Download and Install [KiCad](https://www.kicad.org/download/) (recommended) or any eCAD software of your choice.
 ## :computer: Software Components
@@ -65,7 +65,7 @@ Interact with the "Shell" and navigate the program
 ### :two: Game 1
 <h5> Dino Run </h5>
 
-- Navigate to the [dino_run](minigames/dino_run/) folder
+- Navigate to the [dino_run](../minigames/dino_run/) folder
 - Install the package dependencies via NPM ``` npm install ``` or Yarn ``` yarn install ```
 - View options available via npm by typing it into your terminal ``` npm run``` or ``` yarn run```
 - Run the game locally via ```npm run serve``` or ```npm run start``` or the equivalent with ``` yarn ```
@@ -78,7 +78,7 @@ You have now succesfully built the dino run code!
 ### :three: Game 2
 <h5> Coin Flip </h5>
 
-- Navigate to the [coin_flip](minigames/coin_flip) folder
+- Navigate to the [coin_flip](../minigames/coin_flip) folder
 - Launch the .HTML file
 - Voila!
 
@@ -88,7 +88,7 @@ You have now succesfully built the coin flip code!
 ### :four: Game 3
 <h5> Text-based Adventure</h5>
 
-- Navigate to the [text_based](mingames/text_based) folder
+- Navigate to the [text_based](../mingames/text_based) folder
 - Run the "make" bash script to trigger the CMake Build Rules ``` ./make ```
 - Run the built game ``` ./game ```
 - Play the game
@@ -100,12 +100,12 @@ You have now succesfully built the text based code!
 ## :hammer: Hardware Components
 
 ### :one: PCB Schematics
-- Navigate to the [pcb](pcb/) folder in the root of the repository
+- Navigate to the [pcb](../pcb/) folder in the root of the repository
 - Open the .PRO file with KiCad
 - Select from any of the options presented (PCB Viewer, Schematic Viewer, Footprint Viewer, etc.)
 
 ### :two: Fabrication Files
-- Within the pcb folder, navigate to the [fab_files](pcb/fab_files/) folder
+- Within the pcb folder, navigate to the [fab_files](../pcb/fab_files/) folder
 - View/Open the Gerber (.gbr) or Drill (.drl) files with your eCAD software of choice
 
 
