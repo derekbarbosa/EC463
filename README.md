@@ -79,13 +79,13 @@
 
 <a href="https://www.github.com/derekbarbosa/EC463/tree/main/minigames">minigames</a> – All code regarding Games 1, 2, and 3 (with CMake Files)
 
-<a href="https://www.github.com/derekbarbosa/EC463/tree/main/reports">reports</a> – All previous reports for the 2021-2022 semester
+<a href="reports/">reports</a> – All previous reports for the 2021-2022 semester
 
-<a href="https://www.github.com/derekbarbosa/EC463/tree/main/derek">derek</a> – Derek's personal folder for logbook maintenance
+<a href="derek/">derek</a> – Derek's personal folder for logbook maintenance
 
-<a href="https://www.github.com/derekbarbosa/EC463/tree/main/kircher">kircher</a> – John's personal folder for logbook maintenance
+<a href="kircher/">kircher</a> – John's personal folder for logbook maintenance
 
-<a href="https://www.github.com/derekbarbosa/EC463/tree/main/etc">etc</a> – Asset storage (logos, etc.)
+<a href="etc/">etc</a> – Asset storage (logos, etc.)
 
 <!-- Screenshots -->
 ### :camera: Screenshots
