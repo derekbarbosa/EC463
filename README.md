@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="etc/vetcon.png" alt="logo" width="200" height="auto" />
+  <img src="etc/vetcon.png" alt="logo" width="400" height="auto" />
   <h1> :skull: VETCON BADGE :skull: </h1>
   
   <p>
@@ -14,7 +14,7 @@
 <!-- Badges -->
 <p>
   <a href="https://github.com/derekbarbosa/EC463/graphs/contributors">
-    <img src="https://img.shields.io/badge/contributers-4-red" alt="contributors" />
+    <img src="https://img.shields.io/badge/contributers-5-red" alt="contributors" />
   </a>
   <a href="">
     <img src="https://img.shields.io/github/last-commit/derekbarbosa/EC463" alt="last update" />
@@ -91,9 +91,29 @@
 ### :camera: Screenshots
 
 <div align="center"> 
-  <img src="https://placehold.co/600x400?text=Your+Screenshot+here" alt="screenshot" />
+  <p> PlatformIO VSCode Plugin "Home" Page </p>
+  <img src="etc/piocap.png" alt="PIO Home Page" width="800" height="auto" />
 </div>
 
+<div align="center"> 
+  <p> Sample Terminal Menu via Serial </p>
+  <img src="etc/serialcap.png" alt="Serial Terminal" width="800" height="auto"  />
+</div>
+
+<div align="center"> 
+  <p> Minigame #1 "Dino Run"</p>
+  <img src="etc/game1cap.png" alt="Game 1" width="800" height="auto"  />
+</div>
+
+
+<div align="center"> 
+  <p> Minigame #2 "Coin Flip" </p>
+  <img src="etc/game2cap.png" alt="Game 2" width="800" height="auto"  />
+</div>
+<div align="center"> 
+  <p> Minigame #3 "Text-based adventure" </p>
+  <img src="etc/game3cap.png" alt="Game 3" width="800" height="auto"  />
+</div>
 
 <!-- TechStack -->
 ### :space_invader: Tech Stack
@@ -205,13 +225,13 @@ Mike Jones - jonesmlr (AT) gmail (dot) com
 
 <h4> Team Members </h4>
 
-Derek Barbosa - dbarbosa (AT) bu (dot) edu
-Ryan Sullivan - ryanbs (AT) bu (dot) edu
-John Kircher - kircherj (AT) bu (dot) edu
-Julian Padgett - jpadgett (AT) bu (dot) edu
-Carlos Ortiz - cartex10 (AT) bu (dot) edu
+<br> Derek Barbosa - dbarbosa (AT) bu (dot) edu </br>
+<br> Ryan Sullivan - ryanbs (AT) bu (dot) edu </br>
+<br> John Kircher - kircherj (AT) bu (dot) edu </br>
+<br> Julian Padgett - jpadgett (AT) bu (dot) edu </br>
+<br> Carlos Ortiz - cartex10 (AT) bu (dot) edu </br>
 
-Project Link: [https://github.com/derekbarbosa/EC463](https://github.com/derekbarbosa/EC463)
+<br> Project Link: [https://github.com/derekbarbosa/EC463](https://github.com/derekbarbosa/EC463) </br>
 
 
 <!-- Acknowledgments -->
