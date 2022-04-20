@@ -36,9 +36,9 @@
 <h4>
     <a href="PLACEHOLDER">View Demo</a>
   <span> · </span>
-    <a href="./notes/README_Engineering.md">Quick Start Guide</a>
+    <a href="notes/README_Engineering.md">Quick Start Guide</a>
   <span> · </span>
-    <a href="./notes/README_Hardware.md">Hardware Guide</a>
+    <a href="notes/README_Hardware.md">Hardware Guide</a>
   <span> · </span>
     <a href="./notes/README_Software.md">Software Guide</a>
 </h4>
@@ -72,12 +72,19 @@
 
 ### :label: Current Directory Structure
 <a href="https://www.github.com/derekbarbosa/EC463/tree/main/pcb">pcb</a> – All PCB/eCAD files and schematics. Includes manufacturing .gbr files
+
 <a href="https://www.github.com/derekbarbosa/EC463/tree/main/platformio">platformio</a> – All code/firmware files concerning the MSP430 development board
+
 <a href="https://www.github.com/derekbarbosa/EC463/tree/main/notes">notes</a> – Inital interview notes, MSP Documentation, useful infographics, additional READMEs
+
 <a href="https://www.github.com/derekbarbosa/EC463/tree/main/minigames">minigames</a> – All code regarding Games 1, 2, and 3 (with CMake Files)
+
 <a href="https://www.github.com/derekbarbosa/EC463/tree/main/reports">reports</a> – All previous reports for the 2021-2022 semester
+
 <a href="https://www.github.com/derekbarbosa/EC463/tree/main/derek">derek</a> – Derek's personal folder for logbook maintenance
+
 <a href="https://www.github.com/derekbarbosa/EC463/tree/main/kircher">kircher</a> – John's personal folder for logbook maintenance
+
 <a href="https://www.github.com/derekbarbosa/EC463/tree/main/etc">etc</a> – Asset storage (logos, etc.)
 
 <!-- Screenshots -->
