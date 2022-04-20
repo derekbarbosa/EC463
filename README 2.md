@@ -4,7 +4,10 @@
   <h1> :skull: VETCON BADGE :skull: </h1>
   
   <p>
-    TEAM 32 2021-2022  
+    TEAM 32 <span> · </span>2021-2022  
+  </p>
+  <p>
+  SEMPER DISCO
   </p>
   
   
@@ -33,11 +36,11 @@
 <h4>
     <a href="PLACEHOLDER">View Demo</a>
   <span> · </span>
-    <a href="PLACEHOLDER">Quick Start Guide</a>
+    <a href="./notes/README_Engineering.md">Quick Start Guide</a>
   <span> · </span>
-    <a href="PLACEHOLDER">Hardware Guide</a>
+    <a href="./notes/README_Hardware.md">Hardware Guide</a>
   <span> · </span>
-    <a href="PLACEHOLDER">Software Guide</a>
+    <a href="./notes/README_Software.md">Software Guide</a>
 </h4>
 
 </div>
@@ -49,13 +52,12 @@
 
 - [:notebook_with_decorative_cover: Table of Contents](#notebook_with_decorative_cover-table-of-contents)
   - [:star2: About the Project](#star2-about-the-project)
+    - [:label: Current Directory Structure](#label-current-directory-structure)
     - [:camera: Screenshots](#camera-screenshots)
     - [:space_invader: Tech Stack](#space_invader-tech-stack)
     - [:dart: Features](#dart-features)
   - [:toolbox: Getting Started](#toolbox-getting-started)
-    - [:bangbang: Prerequisites](#bangbang-prerequisites)
-    - [:running: Run Locally](#running-run-locally)
-    - [:triangular_flag_on_post: Deployment](#triangular_flag_on_post-deployment)
+    - [:running: Quick(ly) Start!](#running-quickly-start)
   - [:eyes: Usage](#eyes-usage)
   - [:warning: License](#warning-license)
   - [:handshake: Contact](#handshake-contact)
@@ -66,6 +68,15 @@
 <!-- About the Project -->
 ## :star2: About the Project
 
+### :label: Current Directory Structure
+<a href="https://www.github.com/derekbarbosa/EC463/tree/main/pcb">pcb</a> – All PCB/eCAD files and schematics. Includes manufacturing .gbr files
+<a href="https://www.github.com/derekbarbosa/EC463/tree/main/platformio">platformio</a> – All code/firmware files concerning the MSP430 development board
+<a href="https://www.github.com/derekbarbosa/EC463/tree/main/notes">notes</a> – Inital interview notes, MSP Documentation, useful infographics, additional READMEs
+<a href="https://www.github.com/derekbarbosa/EC463/tree/main/minigames">minigames</a> – All code regarding Games 1, 2, and 3 (with CMake Files)
+<a href="https://www.github.com/derekbarbosa/EC463/tree/main/reports">reports</a> – All previous reports for the 2021-2022 semester
+<a href="https://www.github.com/derekbarbosa/EC463/tree/main/derek">derek</a> – Derek's personal folder for logbook maintenance
+<a href="https://www.github.com/derekbarbosa/EC463/tree/main/kircher">kircher</a> – John's personal folder for logbook maintenance
+<a href="https://www.github.com/derekbarbosa/EC463/tree/main/etc">etc</a> – Asset storage (logos, etc.)
 
 <!-- Screenshots -->
 ### :camera: Screenshots
@@ -81,24 +92,26 @@
 <details>
   <summary>Embedded</summary>
   <ul>
-    <li><a href="https://www.typescriptlang.org/">Typescript</a></li>
-    <li><a href="https://nextjs.org/">Next.js</a></li>
-    <li><a href="https://reactjs.org/">React.js</a></li>
-    <li><a href="https://tailwindcss.com/">TailwindCSS</a></li>
+    <li><a href="https://www.cplusplus.com/">C++</a></li>
+    <li><a href="https://piolabs.com/company/about.html">PIOLabs</a></li>
+    <li><a href="PlatformIO">PlatformIO</a></li>
+    <li><a href="https://sourceforge.net/projects/mspgcc/">GCC Toolchain for MSP430 by TI</a></li>
+    <li><a href="https://energia.nu/reference/">Energia Wiring-based Framework</a></li>
+    <li><a href="https://registry.platformio.org/tools/platformio/tool-dslite">Uniflash Flash Tool for TI MCUs</a></li>
+    <li><a href="http://wiring.org.co/">Wiring MCU Framework</a></li>
   </ul>
 </details>
 
 <details>
   <summary>Minigames</summary>
   <ul>
+    <li><a href="https://phaser.io/">Phaser</a></li>
+    <li><a href="https://webpack.js.org/">Webpack</a></li>
     <li><a href="https://www.typescriptlang.org/">Typescript</a></li>
-    <li><a href="https://expressjs.com/">Express.js</a></li>
-    <li><a href="https://go.dev/">Golang</a></li>
-    <li><a href="https://nestjs.com/">Nest.js</a></li>
-    <li><a href="https://socket.io/">SocketIO</a></li>
-    <li><a href="https://www.prisma.io/">Prisma</a></li>    
-    <li><a href="https://www.apollographql.com/">Apollo</a></li>
-    <li><a href="https://graphql.org/">GraphQL</a></li>
+    <li><a href="https://enable3d.io/">Enable3D</a></li>
+    <li><a href="https://www.javascript.com/">Javascript</a></li>
+    <li><a href="https://developer.mozilla.org/en-US/docs/Glossary/HTML5">HTML5</a></li>    
+    <li><a href="https://cmake.org/">CMake</a></li>
   </ul>
 </details>
 
@@ -114,53 +127,21 @@
 <!-- Getting Started -->
 ## 	:toolbox: Getting Started
 
-<!-- Prerequisites -->
-### :bangbang: Prerequisites
-
-This project uses Yarn as package manager
-
-```bash
- npm install --global yarn
-```
-
 <!-- Run Locally -->
-### :running: Run Locally
+### :running: Quick(ly) Start!
 
 Clone the project
 
 ```bash
-  git clone https://github.com/Louis3797/awesome-readme-template.git
+  git clone https://github.com/derekbarbosa/EC463.git
 ```
 
-Go to the project directory
+Then refer to the Quick Start Guide in its entirety! :)
+[Quick Start Guide](./notes/README_Engineering.md)
 
-```bash
-  cd my-project
-```
+For a more detailed breakdown of the software components, how they work, how to implement them and how to expand on them, please refer to the [Software Guide](./notes/README_Software.md)
 
-Install dependencies
-
-```bash
-  yarn install
-```
-
-Start the server
-
-```bash
-  yarn start
-```
-
-
-<!-- Deployment -->
-### :triangular_flag_on_post: Deployment
-
-To deploy this project run
-
-```bash
-  yarn deploy
-```
-
-
+For notes and explanation regarding hardware
 <!-- Usage -->
 ## :eyes: Usage
 
@@ -178,13 +159,13 @@ function App() {
 <!-- License -->
 ## :warning: License
 
-Distributed under the GNU GPL3 LICENSE. See LICENSE.txt for more information.
+Distributed under the GNU GPL v3 LICENSE. See  <a href="https://www.github.com/derekbarbosa/EC463/blob/main/LICENSE">LICENSE.TXT</a> for more information.
 
 
 <!-- Contact -->
 ## :handshake: Contact
 
-<h4> Client</h4>
+<h4>Client</h4>
 
 Mike Jones - jonesmlr (AT) gmail (dot) com
 
@@ -202,10 +183,12 @@ Project Link: [https://github.com/derekbarbosa/EC463](https://github.com/derekba
 <!-- Acknowledgments -->
 ## :gem: Acknowledgements
 
-Some shout-outs and resources!
+Some shout-outs, acknowledgements and resources!
 
  - [Shields.io](https://shields.io/)
  - [Awesome README](https://github.com/matiassingers/awesome-readme)
  - [Emoji Cheat Sheet](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#travel--places)
-
+ - [Make your own Dino Chrome Game!](https://www.youtube.com/watch?v=VOtZ6yNqH84)
+ - [Using a 16x2 LCD with Arduino](https://www.makerguides.com/character-lcd-arduino-tutorial/)
+ - [Making a Coin Toss Game](https://www.foolishdeveloper.com/2021/10/coin-flip-game-using-javascript.html)
 

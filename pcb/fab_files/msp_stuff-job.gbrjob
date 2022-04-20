@@ -5,7 +5,7 @@
       "Application": "Pcbnew",
       "Version": "(6.0.4-0)"
     },
-    "CreationDate": "2022-04-09T01:41:44-04:00"
+    "CreationDate": "2022-04-20T10:51:29-04:00"
   },
   "GeneralSpecs": {
     "ProjectId": {
@@ -32,47 +32,47 @@
   ],
   "FilesAttributes": [
     {
-      "Path": "msp_stuff-F_Cu.gtl",
+      "Path": "msp_stuff-F_Cu.gbr",
       "FileFunction": "Copper,L1,Top",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "msp_stuff-B_Cu.gbl",
+      "Path": "msp_stuff-B_Cu.gbr",
       "FileFunction": "Copper,L2,Bot",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "msp_stuff-F_Paste.gtp",
+      "Path": "msp_stuff-F_Paste.gbr",
       "FileFunction": "SolderPaste,Top",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "msp_stuff-B_Paste.gbp",
+      "Path": "msp_stuff-B_Paste.gbr",
       "FileFunction": "SolderPaste,Bot",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "msp_stuff-F_Silkscreen.gto",
+      "Path": "msp_stuff-F_Silkscreen.gbr",
       "FileFunction": "Legend,Top",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "msp_stuff-B_Silkscreen.gbo",
+      "Path": "msp_stuff-B_Silkscreen.gbr",
       "FileFunction": "Legend,Bot",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "msp_stuff-F_Mask.gts",
+      "Path": "msp_stuff-F_Mask.gbr",
       "FileFunction": "SolderMask,Top",
       "FilePolarity": "Negative"
     },
     {
-      "Path": "msp_stuff-B_Mask.gbs",
+      "Path": "msp_stuff-B_Mask.gbr",
       "FileFunction": "SolderMask,Bot",
       "FilePolarity": "Negative"
     },
     {
-      "Path": "msp_stuff-Edge_Cuts.gm1",
+      "Path": "msp_stuff-Edge_Cuts.gbr",
       "FileFunction": "Profile",
       "FilePolarity": "Positive"
     }
