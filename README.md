@@ -38,9 +38,9 @@
   <span> · </span>
     <a href="notes/README_Engineering.md">Quick Start Guide</a>
   <span> · </span>
-    <a href="notes/README_Hardware.md">Hardware Guide</a>
+    <a href="notes/README_HARDWARE.md">Hardware Guide</a>
   <span> · </span>
-    <a href="./notes/README_Software.md">Software Guide</a>
+    <a href="notes/README_SOFTWARE.md">Software Guide</a>
 </h4>
 
 </div>
