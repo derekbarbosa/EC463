@@ -73,6 +73,8 @@
 ### :label: Current Directory Structure
 <a href="pcb/">pcb</a> – All PCB/eCAD files and schematics. Includes manufacturing .gbr files
 
+<a href="enclosures/">enclosures</a> – All CAD files and schematics for the PCB enclosure. 
+
 <a href="platformio/">platformio</a> – All code/firmware files concerning the MSP430 development board
 
 <a href="notes/">notes</a> – Inital interview notes, MSP Documentation, useful infographics, additional READMEs
