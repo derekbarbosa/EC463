@@ -57,8 +57,12 @@
 ### :one: Images 
 
 #### :gear: PCB
+![PCB](https://github.com/derekbarbosa/EC463/blob/main/etc/pcb_top.JPG)
+![PCB](https://github.com/derekbarbosa/EC463/blob/main/etc/pcb_bottom.JPG)
 #### :gear: Hardware Schematic
+![Hardware Schematic](https://github.com/derekbarbosa/EC463/blob/main/etc/schematic.png)
 #### :gear: PCB Schematic
+![PCB Schematic](https://github.com/derekbarbosa/EC463/blob/main/etc/pcb_schematic.png)
 
 ### :two: Bill of Materials
 
@@ -81,9 +85,19 @@
 ### :three: Build Instructions
 
 #### :gear: Required Tools
+<h5>Soldering: Some soldering experience and tools are required, but this is also a relatively simple soldering job. Thus, this project is recommended even for users wishing to learn or practice their soldering skill.</h5>
+<h5>3D printing: Although you are free to download the necessary files and print the case on your own, this is not absolutely necessary as you are able to order a custom order through online shops.</h5>
+<h5>Other tools: Phillips screwdriver and smaller screws.</h5>
+    
 #### :gear: PCB Soldering Cheat Sheet
-This PCB is a prototype board, and is slightly different from the final product, but all soldering points are in the same place.
-
+<h5>This PCB is a prototype board, and is slightly different from the final product, but all soldering points are in the same place.</h5>
+    
+<h5>PCB Top</h5>
+    
+![Top](https://github.com/derekbarbosa/EC463/blob/main/etc/pcb_top.png)
+<h5>PCB Bottom</h5>
+    
+![Bottom](https://github.com/derekbarbosa/EC463/blob/main/etc/pcb_bottom.png)
 #### :gear: Soldering pins onto the PCB
 #### :gear: Soldering the HC-05
 #### :gear: Soldering the 16x2 Screen
@@ -93,22 +107,29 @@ This PCB is a prototype board, and is slightly different from the final product,
 ### :four: MSP-EXP430FR2433
 
 #### :gear: Image
+![MSP](https://github.com/derekbarbosa/EC463/blob/main/etc/msp.JPG)
 #### :gear: Purpose
+<h5>The MSP microcontroller is the component that runs all of our custom software, and manages all components on the device. The entire hardware design and software library are designed around this microcontroller.</h5>
 
 ### :five: Custom PCB
 
 #### :gear: Image
+![PCB Image](https://github.com/derekbarbosa/EC463/blob/main/etc/pcb_top.JPG)
 #### :gear: Purpose
+<h5>Our custom PCB is what allows the building process to be relatively simple, as it simplifies soldering each component to the MSP microcontroller. All components should be soldered to the PCB, which then is simply inserted into the socket risers on the MSP.</h5>
 
 ### :six: HC-05
 
 #### :gear: Image
+![HC-05](https://github.com/derekbarbosa/EC463/blob/main/etc/hc-05.JPG)
 #### :gear: Purpose
+<h5>The HC-05 is the component that allows our device to wirelessly connect to similar devices using Bluetooth, and is small enough to fit between the custom PCB and the MSP microcontroller.</h5>
 
 ### :seven: 16x2 Alphanumeric Screen
 
 #### :gear: Image
 #### :gear: Purpose
+<h5>The alphanumeric screen is an important part of our device, as it allows each user to customise their badge and view their custom name on their device.</h5>
 
 ### :eight: Smaller Components
 
