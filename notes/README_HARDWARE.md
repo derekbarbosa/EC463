@@ -54,33 +54,35 @@ Hardware Overview </h1>
 
 ## :star: About this Guide
 <h5> THIS GUIDE IS INTENDED TO BE A DETAILED OVERVIEW OF OUR PROJECT'S HARDWARE IMPLEMENTATION </h5>
-<h5> PLEASE USE THE INCLUDED MANUALS AS A 'FULL' REFERENCE FOR DEPLOYMENTS, BUILDS, ETC.</h5>
 
 ## :computer: Hardware Components
 
 ### :one: Images 
 
 #### :gear: PCB
-![PCB](https://github.com/derekbarbosa/EC463/blob/main/etc/pcb_top.JPG)
-![PCB](https://github.com/derekbarbosa/EC463/blob/main/etc/pcb_bottom.JPG)
+![PCB](../etc/pcb_top.JPG)
+![PCB](../etc/pcb_bottom.JPG)
 #### :gear: Hardware Schematic
-![Hardware Schematic](https://github.com/derekbarbosa/EC463/blob/main/etc/schematic.png)
+![Hardware Schematic](../etc/schematic.png)
 #### :gear: PCB Schematic
-![PCB Schematic](https://github.com/derekbarbosa/EC463/blob/main/etc/pcb_schematic.png)
+![PCB Schematic](../etc/pcb_schematic.png)
 
 ### :two: Bill of Materials
 
+Note, most parts are "swappable" as they are generic electronic components and can be found in *bulk* for dirt cheap.
+
 | Part | Quantity | Total Cost | Link |
 |------|:--------:|------------|------|
-|Two Pin Rocker Switch|1|$9.99|[Amazon](https://www.amazon.com/Twidec-Pre-soldered-Wires%EF%BC%88Quality-Assurance-KCD1-2-101-X-H/dp/B07SPVPQPL/ref=sr_1_7?keywords=2+pin+toggle+switch&qid=1649362072&sr=8-7)
-|18650 3000mAh Lithium Battery|1|$6.99|[18650 Battery Store](https://www.18650batterystore.com/collections/18650-batteries/products/epoch-30p-18650)
-|18650 Battery Holster|1|$6.99|[Amazon](https://www.amazon.com/ACEIRMC-Battery-Plastic-Storage-Connect/dp/B0986K3GVN/ref=sr_1_3?crid=3R9G21G1HKID6&keywords=1+slot+18650+holder&qid=1649364172&sprefix=1+slot+18650+holde%2Caps%2C75&sr=8-3)
+|Two Pin Rocker Switch|1|$0.09|[Aliexpress](https://www.aliexpress.com/item/4001165826718.html?spm=a2g0o.productlist.0.0.20404e230NX6hE&algo_pvid=84bc44f1-3eb2-47e0-b720-2fbe9e97a58d&algo_exp_id=84bc44f1-3eb2-47e0-b720-2fbe9e97a58d-1&pdp_ext_f=%7B%22sku_id%22%3A%2210000014982124402%22%7D&pdp_npi=1%40dis%7CUSD%7C%7C0.9%7C%7C%7C%7C%7C%400bb0622916511874995468682e4884%7C10000014982124402%7Csea)
+|18650 3000mAh Lithium Battery|2|$6.99|[18650 Battery Store](https://www.18650batterystore.com/collections/18650-batteries/products/epoch-30p-18650)
+|18650 Battery Holster|1|$0.33|[Aliexpress](https://www.aliexpress.com/item/1005001769305908.html?spm=a2g0o.productlist.0.0.7dac4683MmxuJz&algo_pvid=1fda93ee-0914-4c4f-8085-3958df0f5b50&algo_exp_id=1fda93ee-0914-4c4f-8085-3958df0f5b50-3&pdp_ext_f=%7B%22sku_id%22%3A%2212000024755845325%22%7D&pdp_npi=1%40dis%7CUSD%7C%7C0.33%7C%7C%7C2.29%7C%7C%400b0a557216511875931853563eb368%7C12000024755845325%7Csea)
 |TI MSP- EXP430FR2433|1|$11.99|[Digikey](https://www.digikey.com/en/products/detail/texas-instruments/MSP-EXP430FR2433/7931876)
-|16x2 Alphanumeric LCD|1|$9.19|[Amazon](https://www.amazon.com/HiLetgo-Display-Backlight-Controller-Character/dp/B00HJ6AFW6/ref=sr_1_3?keywords=HD44780&qid=1649365855&sr=8-3)
-|3 Pin, 2-way microswitches|3|$8.99|[Amazon](https://www.amazon.com/Tnuocke-Vertical-Position-Switches-SS12D00-G3/dp/B099MRCDG8/ref=pd_lpo_1?pd_rd_i=B099MRCDG8&th=1)
-|4 Pin Push button|1|$6.49|[Amazon](https://www.amazon.com/QTEATAK-Momentary-Tactile-Button-Switch/dp/B07VSNN9S2/ref=sr_1_2?crid=2NFCRS53B4EYJ&keywords=4+pin+push+button&qid=1649364273&sprefix=4+pin+push+button%2Caps%2C72&sr=8-2)
-|HC-05 BT Module|1|$15.99|[Amazon](https://www.amazon.com/AEDIKO-Bluetooth-Transceiver-Integrated-Communication/dp/B09M6ZVJVR/ref=sr_1_19?crid=PQKO386NVIOA&keywords=HC-05+Bluetooth&qid=1649364332&sprefix=hc-05+bluetooth%2Caps%2C65&sr=8-19)
-|18650 Battery Charger [Optional]|1|$18.99|[Amazon](https://www.amazon.com/Intelligent-Snado-Universal-Rechargeable-Batteries/dp/B0721JP6FK/ref=sr_1_3?crid=1Y82S5BQEIY2S&keywords=18650+battery+charger&qid=1649362929&sprefix=18650+battery+charger%2Caps%2C85&sr=8-3)
+|(1602) 16x2 Alphanumeric LCD|1|$1.66|[Aliexpress](https://www.aliexpress.com/item/1005001636532599.html?spm=a2g0o.productlist.0.0.30bc4475fDEvqy&algo_pvid=75775bf0-f18a-47ba-bcc3-4c5514247a3d&algo_exp_id=75775bf0-f18a-47ba-bcc3-4c5514247a3d-7&pdp_ext_f=%7B%22sku_id%22%3A%2212000016918492352%22%7D&pdp_npi=1%40dis%7CUSD%7C%7C1.66%7C%7C%7C1.99%7C%7C%40210318b816511877020926359ed9f6%7C12000016918492352%7Csea)
+|3 Pin, 2-way microswitches|3|$0.13|[Aliexpress](https://www.aliexpress.com/item/2251832863405136.html?spm=a2g0o.productlist.0.0.41971a38qgtUeF&algo_pvid=0aa54f65-0d3e-44a4-a939-55bd78e950de&algo_exp_id=0aa54f65-0d3e-44a4-a939-55bd78e950de-0&pdp_ext_f=%7B%22sku_id%22%3A%2267362403192%22%7D&pdp_npi=1%40dis%7CUSD%7C%7C0.13%7C%7C%7C%7C%7C%40210318d116511878225945897e84bd%7C67362403192%7Csea)
+|4 Pin Push button|1|$0.86|[Aliexpress](https://www.aliexpress.com/item/32858344336.html?spm=a2g0o.productlist.0.0.a9ac17d38CE3nU&algo_pvid=15189abc-0adf-48ec-8010-904a6e547115&algo_exp_id=15189abc-0adf-48ec-8010-904a6e547115-2&pdp_ext_f=%7B%22sku_id%22%3A%2265418016751%22%7D&pdp_npi=1%40dis%7CUSD%7C%7C0.86%7C%7C%7C%7C%7C%40210318b816511878701982424eda04%7C65418016751%7Csea)
+|HC-05 BT Module|1|$1.92|[Aliexpress](https://www.aliexpress.com/item/32967247206.html?spm=a2g0o.productlist.0.0.3b284977eNrTyE&algo_pvid=7394bb36-299c-4e4a-9806-8e9876ae186d&algo_exp_id=7394bb36-299c-4e4a-9806-8e9876ae186d-0&pdp_ext_f=%7B%22sku_id%22%3A%2266508907103%22%7D&pdp_npi=1%40dis%7CUSD%7C%7C1.92%7C%7C%7C%7C%7C%402101e9d316511879090066545ef96c%7C66508907103%7Csea)
+|18650 Battery Charger [Optional]|1|$1.99|[Aliexpress](https://www.aliexpress.com/item/2255800096325349.html?spm=a2g0o.productlist.0.0.7e876c82SL5rrj&algo_pvid=db876199-2568-46a5-aecd-57abbb05b794&algo_exp_id=db876199-2568-46a5-aecd-57abbb05b794-0&pdp_ext_f=%7B%22sku_id%22%3A%2210000001161829607%22%7D&pdp_npi=1%40dis%7CUSD%7C6.24%7C1.99%7C%7C%7C%7C%7C%400bb0623b16511879547118854ed453%7C10000001161829607%7Csea)
+|Total Cost|X|$25.97|Not Including any potential shipping cost|
 
 #### :gear: Purchasing Our Custom PCB
 
@@ -89,56 +91,90 @@ Hardware Overview </h1>
 ### :three: Build Instructions
 
 #### :gear: Required Tools
-Soldering: Some soldering experience and tools are required, but this is also a relatively simple soldering job. Thus, this project is recommended even for users wishing to learn or practice their soldering skill.
-<h5>3D printing: Although you are free to download the necessary files and print the case on your own, this is not absolutely necessary as you are able to order a custom order through online shops.</h5>
-<h5>Other tools: Phillips screwdriver and smaller screws.</h5>
+<h5> Soldering: </h5> 
+
+Some soldering experience and tools are required, but this is also a relatively simple soldering job. Thus, this project is recommended even for users wishing to learn or practice their soldering skill.
+
+<h5> 3D printing: </h5> 
+
+Although you are free to download the necessary files and print the case on your own, this is not absolutely necessary as you are able to order a custom order through online shops.
+<h5> Other tools: </h5> 
+
+Phillips screwdriver and smaller screws.
     
 #### :gear: PCB Soldering Cheat Sheet
 This PCB is a prototype board, and is slightly different from the final product, but all soldering points are in the same place.
     
 <h5>PCB Top</h5>
 
-![Top](https://github.com/derekbarbosa/EC463/blob/main/etc/pcb_top.png)
+![Top](../etc/pcb_top.png)
+
 <h5>PCB Bottom</h5>
     
-![Bottom](https://github.com/derekbarbosa/EC463/blob/main/etc/pcb_bottom.png)
+![Bottom](../etc/pcb_bottom.png)
+
 #### :gear: Soldering the HC-05
-<h5>The first step is to trim the legs of the HC-05 module, as the device will be soldered horizontally along the PCB. Place the solder points on the other side of the HC-05 pins onto the 6 open pins under the 16x2 screen, on the back side of the PCB. The final result of this step should look like the image below.</h5>
+The first step is to trim the legs of the HC-05 module, as the device will be soldered horizontally along the PCB. 
+
+Place the solder points on the other side of the HC-05 pins onto the 6 open pins under the 16x2 screen, on the back side of the PCB. 
+
+The final result of this step should look like the image below.
     
 #### :gear: Soldering the 16x2 Screen
-<h5>The next step is to also trim the legs of the 16x2 Alphanumeric LCD Screen, and to solder it onto the PCB. The screen goes on the front side of the PCB, and should line up with the outline.</h5>
+The next step is to also trim the legs of the 16x2 Alphanumeric LCD Screen, and to solder it onto the PCB. 
+
+The screen goes on the front side of the PCB, and should line up with the outline.
     
 #### :gear: Soldering Pin Risers onto the PCB
-<h5>Next, you will solder pin risers onto the PCB, enabling you to connect our device to the MSP microcontroller. Using your MSP, place up pin risers into the pin sockets like the picture below.</h5>
-<h5>Then, place your PCB onto the MSP so that the pin risers fit into the matching open pins on the PCB, and solder them together</h5>
-<h5>You may now freely disconnect and reconnect your MSP from your PCB</h5>
+Next, you will solder pin risers onto the PCB, enabling you to connect our device to the MSP microcontroller. 
+
+Using your MSP, place up pin risers into the pin sockets like the picture below.
+
+Then, place your PCB onto the MSP so that the pin risers fit into the matching open pins on the PCB, and solder them together.
+
+You may now freely disconnect and reconnect your MSP from your PCB
     
 #### :gear: Soldering the Battery and the Power Switch
-<h5>The next step is to connect the Battery Enclosure and the Power Switch to the PCB. Both of these already include wires, of which the positive leads are soldered together, and their negative leads will be soldered directly into the board as shown. WARNING: MAKE SURE THE SWITCH IS SET TO OFF, AND THE BATTERY IS NOT IN THE ENCLOSURE BEFORE COMPLETING THIS STEP!</h5>
+The next step is to connect the Battery Enclosure and the Power Switch to the PCB. 
+
+Both of these already include wires, of which the positive leads are soldered together, and their negative leads will be soldered directly into the board as shown. 
+
+WARNING: MAKE SURE THE SWITCH IS SET TO OFF, AND THE BATTERY IS NOT IN THE ENCLOSURE BEFORE COMPLETING THIS STEP!
   
 #### :gear: Soldering the LEDs
-<h5>Now, we will solder all the smaller components on the top-left of the front of the LCD, which include our 3 LEDs, 3 matching resistors, and the potentiometer. You can do these in any order you wish, but make sure your LED positive lead is soldered to the right mounting spot, and the negative lead on the one on the left.</h5>
+Now, we will solder all the smaller components on the top-left of the front of the LCD, which include our 3 LEDs, 3 matching resistors, and the potentiometer. 
+
+You can do these in any order you wish, but make sure your LED positive lead is soldered to the right mounting spot, and the negative lead on the one on the left.
     
 #### :gear: Soldering the final buttons and switches
-<h5>Finally, the smallest components must be soldered onto the PCB. We recommend trimming two diagonal leads on the small push button, as only two of them are required. For the smaller switches, be careful not to use ONE of the outer leads, and to solder wire onto one of the outer leads and another wire onto the center lead. Carefully follow the soldering cheat sheet and compare with the following picture of the final product</h5>
+Finally, the smallest components must be soldered onto the PCB. We recommend trimming two diagonal leads on the small push button, as only two of them are required. 
+
+For the smaller switches, be careful not to use ONE of the outer leads, and to solder wire onto one of the outer leads and another wire onto the center lead.
+
+Carefully follow the soldering cheat sheet and compare with the following picture of the final product.
     
 #### :gear: Connecting to a Flashed MSP
-<h5>Now that all of your components have been successfully soldered onto the PCB, you can reconnect the already flashed MSP to the PCB if your disconnected it earlier, plug in the battery and run an out of enclosure test! The LCD should turn on and welcome you if every component is working correctly.</h5>
+Now that all of your components have been successfully soldered onto the PCB, you can reconnect the already flashed MSP to the PCB if your disconnected it earlier, plug in the battery and run an out of enclosure test! 
+
+The LCD should turn on and welcome you if every component is working correctly.
 
 ### :four: MSP-EXP430FR2433
 
 #### :gear: Image
-![MSP](https://github.com/derekbarbosa/EC463/blob/main/etc/msp.JPG)
+![MSP](../etc/msp.JPG)
+
 #### :gear: Purpose
 [Datasheet](https://www.ti.com/document-viewer/MSP430FR2433/datasheet/device-overview-slas9424409#SLAS9424409)
-<h5>The MSP microcontroller is the component that runs all of our custom software, and manages all components on the device. The entire hardware design and software library are designed around this microcontroller.</h5>
+
+The MSP microcontroller is the component that runs all of our custom software, and manages all components on the device. The entire hardware design and software library are designed around this microcontroller.
 
 ### :five: Custom PCB
 
 #### :gear: Image
-![PCB Image](https://github.com/derekbarbosa/EC463/blob/main/etc/pcb_top.JPG)
+![PCB Image](../etc/pcb_top.JPG)
+
 #### :gear: Purpose
-<h5>Our custom PCB is what allows the building process to be relatively simple, as it simplifies soldering each component to the MSP microcontroller. All components should be soldered to the PCB, which then is simply inserted into the socket risers on the MSP.</h5>
+Our custom PCB is what allows the building process to be relatively simple, as it simplifies soldering each component to the MSP microcontroller. All components should be soldered to the PCB, which then is simply inserted into the socket risers on the MSP.
 
 ### :six: HC-05
 
@@ -146,22 +182,35 @@ This PCB is a prototype board, and is slightly different from the final product,
 ![HC-05](https://github.com/derekbarbosa/EC463/blob/main/etc/hc-05.JPG)
 #### :gear: Purpose
 [Datasheet](https://www.etechnophiles.com/wp-content/uploads/2020/10/HC-05-Datasheet-Download.pdf)
-<h5>The HC-05 is the component that allows our device to wirelessly connect to similar devices using Bluetooth, and is small enough to fit between the custom PCB and the MSP microcontroller.</h5>
+
+The HC-05 is the component that allows our device to wirelessly connect to similar devices using Bluetooth, and is small enough to fit between the custom PCB and the MSP microcontroller.
 
 ### :seven: 16x2 Alphanumeric Screen
 
 #### :gear: Image
+
 #### :gear: Purpose
+
 [Datasheet](https://www.engineersgarage.com/sites/default/files/LCD%2016x2.pdf)
-<h5>The alphanumeric screen is an important part of our device, as it allows each user to customise their badge and view their custom name on their device.</h5>
+
+The alphanumeric screen is an important part of our device, as it allows each user to customise their badge and view their custom name on their device.
 
 ### :eight: Battery
 
 #### :gear: Image
 #### :gear: Purpose
 [Datasheet](https://cdn.shopify.com/s/files/1/0481/9678/0183/files/EpochBatteries_18650-30P_specification.pdf?v=1634052514)
-<h5> The selected 18650 battery has more than enough capacity to last the required ~21 hours, and has been tested to last around 25 hours, depending on use. The battery is also rechargable with the purchase of a battery charger, and allows for one battery to serve as the lone power source for mutiple days with full charges in between uses. The single, 18650 battery supplies 3.6V to the badge with a capacity of 3000mAh.</h5>
-<h5>The badge's power consumption ranges from anywhere between 95mA to 165mA. The large range on these calculations stem from the backlight on the LCD. This list includes consumption of each device on the badge: MSP430: 10mA, HC-05: 10mA, LEDs(x3): 45mA, LCD(backlight off): 30mA, LCD(backlight on): 100mA.</h5>
+The selected 18650 battery has more than enough capacity to last the required ~21 hours, and has been tested to last around 25 hours, depending on use. 
+
+The battery is also rechargable with the purchase of a battery charger, and allows for one battery to serve as the lone power source for mutiple days with full charges in between uses. The single, 18650 battery supplies 3.6V to the badge with a capacity of 3000mAh.
+
+The badge's power consumption ranges from anywhere between 95mA to 165mA. The large range on these calculations stem from the backlight on the LCD. 
+This list includes consumption of each device on the badge: 
+- MSP430: 10mA
+- HC-05: 10mA 
+- LEDs(x3): 45mA
+- LCD(backlight off): 30mA 
+- LCD(backlight on): 100mA.
     
 ### :nine: Smaller Components
 
