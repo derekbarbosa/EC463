@@ -1,12 +1,12 @@
 <div align=center>
 <h1> :skull: VETCON BADGE :skull: <br/>
-:stopwatch: :athletic_shoe: Hardware Overview </h1>
+Hardware Overview </h1>
 <h3> For the full manuals, please view the following: </h3>
 <h4>
 <h4>
-    <a href="README_Engineering.md">Engineering Guide</a>
+    <a href="./README_Engineering.md">Engineering Guide</a>
   <span> · </span>
-    <a href="README_SOFTWARE.md">Software Guide</a>
+    <a href="./README_SOFTWARE.md">Software Guide</a>
 </h4>
 
 </div>
@@ -88,12 +88,12 @@
 ### :three: Build Instructions
 
 #### :gear: Required Tools
-<h5>Soldering: Some soldering experience and tools are required, but this is also a relatively simple soldering job. Thus, this project is recommended even for users wishing to learn or practice their soldering skill.</h5>
+Soldering: Some soldering experience and tools are required, but this is also a relatively simple soldering job. Thus, this project is recommended even for users wishing to learn or practice their soldering skill.
 <h5>3D printing: Although you are free to download the necessary files and print the case on your own, this is not absolutely necessary as you are able to order a custom order through online shops.</h5>
 <h5>Other tools: Phillips screwdriver and smaller screws.</h5>
     
 #### :gear: PCB Soldering Cheat Sheet
-<h5>This PCB is a prototype board, and is slightly different from the final product, but all soldering points are in the same place.</h5>
+This PCB is a prototype board, and is slightly different from the final product, but all soldering points are in the same place.
     
 <h5>PCB Top</h5>
     

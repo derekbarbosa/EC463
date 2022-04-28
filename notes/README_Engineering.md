@@ -1,12 +1,12 @@
 <div align=center>
 <h1> :skull: VETCON BADGE :skull: <br/>
-:stopwatch: :athletic_shoe: Quick Start Guide </h1>
+:stopwatch:  Quick Start Guide :athletic_shoe:</h1>
 <h3> For the full manuals, please view the following: </h3>
 <h4>
 <h4>
-    <a href="notes/README_HARDWARE.md">Hardware Guide</a>
+    <a href="./README_HARDWARE.md">Hardware Guide</a>
   <span> · </span>
-    <a href="notes/README_SOFTWARE.md">Software Guide</a>
+    <a href="./README_SOFTWARE.md">Software Guide</a>
 </h4>
 
 </div>
