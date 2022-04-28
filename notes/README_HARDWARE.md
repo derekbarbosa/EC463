@@ -26,10 +26,11 @@
     - [:three: Build Instructions](#three-build-instructions)
       - [:gear: Required Tools](#gear-required-tools)
       - [:gear: PCB Soldering Cheat Sheet](#gear-pcb-soldering-cheat-sheet)
-      - [:gear: Soldering pins onto the PCB](#gear-soldering-pins-onto-the-pcb)
       - [:gear: Soldering the HC-05](#gear-soldering-the-hc-05)
       - [:gear: Soldering the 16x2 Screen](#gear-soldering-the-16x2-screen)
-      - [:gear: Soldering the LEDs and Resistors](#gear-soldering-the-leds-and-resistors)
+      - [:gear: Soldering Pin Risers onto the PCB](#gear-soldering-pin-risers-onto-the-pcb)
+      - [:gear: Soldering the Battery and the Power Switch](#gear-soldering-the-battery-and-the-power-switch)
+      - [:gear: Soldering the LEDs](#gear-soldering-the-leds)
       - [:gear: Connecting to a Flashed MSP](#gear-connecting-to-a-flashed-msp)
     - [:four: MSP-EXP430FR2433](#four-msp-exp430fr2433)
       - [:gear: Image](#gear-image)
@@ -96,16 +97,33 @@
 <h5>This PCB is a prototype board, and is slightly different from the final product, but all soldering points are in the same place.</h5>
     
 <h5>PCB Top</h5>
-    
+
 ![Top](https://github.com/derekbarbosa/EC463/blob/main/etc/pcb_top.png)
 <h5>PCB Bottom</h5>
     
 ![Bottom](https://github.com/derekbarbosa/EC463/blob/main/etc/pcb_bottom.png)
-#### :gear: Soldering pins onto the PCB
 #### :gear: Soldering the HC-05
+<h5>The first step is to trim the legs of the HC-05 module, as the device will be soldered horizontally along the PCB. Place the solder points on the other side of the HC-05 pins onto the 6 open pins under the 16x2 screen, on the back side of the PCB. The final result of this step should look like the image below.</h5>
+    
 #### :gear: Soldering the 16x2 Screen
-#### :gear: Soldering the LEDs and Resistors
+<h5>The next step is to also trim the legs of the 16x2 Alphanumeric LCD Screen, and to solder it onto the PCB. The screen goes on the front side of the PCB, and should line up with the outline.</h5>
+    
+#### :gear: Soldering Pin Risers onto the PCB
+<h5>Next, you will solder pin risers onto the PCB, enabling you to connect our device to the MSP microcontroller. Using your MSP, place up pin risers into the pin sockets like the picture below.</h5>
+<h5>Then, place your PCB onto the MSP so that the pin risers fit into the matching open pins on the PCB, and solder them together</h5>
+<h5>You may now freely disconnect and reconnect your MSP from your PCB</h5>
+    
+#### :gear: Soldering the Battery and the Power Switch
+<h5>The next step is to connect the Battery Enclosure and the Power Switch to the PCB. Both of these already include wires, of which the positive leads are soldered together, and their negative leads will be soldered directly into the board as shown. WARNING: MAKE SURE THE SWITCH IS SET TO OFF, AND THE BATTERY IS NOT IN THE ENCLOSURE BEFORE COMPLETING THIS STEP!</h5>
+  
+#### :gear: Soldering the LEDs
+<h5>Now, we will solder all the smaller components on the top-left of the front of the LCD, which include our 3 LEDs, 3 matching resistors, and the potentiometer. You can do these in any order you wish, but make sure your LED positive lead is soldered to the right mounting spot, and the negative lead on the one on the left.</h5>
+    
+#### :gear: Soldering the final buttons and switches
+<h5>Finally, the smallest components must be soldered onto the PCB. We recommend trimming two diagonal leads on the small push button, as only two of them are required. For the smaller switches, be careful not to use ONE of the outer leads, and to solder wire onto one of the outer leads and another wire onto the center lead. Carefully follow the soldering cheat sheet and compare with the following picture of the final product</h5>
+    
 #### :gear: Connecting to a Flashed MSP
+<h5>Now that all of your components have been successfully soldered onto the PCB, you can reconnect the already flashed MSP to the PCB if your disconnected it earlier, plug in the battery and run an out of enclosure test! The LCD should turn on and welcome you if every component is working correctly.</h5>
 
 ### :four: MSP-EXP430FR2433
 
@@ -142,7 +160,7 @@
 #### :gear: Image
 #### :gear: Purpose
 [Datasheet](https://cdn.shopify.com/s/files/1/0481/9678/0183/files/EpochBatteries_18650-30P_specification.pdf?v=1634052514)
-<h5> The selected 18650 battery has more than enough capacity to last the required ~21 hours, and is expected to last up to REPLACE hours. The battery is also rechargable with the purchase of a battery charger, and allows for one battery to serve as the lone power source for mutiple days with full charges in between uses. </h5>
+<h5> The selected 18650 battery has more than enough capacity to last the required ~21 hours, and is expected to last around 25 hours, depending on use. The battery is also rechargable with the purchase of a battery charger, and allows for one battery to serve as the lone power source for mutiple days with full charges in between uses. </h5>
     
 ### :nine: Smaller Components
 
