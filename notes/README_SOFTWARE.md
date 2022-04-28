@@ -46,7 +46,43 @@ Compilation of the original source code (<code>EC463/src/VETCON/src/main.cpp</co
 
 #### :gear: Function
 <h5>
-The MCU (Micro Controller Unit) code controls all of the on-board hardware, including the LEDs, buttons, LCD Screen, and the Bluetooth module (discussed in the following section in detail), as well as provides the user interaction methods by way of serial communication channels. The board can be interfaced with by way of buttons, but not in any useful way without a serial channel being opened up between a host and the board. Be sure to use a serial communication program that has implicit line endings, as otherwise formatting will be off. Once a user does plug in the board and open up a serial connection, they will need to be sure to kill the UniFlash process, as it takes up the board communication channel, and  do a soft reset of the board to make sure it sends out the "WELCOME TO VETCON" message (only on the first run), as well as the main menu. The main menu contains all of the options for user interaction.
+The MCU (Micro Controller Unit) code controls all of the on-board hardware, including the LEDs, buttons, LCD Screen, and the Bluetooth module (discussed in the following section in detail), as well as provides the user interaction methods by way of serial communication channels. The board can be interfaced with by way of buttons, but not in any useful way without a serial channel being opened up between a host and the board. Be sure to use a serial communication program that has implicit line endings, as otherwise formatting will be off. Once a user does plug in the board and open up a serial connection, they will need to be sure to kill the UniFlash process, as it takes up the board communication channel, and  do a soft reset of the board to make sure it sends out the "WELCOME TO VETCON" message (only on the first run), as well as the main menu. The main menu contains all of the options for user interaction: 
+
+- <code>1. Set Name Tag</code>
+- <code>2. Display Name Tag</code>
+- <code>3. Game Link</code>
+- <code>4. Game Link 2</code>
+- <code>8. Start Bluetooth</code>
+- <code>0. Reset Badge</code>
+
+The list of possible inputs can expand over time, though, with the final menu being displayed as:
+
+- <code>1. Set Name Tag</code>
+- <code>2. Display Name Tag</code>
+- <code>3. Game Link</code>
+- <code>4. Game Link 2</code>
+- <code>5. Secret Token</code>
+- <code>6. Secret Token 2</code>
+- <code>7. Secret Token 3</code>
+- <code>8. Start Bluetooth</code>
+- <code>9. LED CNTRL Menu</code>
+- <code>0. Reset Badge</code>
+
+These new options are revealed to the user through input of the secret codes, acquired through completion of the online games (discussed later in full). These codes are obfuscated when presented to the user, but here they are  translated, the exact encryption and decryption method for each code will be discussed in their corresponding game. The plaintext secret codes are as follows:
+
+- <code>Game 1: "pizzatimetanthony"</code> 
+  - <code>Unlocks: "6. Secret Token 2"</code> 
+- <code>Game 2: "semperdisco"</code> 
+  - <code>Unlocks: "7. Secret Token 3"</code> 
+- <code>Game 3: "ilovevetcon"</code>
+
+The process to begin inputting these secret codes is for the user to input: <code>9</code> to the initial menu. As the user inputs these secret codes into the device, external LEDs are lit in accordance with each unlocked secret, these are more aptly described in <code>README_HARDWARE.md</code>. Once all of the secrets have been unlocked, option <code>9. LED CNTRL Menu</code> is unlocked, allowing the user to choose the LED states to save power if they decide that is necessary. To control the LEDs, the user enters option <code>9. LED CNTRL Menu</code>, where they will be taken to the LED control menu, where they are presented with the following input options:
+
+-   <code>1: Turn LEDs OFF</code>
+-   <code>2: LED 'WAVE'</code>
+-   <code>3: LED 'BLINK'</code>
+-   <code>4: LED 'ALTERNATE'</code>
+-   <code>5: Back 2 Main Menu</code>
 </h5>
 
 #### :gear: Bluetooth
@@ -62,6 +98,7 @@ The MCU (Micro Controller Unit) code controls all of the on-board hardware, incl
 <h5>
 
 </h5>
+
 ### :three: Game 2
 <h5> Coin Flip </h5>
 
