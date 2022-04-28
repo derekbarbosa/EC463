@@ -84,7 +84,7 @@ These new options are revealed to the user through input of the secret codes, ac
 
 These codes are obfuscated when presented to the user, but here they are  translated, the exact encryption and decryption method for each code will be discussed in their corresponding game. The plaintext secret codes are as follows:
 
-- <code>Game 1: "pizzatimetanthony"</code> 
+- <code>Game 1: "1016"</code> 
   - <code>Unlocks: "6. Secret Token 2"</code> 
 - <code>Game 2: "semperdisco"</code> 
   - <code>Unlocks: "7. Secret Token 3"</code> 
@@ -106,9 +106,14 @@ To control the LEDs, the user enters option <code>9. LED CNTRL Menu</code>, wher
 -   <code>5: Back 2 Main Menu</code>
 
 #### :radio: Bluetooth
-<h5>
-*JOHN KIRCHER SPOT*
-</h5>
+
+Bluetooth functionality is relatively simple. By selecting option 8 from the main menu the user will enter the bluetooth() function. This will prompt them with the option to type 1 for communication, or type 2 to setup the parent and child connection. NOTE[The EN switch pin needs to be on for option 2, the parent/child connection to function properly. Similarliy, while it is on, option 1 for regular communication will not function properly: Please see hardware explanation for more info]
+    
+If two badges have already been paried, then selecting option 1 will allow the user to type data in serial [up to 15 characters]. This will then send the data to the paired badge which they can see on their menu "Data Received: "and respond back with their own message. 
+    
+How to pair badges: Your badge will come with your HC-05's hex address. While the EN pin is switched selecting option 2 from the menu will prompt the user to type certain commands into serial. These commands will be sent to the HC-05 through software serial which is currently in AT mode (a mode that allows for command acception). First the user can type either "AT+ROLE=0" for child or "AT+ROLE=1" for parent. If choosing child, the user is done. They can switch off the enable pin and wait for a connection. If choosing parent, the user will also have to type "AT+BIND=" and then include the hex address of the child badge they want to connect to. Once this step is complete, they can also switch off their EN pin and communicate through option 1 with the child. 
+    
+To exit the bluetooth menu and return, the user is always prompted to type "exitnowpls". Typing this command the software will kick them back to the main menu function. 
 
 ### :two: Game 1
 <h5> Dino Run </h5>
