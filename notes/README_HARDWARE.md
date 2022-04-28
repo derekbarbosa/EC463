@@ -160,7 +160,8 @@
 #### :gear: Image
 #### :gear: Purpose
 [Datasheet](https://cdn.shopify.com/s/files/1/0481/9678/0183/files/EpochBatteries_18650-30P_specification.pdf?v=1634052514)
-<h5> The selected 18650 battery has more than enough capacity to last the required ~21 hours, and is expected to last around 25 hours, depending on use. The battery is also rechargable with the purchase of a battery charger, and allows for one battery to serve as the lone power source for mutiple days with full charges in between uses. </h5>
+<h5> The selected 18650 battery has more than enough capacity to last the required ~21 hours, and has been tested to last around 25 hours, depending on use. The battery is also rechargable with the purchase of a battery charger, and allows for one battery to serve as the lone power source for mutiple days with full charges in between uses. The single, 18650 battery supplies 3.6V to the badge with a capacity of 3000mAh.</h5>
+<h5>The badge's power consumption ranges from anywhere between 95mA to 165mA. The large range on these calculations stem from the backlight on the LCD. This list includes consumption of each device on the badge: MSP430: 10mA, HC-05: 10mA, LEDs(x3): 45mA, LCD(backlight off): 30mA, LCD(backlight on): 100mA.</h5>
     
 ### :nine: Smaller Components
 
