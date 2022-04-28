@@ -4,9 +4,9 @@
 <h3> For the full manuals, please view the following: </h3>
 <h4>
 <h4>
-    <a href="notes/README_Engineering.md">Engineering Guide</a>
+    <a href="README_Engineering.md">Engineering Guide</a>
   <span> · </span>
-    <a href="notes/README_HARDWARE.md">Hardware Guide</a>
+    <a href="README_SOFTWARE.md">Software Guide</a>
 </h4>
 
 </div>
@@ -43,9 +43,12 @@
     - [:seven: 16x2 Alphanumeric Screen](#seven-16x2-alphanumeric-screen)
       - [:gear: Image](#gear-image-3)
       - [:gear: Purpose](#gear-purpose-3)
-    - [:eight: Smaller Components](#eight-smaller-components)
+    - [:eight: Battey](#eight-battery)
       - [:gear: Image](#gear-image-4)
       - [:gear: Purpose](#gear-purpose-4)
+    - [:nine: Smaller Components](#nine-smaller-components)
+      - [:gear: Image](#gear-image-5)
+      - [:gear: Purpose](#gear-purpose-5)
   - [:memo: Some Notes](#memo-some-notes)
 
 ## :star: About this Guide
@@ -109,6 +112,7 @@
 #### :gear: Image
 ![MSP](https://github.com/derekbarbosa/EC463/blob/main/etc/msp.JPG)
 #### :gear: Purpose
+[Datasheet](https://www.ti.com/document-viewer/MSP430FR2433/datasheet/device-overview-slas9424409#SLAS9424409)
 <h5>The MSP microcontroller is the component that runs all of our custom software, and manages all components on the device. The entire hardware design and software library are designed around this microcontroller.</h5>
 
 ### :five: Custom PCB
@@ -123,15 +127,24 @@
 #### :gear: Image
 ![HC-05](https://github.com/derekbarbosa/EC463/blob/main/etc/hc-05.JPG)
 #### :gear: Purpose
+[Datasheet](https://www.etechnophiles.com/wp-content/uploads/2020/10/HC-05-Datasheet-Download.pdf)
 <h5>The HC-05 is the component that allows our device to wirelessly connect to similar devices using Bluetooth, and is small enough to fit between the custom PCB and the MSP microcontroller.</h5>
 
 ### :seven: 16x2 Alphanumeric Screen
 
 #### :gear: Image
 #### :gear: Purpose
+[Datasheet](https://www.engineersgarage.com/sites/default/files/LCD%2016x2.pdf)
 <h5>The alphanumeric screen is an important part of our device, as it allows each user to customise their badge and view their custom name on their device.</h5>
 
-### :eight: Smaller Components
+### :eight: Battery
+
+#### :gear: Image
+#### :gear: Purpose
+[Datasheet](https://cdn.shopify.com/s/files/1/0481/9678/0183/files/EpochBatteries_18650-30P_specification.pdf?v=1634052514)
+<h5> The selected 18650 battery has more than enough capacity to last the required ~21 hours, and is expected to last up to REPLACE hours. The battery is also rechargable with the purchase of a battery charger, and allows for one battery to serve as the lone power source for mutiple days with full charges in between uses. </h5>
+    
+### :nine: Smaller Components
 
 #### :gear: Image
 #### :gear: Purpose
