@@ -86,8 +86,17 @@ Note, most parts are "swappable" as they are generic electronic components and c
 
 #### :gear: Purchasing Our Custom PCB
 
-#### :gear: Options for Printing Our Custom Case
+Firstly, to have your PCB ready-to-order, you must ensure that you have .DRL files that indicate where your PCB drill holes are.
+You can generate these in KiCad by selecting
 
+Once you have all of your .GBR files generated, along with your .DRL files (all of these should be in the [fab_files](../pcb/fab_files/) folder), you can zip them up and send them off to any PCB manufacturing plant!
+
+We recommend JLCPCB, as it is the cheapest/fastest option (the ECE Department's offerings via reimbursement kind of suck). It is trusted by many hobby electronics engineers worldwide.
+
+From there the process is very straightforward, most of the cost comes from shipping, but you can arrange for roughly 15 PCBs for around 25-30 dollars with expedited shipping.
+
+#### :gear: Options for Printing Our Custom Case
+<h5> Julian Placeholder </h5>
 ### :three: Build Instructions
 
 #### :gear: Required Tools
