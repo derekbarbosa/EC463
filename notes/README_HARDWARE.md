@@ -156,11 +156,11 @@ Now, we will solder all the smaller components on the top-left of the front of t
 You can do these in any order you wish, but make sure your LED positive lead is soldered to the right mounting spot, and the negative lead on the one on the left.
 ![LEDs](../etc/leds.JPG)
 #### :gear: Soldering the final buttons and switches
-Finally, the smallest components must be soldered onto the PCB. We recommend trimming two diagonal leads on the small push button, as only two of them are required.
+Finally, the smallest components must be soldered onto the PCB. We recommend trimming two diagonal leads on the small push button, as only two of them are required. One lead of the button should go to the corresponding lead on the PCB, and another should be connected to pin 2.7 on the MSP.
     
 For the smaller 3-pin switches, be careful to solder wire onto only one of the outer leads, and another wire onto the center lead.
     
-Carefully follow the soldering cheat sheet and compare with the following picture of the final product.
+Carefully follow the [soldering cheat sheet](#gear-pcb-soldering-cheat-sheet) and compare with the following picture of the final product.
 ![Buttons](../etc/small_stuff.JPG)
 
 #### :gear: Connecting to a Flashed MSP
