@@ -31,6 +31,7 @@ Hardware Overview </h1>
       - [:gear: Soldering Pin Risers onto the PCB](#gear-soldering-pin-risers-onto-the-pcb)
       - [:gear: Soldering the Battery and the Power Switch](#gear-soldering-the-battery-and-the-power-switch)
       - [:gear: Soldering the LEDs](#gear-soldering-the-leds)
+      - [:gear: Soldering the Final Buttons and Switches](#gear-soldering-the-final-buttons-and-switches)
       - [:gear: Connecting to a Flashed MSP](#gear-connecting-to-a-flashed-msp)
     - [:four: MSP-EXP430FR2433](#four-msp-exp430fr2433)
       - [:gear: Image](#gear-image)
