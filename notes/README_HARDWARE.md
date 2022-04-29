@@ -48,8 +48,6 @@ Hardware Overview </h1>
       - [:gear: Image](#gear-image-4)
       - [:gear: Purpose](#gear-purpose-4)
     - [:nine: Smaller Components](#nine-smaller-components)
-      - [:gear: Image](#gear-image-5)
-      - [:gear: Purpose](#gear-purpose-5)
   - [:memo: Some Notes](#memo-some-notes)
 
 ## :star: About this Guide
@@ -97,6 +95,7 @@ From there the process is very straightforward, most of the cost comes from ship
 
 #### :gear: Options for Printing Our Custom Case
 <h5> Julian Placeholder </h5>
+    
 ### :three: Build Instructions
 
 #### :gear: Required Tools
@@ -124,49 +123,51 @@ This PCB is a prototype board, and is slightly different from the final product,
 
 #### :gear: Soldering the HC-05
 The first step is to trim the legs of the HC-05 module, as the device will be soldered horizontally along the PCB. 
-
-Place the solder points on the other side of the HC-05 pins onto the 6 open pins under the 16x2 screen, on the back side of the PCB. 
-
-The final result of this step should look like the image below.
     
+Place the solder points on the other side of the HC-05 pins onto the 6 open pins under the 16x2 screen, on the back side of the PCB. 
+![HC-05](../etc/hc05_1.JPG)
+The final result of this step should look like the image below.
+![HC-05](../etc/hc05_2.JPG)
+
 #### :gear: Soldering the 16x2 Screen
 The next step is to also trim the legs of the 16x2 Alphanumeric LCD Screen, and to solder it onto the PCB. 
-
-The screen goes on the front side of the PCB, and should line up with the outline.
     
+The screen goes on the front side of the PCB, and should line up with the outline.
+![Screen](../etc/screen_1.JPG)
+
 #### :gear: Soldering Pin Risers onto the PCB
 Next, you will solder pin risers onto the PCB, enabling you to connect our device to the MSP microcontroller. 
 
 Using your MSP, place up pin risers into the pin sockets like the picture below.
-
+![Risers](../etc/risers_1.JPG)
 Then, place your PCB onto the MSP so that the pin risers fit into the matching open pins on the PCB, and solder them together.
-
+![Risers](../etc/risers_2.JPG)
 You may now freely disconnect and reconnect your MSP from your PCB
-    
+
 #### :gear: Soldering the Battery and the Power Switch
-The next step is to connect the Battery Enclosure and the Power Switch to the PCB. 
-
-Both of these already include wires, of which the positive leads are soldered together, and their negative leads will be soldered directly into the board as shown. 
-
-WARNING: MAKE SURE THE SWITCH IS SET TO OFF, AND THE BATTERY IS NOT IN THE ENCLOSURE BEFORE COMPLETING THIS STEP!
+WARNING: MAKE SURE THE SWITCH IS SET TO OFF, AND THE BATTERY IS NOT IN THE ENCLOSURE BEFORE STARTING THIS STEP!
+    
+The next step is to connect the Battery Enclosure and the Power Switch to the PCB. Both of these already include wires, of which the positive leads are soldered together, and their negative leads will be soldered directly into the board as shown. 
+![Battery](../etc/pcb_batt.JPG)
   
 #### :gear: Soldering the LEDs
 Now, we will solder all the smaller components on the top-left of the front of the LCD, which include our 3 LEDs, 3 matching resistors, and the potentiometer. 
-
+    
 You can do these in any order you wish, but make sure your LED positive lead is soldered to the right mounting spot, and the negative lead on the one on the left.
-    
+![LEDs](../etc/leds.JPG)
 #### :gear: Soldering the final buttons and switches
-Finally, the smallest components must be soldered onto the PCB. We recommend trimming two diagonal leads on the small push button, as only two of them are required. 
-
-For the smaller switches, be careful not to use ONE of the outer leads, and to solder wire onto one of the outer leads and another wire onto the center lead.
-
-Carefully follow the soldering cheat sheet and compare with the following picture of the final product.
+Finally, the smallest components must be soldered onto the PCB. We recommend trimming two diagonal leads on the small push button, as only two of them are required.
     
+For the smaller 3-pin switches, be careful to solder wire onto only one of the outer leads, and another wire onto the center lead.
+    
+Carefully follow the soldering cheat sheet and compare with the following picture of the final product.
+![Buttons](../etc/small_stuff.JPG)
+
 #### :gear: Connecting to a Flashed MSP
 Now that all of your components have been successfully soldered onto the PCB, you can reconnect the already flashed MSP to the PCB if your disconnected it earlier, plug in the battery and run an out of enclosure test! 
-
 The LCD should turn on and welcome you if every component is working correctly.
-
+![Final result](../etc/result.JPG)
+    
 ### :four: MSP-EXP430FR2433
 
 #### :gear: Image
@@ -188,7 +189,7 @@ Our custom PCB is what allows the building process to be relatively simple, as i
 ### :six: HC-05
 
 #### :gear: Image
-![HC-05](https://github.com/derekbarbosa/EC463/blob/main/etc/hc-05.JPG)
+![HC-05](../etc/hc-05.JPG)
 #### :gear: Purpose
 [Datasheet](https://www.etechnophiles.com/wp-content/uploads/2020/10/HC-05-Datasheet-Download.pdf)
 
@@ -197,7 +198,7 @@ The HC-05 is the component that allows our device to wirelessly connect to simil
 ### :seven: 16x2 Alphanumeric Screen
 
 #### :gear: Image
-
+![Screen](../etc/screen.JPG)
 #### :gear: Purpose
 
 [Datasheet](https://www.engineersgarage.com/sites/default/files/LCD%2016x2.pdf)
@@ -207,8 +208,10 @@ The alphanumeric screen is an important part of our device, as it allows each us
 ### :eight: Battery
 
 #### :gear: Image
+![Battery](../etc/battery.JPG)
 #### :gear: Purpose
 [Datasheet](https://cdn.shopify.com/s/files/1/0481/9678/0183/files/EpochBatteries_18650-30P_specification.pdf?v=1634052514)
+    
 The selected 18650 battery has more than enough capacity to last the required ~21 hours, and has been tested to last around 25 hours, depending on use. 
 
 The battery is also rechargable with the purchase of a battery charger, and allows for one battery to serve as the lone power source for mutiple days with full charges in between uses. The single, 18650 battery supplies 3.6V to the badge with a capacity of 3000mAh.
@@ -222,9 +225,14 @@ This list includes consumption of each device on the badge:
 - LCD(backlight on): 100mA.
     
 ### :nine: Smaller Components
-
-#### :gear: Image
-#### :gear: Purpose
+![Components](../etc/misc_comp.JPG)
+1. Battery Holster
+2. Power Switch
+3. 3-pin Switches (3)
+4. LEDs (3)
+5. Small Push Button
+6. Potentiometer
+7. Resistors [NOT PICTURED]
 
 ## :memo: Some Notes
 If you'd like to continue this project, you might want to [fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) OR [duplicate](https://docs.github.com/en/repositories/creating-and-managing-repositories/duplicating-a-repository) this repository rather than attempting to push your own commits/do a pull request. This way, you get to have as much creative freedom with the code as you desire (obviously respecting the GNU GPL v3 license).
