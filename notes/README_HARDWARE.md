@@ -96,7 +96,9 @@ We recommend JLCPCB, as it is the cheapest/fastest option (the ECE Department's 
 From there the process is very straightforward, most of the cost comes from shipping, but you can arrange for roughly 15 PCBs for around 25-30 dollars with expedited shipping.
 
 #### :gear: Options for Printing Our Custom Case
-<h5> Julian Placeholder </h5>
+Navigate to the [enclosures](../enclosures/) and use standard 3D printing procedures for the STL files. 
+Use the most updated STL file labelled "final case" design.
+
 ### :three: Build Instructions
 
 #### :gear: Required Tools
