@@ -81,7 +81,8 @@ Note, most parts are "swappable" as they are generic electronic components and c
 |4 Pin Push button|1|$0.86|[Aliexpress](https://www.aliexpress.com/item/32858344336.html?spm=a2g0o.productlist.0.0.a9ac17d38CE3nU&algo_pvid=15189abc-0adf-48ec-8010-904a6e547115&algo_exp_id=15189abc-0adf-48ec-8010-904a6e547115-2&pdp_ext_f=%7B%22sku_id%22%3A%2265418016751%22%7D&pdp_npi=1%40dis%7CUSD%7C%7C0.86%7C%7C%7C%7C%7C%40210318b816511878701982424eda04%7C65418016751%7Csea)
 |HC-05 BT Module|1|$1.92|[Aliexpress](https://www.aliexpress.com/item/32967247206.html?spm=a2g0o.productlist.0.0.3b284977eNrTyE&algo_pvid=7394bb36-299c-4e4a-9806-8e9876ae186d&algo_exp_id=7394bb36-299c-4e4a-9806-8e9876ae186d-0&pdp_ext_f=%7B%22sku_id%22%3A%2266508907103%22%7D&pdp_npi=1%40dis%7CUSD%7C%7C1.92%7C%7C%7C%7C%7C%402101e9d316511879090066545ef96c%7C66508907103%7Csea)
 |18650 Battery Charger [Optional]|1|$1.99|[Aliexpress](https://www.aliexpress.com/item/2255800096325349.html?spm=a2g0o.productlist.0.0.7e876c82SL5rrj&algo_pvid=db876199-2568-46a5-aecd-57abbb05b794&algo_exp_id=db876199-2568-46a5-aecd-57abbb05b794-0&pdp_ext_f=%7B%22sku_id%22%3A%2210000001161829607%22%7D&pdp_npi=1%40dis%7CUSD%7C6.24%7C1.99%7C%7C%7C%7C%7C%400bb0623b16511879547118854ed453%7C10000001161829607%7Csea)
-|Total Cost|X|$25.97|Not Including any potential shipping cost|
+|USB-C to Micro USB Adapter | 1 | 0.99 | [Aliexpress](https://www.aliexpress.com/item/1005001355311385.html?spm=a2g0o.productlist.0.0.f2d16eaa5Oa9to&algo_pvid=5cf849db-a416-4d3e-a438-921ea3da315a&algo_exp_id=5cf849db-a416-4d3e-a438-921ea3da315a-1&pdp_ext_f=%7B%22sku_id%22%3A%2212000015793579873%22%7D&pdp_npi=1%40dis%7CUSD%7C3.38%7C0.99%7C%7C%7C%7C%7C%402101e9d216514410377935489eb2bc%7C12000015793579873%7Csea)
+|Total Cost|X|$26.96|Not Including any potential shipping cost|
 
 #### :gear: Purchasing Our Custom PCB
 
